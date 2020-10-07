@@ -39,7 +39,7 @@ set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
 set shortmess+=c                        " Don't pass messages to |ins-completion-menu|
 set updatetime=500                      " Faster completion
-set timeoutlen=500                      " Shorter time between mapped sequences (default is 1000 ms)A
+set timeoutlen=1000                     " Shorter time between mapped sequences (default is 1000 ms)A
 set clipboard=unnamed                   " Copy/paste between vim and everything else
 set incsearch                           " Enable incremental search
 set nohlsearch                          " Disable search highlighting
@@ -80,7 +80,12 @@ nnoremap <Leader>u :UndotreeToggle<CR>
 " startify
 autocmd FileType startify :IndentLinesDisable
 let g:startify_custom_header = []
+let g:startify_enable_special = 0
+let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
+let g:startify_session_autoload = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_persistence = 1
 let g:startify_lists = [
       \ { 'type': 'files',     'header': ['   Files']                        },
       \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
@@ -88,10 +93,13 @@ let g:startify_lists = [
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']                    },
       \ { 'type': 'commands',  'header': ['   Commands']                     },
       \]
+source $HOME/.config/nvim/startify-bookmarks.vim
 
 function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
+
+nnoremap <silent> <Leader>S :bufdo bd<CR>:Startify<CR>
 
 " Coc extensions
 let g:coc_global_extensions = [
@@ -108,6 +116,11 @@ let g:coc_global_extensions = [
 nmap <silent> <Leader>e :CocCommand explorer<CR>
 autocmd FileType coc-explorer :IndentLinesDisable
 autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+
+augroup CocExplorerHijackNetrw
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,VimEnter * if isdirectory(expand('<amatch>')) | bd | exe 'CocCommand explorer' | endif
+augroup END
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent> <expr> <Tab>
