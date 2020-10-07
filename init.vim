@@ -115,7 +115,7 @@ let g:coc_global_extensions = [
 
 nmap <silent> <Leader>e :CocCommand explorer<CR>
 autocmd FileType coc-explorer :IndentLinesDisable
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 augroup CocExplorerHijackNetrw
   autocmd VimEnter * silent! autocmd! FileExplorer
