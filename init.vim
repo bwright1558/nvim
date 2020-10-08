@@ -10,6 +10,9 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/gv.vim'
+Plug 'mhinz/vim-signify'
 Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
@@ -72,6 +75,13 @@ let g:airline_powerline_fonts = 1
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
+
+" vim-signify
+let g:signify_sign_show_count = 0
+nmap <Leader>gj <Plug>(signify-next-hunk)
+nmap <Leader>gk <Plug>(signify-prev-hunk)
+nmap <Leader>gJ 9999<Leader>gj
+nmap <Leader>gK 9999<Leader>gk
 
 " undotree
 let g:undotree_SetFocusWhenToggle = 1
