@@ -111,7 +111,10 @@ let g:coc_global_extensions = [
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
   \ 'coc-yaml',
+  \ 'coc-yank',
   \ ]
+
+nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
 nmap <silent> <Leader>e :CocCommand explorer<CR>
 autocmd FileType coc-explorer :IndentLinesDisable
