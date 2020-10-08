@@ -76,6 +76,10 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 nnoremap <C-p> :Files<CR>
 nnoremap <C-f> :Rg<CR>
 
+" vim-commentary
+nnoremap <Leader>/ :Commentary<CR>
+vnoremap <Leader>/ :Commentary<CR>
+
 " vim-signify
 let g:signify_sign_show_count = 0
 nmap <Leader>gj <Plug>(signify-next-hunk)
