@@ -128,6 +128,9 @@ let g:coc_global_extensions = [
   \ 'coc-yank',
   \ ]
 
+" Format document
+command! -nargs=0 Format :call CocAction('format')
+
 nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
 nmap <silent> <Leader>e :CocCommand explorer<CR>
@@ -190,7 +193,7 @@ if has('macunix')
 endif
 
 " Trim trailing whitespace on save
-command! TrimWhitespace :%s/\s\+$//e
+command! -nargs=0 TrimWhitespace :%s/\s\+$//e
 autocmd BufWritePre * :TrimWhitespace
 
 " Retain visual selection when indenting lines
