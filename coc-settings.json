@@ -1,6 +1,6 @@
 {
   "explorer.previewAction.onHover": false,
-  "explorer.quitOnOpen": false,
+  "explorer.quitOnOpen": true,
   "explorer.icon.enableNerdfont": true,
   "explorer.file.hiddenRules": {
     "patternMatches": [
