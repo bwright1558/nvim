@@ -15,6 +15,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
+Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()
 
