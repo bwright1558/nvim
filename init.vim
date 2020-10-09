@@ -194,9 +194,10 @@ if has('macunix')
   vmap <C-c> :w !pbcopy<CR><CR>
 endif
 
-" Trim trailing whitespace on save
+" Trim trailing whitespace and newlines at EOF on save
 command! -nargs=0 TrimWhitespace :%s/\s\+$//e
-autocmd BufWritePre * :TrimWhitespace
+command! -nargs=0 TrimNewlines :%s/\($\n\s*\)\+\%$//e
+autocmd BufWritePre * exe 'TrimWhitespace' | exe 'TrimNewlines'
 
 " Retain visual selection when indenting lines
 vnoremap > >gv
