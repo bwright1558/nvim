@@ -55,8 +55,6 @@ set fileformats=unix,dos,mac            " Set EOL formats
 set termguicolors                       " Enable true colors
 set noerrorbells                        " Disable error bells
 set colorcolumn=89                      " Show column at 89 characters
-set nofoldenable                        " Don't fold by default
-set foldmethod=indent                   " Fold code based on indent level
 
 " Set leader key to <Space>
 nnoremap <Space> <Nop>
