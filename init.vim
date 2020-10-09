@@ -36,7 +36,7 @@ set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
 set laststatus=2                        " Always display the status line
 set number                              " Show line numbers
-set relativenumber                      " Use relative numbers
+" set relativenumber                      " Use relative numbers
 set noswapfile                          " Don't create a swap file
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
