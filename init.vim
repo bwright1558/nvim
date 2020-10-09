@@ -8,7 +8,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
@@ -36,7 +35,7 @@ set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
 set laststatus=2                        " Always display the status line
 set number                              " Show line numbers
-" set relativenumber                      " Use relative numbers
+set relativenumber                      " Use relative numbers
 set noswapfile                          " Don't create a swap file
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
