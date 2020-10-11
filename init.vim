@@ -1,5 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
-Plug 'gruvbox-community/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
@@ -60,7 +60,7 @@ nnoremap <Space> <Nop>
 let mapleader = ' '
 
 " colorscheme
-colorscheme gruvbox
+colorscheme onedark
 set background=dark
 
 " airline
