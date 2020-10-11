@@ -24,9 +24,7 @@ filetype plugin indent on               " Enable plugin and indent files
 set backspace=indent,eol,start          " Fix backspace in insert mode
 set hidden                              " Required to keep multiple buffers open
 set nowrap                              " Display long lines as just one line
-" set pumheight=10                      " Makes popup menu smaller
 set ruler                               " Show the cursor position all the time
-" set cmdheight=2                       " More space for displaying messages
 set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
@@ -45,7 +43,7 @@ set updatetime=500                      " Faster completion
 set timeoutlen=1000                     " Shorter time between mapped sequences (default is 1000 ms)A
 set clipboard=unnamed                   " Copy/paste between vim and everything else
 set incsearch                           " Enable incremental search
-set nohlsearch                          " Disable search highlighting
+set hlsearch                            " Enable search highlighting
 set ignorecase                          " Case insensitive search
 set smartcase                           " Make search case sensitive when uppercase characters are used
 set undodir=~/.undodir                  " Directory to store undo history
@@ -90,6 +88,25 @@ nmap <Leader>gK 9999<Leader>gk
 " undotree
 let g:undotree_SetFocusWhenToggle = 1
 nnoremap <Leader>u :UndotreeToggle<CR>
+
+" vim-easymotion
+map \ <Plug>(easymotion-prefix)
+
+" Workaround for easymotion causing linter errors.
+autocmd TextChanged,CursorMoved * call EasyMotionCoc()
+
+let g:easymotion#is_active = 0
+function! EasyMotionCoc() abort
+  if EasyMotion#is_active()
+    let g:easymotion#is_active = 1
+    silent! CocDisable
+  else
+    if g:easymotion#is_active == 1
+      let g:easymotion#is_active = 0
+      silent! CocEnable
+    endif
+  endif
+endfunction
 
 " startify
 autocmd FileType startify :IndentLinesDisable
@@ -220,6 +237,9 @@ nnoremap <C-l> <C-w>l
 " Better omnicomplete navigation
 inoremap <expr> <C-j> "\<C-n>"
 inoremap <expr> <C-k> "\<C-p>"
+
+" Stop highlighting for hlsearch
+nnoremap <silent> <Leader>n :noh<CR>
 
 " make/cmake
 autocmd FileType make setlocal noet
