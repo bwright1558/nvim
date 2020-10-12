@@ -288,6 +288,8 @@ autocmd FileType css,scss setlocal ts=2 sts=2 sw=2 et
 autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
 
 " vim
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
