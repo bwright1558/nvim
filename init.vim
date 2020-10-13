@@ -269,6 +269,9 @@ let g:go_imports_autosave = 1
 " javascript/react
 autocmd FileType javascript,javascriptreact setlocal ts=2 sts=2 sw=2 et
 
+" typescript
+autocmd FileType typescript setlocal ts=2 sts=2 sw=2 et
+
 " json
 autocmd FileType json setlocal ts=2 sts=2 sw=2 et
 
