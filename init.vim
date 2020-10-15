@@ -39,7 +39,7 @@ set noswapfile                          " Don't create a swap file
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
 set shortmess+=c                        " Don't pass messages to |ins-completion-menu|
-set updatetime=500                      " Faster completion
+set updatetime=300                      " Faster completion
 set timeoutlen=1000                     " Shorter time between mapped sequences (default is 1000 ms)A
 set clipboard=unnamed                   " Copy/paste between vim and everything else
 set incsearch                           " Enable incremental search
