@@ -156,7 +156,8 @@ autocmd FileType coc-explorer :IndentLinesDisable
 
 augroup CocExplorerHijackNetrw
   autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,VimEnter * if isdirectory(expand('<amatch>')) | bd | exe 'CocCommand explorer' | endif
+  " autocmd BufEnter,VimEnter * if isdirectory(expand('<amatch>')) | bd | exe 'CocCommand explorer' | endif
+  autocmd BufEnter,VimEnter * if isdirectory(expand('<amatch>')) | bd | endif
 augroup END
 
 " Use tab for trigger completion with characters ahead and navigate.
