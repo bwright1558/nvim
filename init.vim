@@ -3,6 +3,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -202,7 +203,7 @@ function! s:show_documentation()
 endfunction
 
 " Stop newline continuation of comments
-autocmd FileType * setlocal formatoptions-=cro
+" autocmd FileType * setlocal formatoptions-=cro
 
 " Copy/paste for OSX
 if has('macunix')
