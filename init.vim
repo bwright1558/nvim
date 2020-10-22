@@ -14,7 +14,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
-Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()
 
@@ -84,30 +83,6 @@ nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
 
-" startify
-autocmd FileType startify :IndentLinesDisable
-let g:startify_custom_header = []
-let g:startify_enable_special = 0
-let g:startify_change_to_dir = 1
-let g:startify_change_to_vcs_root = 1
-let g:startify_session_autoload = 1
-let g:startify_session_delete_buffers = 1
-let g:startify_session_persistence = 1
-let g:startify_lists = [
-      \ { 'type': 'files',     'header': ['   Files']                        },
-      \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
-      \ { 'type': 'sessions',  'header': ['   Sessions']                     },
-      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']                    },
-      \ { 'type': 'commands',  'header': ['   Commands']                     },
-      \]
-source $HOME/.config/nvim/startify-bookmarks.vim
-
-function! StartifyEntryFormat()
-  return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
-endfunction
-
-nnoremap <silent> <Leader>S :bufdo bd<CR>:Startify<CR>
-
 " Coc extensions
 let g:coc_global_extensions = [
   \ 'coc-css',
@@ -132,7 +107,7 @@ autocmd FileType coc-explorer :IndentLinesDisable
 
 augroup CocExplorerHijackNetrw
   autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,VimEnter * if isdirectory(expand('<amatch>')) | bd | exe 'CocCommand explorer' | endif
+  autocmd BufEnter,VimEnter * let d = expand('%') | if isdirectory(d) | exe 'cd ' . d | bd | exe 'CocCommand explorer ' . d | endif
 augroup END
 
 " Use tab for trigger completion with characters ahead and navigate.
