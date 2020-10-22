@@ -3,7 +3,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -14,7 +13,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
-Plug 'mbbill/undotree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
 Plug 'easymotion/vim-easymotion'
@@ -86,10 +84,6 @@ nmap <Leader>gj <Plug>(signify-next-hunk)
 nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
-
-" undotree
-let g:undotree_SetFocusWhenToggle = 1
-nnoremap <Leader>u :UndotreeToggle<CR>
 
 " vim-easymotion
 map \ <Plug>(easymotion-prefix)
