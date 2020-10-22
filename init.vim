@@ -101,13 +101,13 @@ command! -nargs=0 Format :call CocAction('format')
 
 nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
-nmap <silent> <Leader>e :CocCommand explorer<CR>
+nmap <silent> <Leader>e :exe 'CocCommand explorer ' . getcwd()<CR>
 autocmd FileType coc-explorer :IndentLinesDisable
 " autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 augroup CocExplorerHijackNetrw
   autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,VimEnter * let d = expand('%') | if isdirectory(d) | exe 'cd ' . d | bd | exe 'CocCommand explorer ' . d | endif
+  autocmd BufEnter,VimEnter * let d = expand('<amatch>') | if isdirectory(d) | exe 'cd ' . d | bd | exe 'CocCommand explorer ' . d | endif
 augroup END
 
 " Use tab for trigger completion with characters ahead and navigate.
