@@ -203,7 +203,7 @@ function! s:show_documentation()
 endfunction
 
 " Stop newline continuation of comments
-" autocmd FileType * setlocal formatoptions-=cro
+autocmd FileType * setlocal formatoptions-=cro
 
 " Copy/paste for OSX
 if has('macunix')
