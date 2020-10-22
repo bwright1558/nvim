@@ -15,7 +15,6 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
-Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 call plug#end()
 
@@ -84,25 +83,6 @@ nmap <Leader>gj <Plug>(signify-next-hunk)
 nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
-
-" vim-easymotion
-map \ <Plug>(easymotion-prefix)
-
-" Workaround for easymotion causing linter errors.
-autocmd TextChanged,CursorMoved * call EasyMotionCoc()
-
-let g:easymotion#is_active = 0
-function! EasyMotionCoc() abort
-  if EasyMotion#is_active()
-    let g:easymotion#is_active = 1
-    silent! CocDisable
-  else
-    if g:easymotion#is_active == 1
-      let g:easymotion#is_active = 0
-      silent! CocEnable
-    endif
-  endif
-endfunction
 
 " startify
 autocmd FileType startify :IndentLinesDisable
