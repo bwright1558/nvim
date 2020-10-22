@@ -50,7 +50,6 @@ set undofile                            " Enable undo history
 set scrolloff=8                         " Keep cursor 8 lines from edges when scrolling
 set nomodeline                          " Disable set commands in files
 set fileformats=unix,dos,mac            " Set EOL formats
-set termguicolors                       " Enable true colors
 set noerrorbells                        " Disable error bells
 set colorcolumn=89                      " Show column at 89 characters
 
@@ -58,9 +57,10 @@ set colorcolumn=89                      " Show column at 89 characters
 nnoremap <Space> <Nop>
 let mapleader = ' '
 
-" colorscheme
-colorscheme onedark
+" colorscheme with true colors enabled
+set termguicolors
 set background=dark
+colorscheme onedark
 
 " airline
 let g:airline#extensions#branch#enabled = 1
