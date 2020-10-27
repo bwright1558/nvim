@@ -101,7 +101,6 @@ command! -nargs=0 Format :call CocAction('format')
 nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
 nmap <silent> <Leader>e :exe 'CocCommand explorer ' . getcwd()<CR>
-" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 augroup CocExplorerHijackNetrw
   autocmd VimEnter * silent! autocmd! FileExplorer
