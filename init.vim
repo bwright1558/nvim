@@ -3,7 +3,6 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -102,7 +101,6 @@ command! -nargs=0 Format :call CocAction('format')
 nnoremap <silent> <Leader>y :<C-u>CocList -A --normal yank<CR>
 
 nmap <silent> <Leader>e :exe 'CocCommand explorer ' . getcwd()<CR>
-autocmd FileType coc-explorer :IndentLinesDisable
 " autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 augroup CocExplorerHijackNetrw
@@ -188,6 +186,8 @@ nnoremap <C-l> <C-w>l
 " Better omnicomplete navigation
 inoremap <expr> <C-j> "\<C-n>"
 inoremap <expr> <C-k> "\<C-p>"
+
+tnoremap <C-\> <C-\><C-n>
 
 " Stop highlighting for hlsearch
 nnoremap <silent> <Leader>n :noh<CR>
