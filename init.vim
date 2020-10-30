@@ -247,3 +247,6 @@ let g:vim_markdown_new_list_item_indent = 0
 
 " vim
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
+
+" zsh
+autocmd FileType zsh setlocal ts=2 sts=2 sw=2 et
