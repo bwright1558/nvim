@@ -68,8 +68,9 @@ let g:airline_powerline_fonts = 1
 
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-nnoremap <C-p> :Files<CR>
-nnoremap <C-f> :Rg<CR>
+nnoremap <Leader>p :Files<CR>
+nnoremap <Leader>f :Rg<CR>
+nnoremap <Leader>b :Buffers<CR>
 
 " vim-commentary
 nnoremap <Leader>/ :Commentary<CR>
