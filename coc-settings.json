@@ -15,6 +15,7 @@
     "go": {
       "command": "gopls",
       "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
       "filetypes": ["go"]
     }
   }
