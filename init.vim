@@ -179,10 +179,30 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " Better window navigation
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" If pane exists in the direction of `key`, then switch to it.
+" Otherwise, create a new pane in the direction of `key`, then switch to it.
+function! WinMove(key)
+  let t:curwin = winnr()
+  exec 'wincmd ' . a:key
+  if (t:curwin == winnr())
+    if (match(a:key, '[jk]'))
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec 'wincmd ' . a:key
+  endif
+endfunction
+
+nnoremap <silent> <C-h> :call WinMove('h')<CR>
+nnoremap <silent> <C-j> :call WinMove('j')<CR>
+nnoremap <silent> <C-k> :call WinMove('k')<CR>
+nnoremap <silent> <C-l> :call WinMove('l')<CR>
+
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
 
 " Better omnicomplete navigation
 inoremap <expr> <C-j> "\<C-n>"
