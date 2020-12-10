@@ -19,6 +19,7 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 syntax on                               " Enables syntax highlighting
@@ -87,6 +88,9 @@ nmap <Leader>gj <Plug>(signify-next-hunk)
 nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
+
+let g:vimwiki_global_ext = 0
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Coc extensions
 let g:coc_global_extensions = [
