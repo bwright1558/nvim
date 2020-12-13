@@ -222,6 +222,9 @@ tnoremap <C-\> <C-\><C-n>
 " Stop highlighting for hlsearch
 nnoremap <silent> <Leader>n :noh<CR>
 
+" ebextensions
+autocmd BufRead,BufNewFile */.ebextensions/*.config set ft=yaml
+
 " make/cmake
 autocmd FileType make setlocal noet
 
