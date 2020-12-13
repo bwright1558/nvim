@@ -56,6 +56,7 @@ set nomodeline                          " Disable set commands in files
 set fileformats=unix,dos,mac            " Set EOL formats
 set noerrorbells                        " Disable error bells
 set colorcolumn=89                      " Show column at 89 characters
+set cursorline cursorcolumn             " Highlight where the cursor is positioned.
 
 " Set leader key to <Space>
 nnoremap <Space> <Nop>
