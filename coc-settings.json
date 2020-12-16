@@ -9,7 +9,9 @@
   },
 
   "python.jediEnabled": false,
-  "python.linting.enabled": false,
+  "python.analysis.disabled": ["no-self-argument"],
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": ["--ignore=E501"],
 
   "languageserver": {
     "go": {
