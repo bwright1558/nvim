@@ -223,6 +223,9 @@ tnoremap <C-\> <C-\><C-n>
 " Stop highlighting for hlsearch
 nnoremap <silent> <Leader>n :noh<CR>
 
+" Change filetype
+nnoremap <Leader>c :set ft=
+
 " ebextensions
 autocmd BufRead,BufNewFile */.ebextensions/*.config set ft=yaml
 
