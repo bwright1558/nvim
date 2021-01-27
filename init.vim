@@ -226,9 +226,6 @@ nnoremap <silent> <Leader>n :noh<CR>
 " Change filetype
 nnoremap <Leader>c :set ft=
 
-" ebextensions
-autocmd BufRead,BufNewFile */.ebextensions/*.config set ft=yaml
-
 " make/cmake
 autocmd FileType make setlocal noet
 
@@ -282,8 +279,19 @@ let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
 
+" haproxy
+autocmd FileType haproxy setlocal ts=2 sts=2 sw=2 et
+
+" conf
+autocmd FileType conf setlocal ts=2 sts=2 sw=2 et
+
 " vim
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
 
 " zsh
 autocmd FileType zsh setlocal ts=2 sts=2 sw=2 et
+
+" Change filetype for certain types of files with alternate file extension.
+autocmd BufRead,BufNewFile */.ebextensions/*.config,*.yml.j2 set ft=yaml
+autocmd BufRead,BufNewFile haproxy.cfg.j2 set ft=haproxy
+autocmd BufRead,BufNewFile *.conf.j2 set ft=conf
