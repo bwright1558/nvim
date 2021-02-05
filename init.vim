@@ -103,8 +103,6 @@ let g:coc_global_extensions = [
   \ 'coc-rls',
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
-  \ 'coc-yaml',
-  \ 'coc-yank',
   \ ]
 
 " Format document
