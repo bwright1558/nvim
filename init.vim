@@ -291,5 +291,6 @@ autocmd FileType zsh setlocal ts=2 sts=2 sw=2 et
 
 " Change filetype for certain types of files with alternate file extension.
 autocmd BufRead,BufNewFile */.ebextensions/*.config,*.yml.j2 set ft=yaml
+autocmd BufRead,BufNewFile *.json.j2 set ft=json
 autocmd BufRead,BufNewFile haproxy.cfg.j2 set ft=haproxy
 autocmd BufRead,BufNewFile *.conf.j2 set ft=conf
