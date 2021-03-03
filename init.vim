@@ -8,8 +8,9 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-commentary'
@@ -28,7 +29,6 @@ set backspace=indent,eol,start          " Fix backspace in insert mode
 set hidden                              " Required to keep multiple buffers open
 set nowrap                              " Display long lines as just one line
 set ruler                               " Show the cursor position all the time
-set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
 set ts=4 sts=4 sw=4 et                  " Make tabs be 4 spaces and convert tab characters to spaces
@@ -73,11 +73,11 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 
-" fzf
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
-nnoremap <Leader>p :Files<CR>
-nnoremap <Leader>f :Rg<CR>
-nnoremap <Leader>b :Buffers<CR>
+" telescope.nvim
+nnoremap <Leader>ff <Cmd>Telescope find_files<CR>
+nnoremap <Leader>fg <Cmd>Telescope live_grep<CR>
+nnoremap <Leader>fb <Cmd>Telescope buffers<CR>
+nnoremap <Leader>fh <Cmd>Telescope help_tags<CR>
 
 " vim-commentary
 nnoremap <Leader>/ :Commentary<CR>
@@ -282,6 +282,9 @@ autocmd FileType haproxy setlocal ts=2 sts=2 sw=2 et
 
 " conf
 autocmd FileType conf setlocal ts=2 sts=2 sw=2 et
+
+" lua
+autocmd FileType lua setlocal ts=2 sts=2 sw=2 et
 
 " vim
 autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
