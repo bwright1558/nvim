@@ -69,11 +69,12 @@ colorscheme onedark
 
 " airline
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#vcs_checks = []
 let g:airline#extensions#ale#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 
-" telescope.nvim
+" " telescope.nvim
 nnoremap <Leader>ff <Cmd>Telescope find_files<CR>
 nnoremap <Leader>fg <Cmd>Telescope live_grep<CR>
 nnoremap <Leader>fb <Cmd>Telescope buffers<CR>
@@ -98,6 +99,7 @@ let g:coc_global_extensions = [
   \ 'coc-css',
   \ 'coc-explorer',
   \ 'coc-html',
+  \ 'coc-json',
   \ 'coc-python',
   \ 'coc-rls',
   \ 'coc-tsserver',
