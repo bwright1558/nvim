@@ -31,7 +31,7 @@ set nowrap                              " Display long lines as just one line
 set ruler                               " Show the cursor position all the time
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
-set ts=4 sts=4 sw=4 et                  " Make tabs be 4 spaces and convert tab characters to spaces
+set ts=2 sts=2 sw=2 et                  " Make tabs be 2 spaces and convert tab characters to spaces
 set smarttab                            " Makes tabbing smarter
 set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
@@ -208,11 +208,6 @@ nnoremap <silent> <C-j> :call WinMove('j')<CR>
 nnoremap <silent> <C-k> :call WinMove('k')<CR>
 nnoremap <silent> <C-l> :call WinMove('l')<CR>
 
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
 " Better omnicomplete navigation
 inoremap <expr> <C-j> "\<C-n>"
 inoremap <expr> <C-k> "\<C-p>"
@@ -250,48 +245,14 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_imports_autosave = 1
 
-" javascript/react
-autocmd FileType javascript,javascriptreact setlocal ts=2 sts=2 sw=2 et
-
-" typescript
-autocmd FileType typescript,typescriptreact setlocal ts=2 sts=2 sw=2 et
-
-" json
-autocmd FileType json setlocal ts=2 sts=2 sw=2 et
-
-" yaml
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
-
-" graphql
-autocmd FileType graphql setlocal ts=2 sts=2 sw=2 et
-
-" html
-autocmd FileType html setlocal ts=2 sts=2 sw=2 et
-
-" css
-autocmd FileType css,scss setlocal ts=2 sts=2 sw=2 et
+" python
+autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 
 " markdown
-autocmd FileType markdown setlocal ts=2 sts=2 sw=2 et
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
-
-" haproxy
-autocmd FileType haproxy setlocal ts=2 sts=2 sw=2 et
-
-" conf
-autocmd FileType conf setlocal ts=2 sts=2 sw=2 et
-
-" lua
-autocmd FileType lua setlocal ts=2 sts=2 sw=2 et
-
-" vim
-autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
-
-" zsh
-autocmd FileType zsh setlocal ts=2 sts=2 sw=2 et
 
 " Change filetype for certain types of files with alternate file extension.
 autocmd BufRead,BufNewFile */.ebextensions/*.config,*.yml.j2 set ft=yaml
