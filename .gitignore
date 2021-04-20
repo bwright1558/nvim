@@ -1,4 +1,5 @@
 .netrwhist
 autoload
 plugged
+undodir
 startify-bookmarks.vim
