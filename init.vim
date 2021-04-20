@@ -8,9 +8,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-commentary'
@@ -49,7 +48,7 @@ set incsearch                           " Enable incremental search
 set hlsearch                            " Enable search highlighting
 set ignorecase                          " Case insensitive search
 set smartcase                           " Make search case sensitive when uppercase characters are used
-set undodir=~/.undodir                  " Directory to store undo history
+set undodir=~/.config/nvim/undodir      " Directory to store undo history
 set undofile                            " Enable undo history
 set scrolloff=8                         " Keep cursor 8 lines from edges when scrolling
 set nomodeline                          " Disable set commands in files
@@ -74,11 +73,12 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 
-" " telescope.nvim
-nnoremap <Leader>ff <Cmd>Telescope find_files<CR>
-nnoremap <Leader>fg <Cmd>Telescope live_grep<CR>
-nnoremap <Leader>fb <Cmd>Telescope buffers<CR>
-nnoremap <Leader>fh <Cmd>Telescope help_tags<CR>
+" fzf
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fg :Rg<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>fh :Helptags<CR>
 
 " vim-commentary
 nnoremap <Leader>/ :Commentary<CR>
