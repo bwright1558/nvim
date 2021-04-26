@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'sainnhe/edge'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
@@ -64,7 +65,11 @@ let mapleader = ' '
 " colorscheme with true colors enabled
 set termguicolors
 set background=dark
-colorscheme onedark
+
+" let g:edge_style = 'default'
+let g:edge_style = 'aura'
+" let g:edge_style = 'neon'
+colorscheme edge
 
 " airline
 let g:airline#extensions#branch#enabled = 1
@@ -221,13 +226,13 @@ nnoremap <silent> <Leader>n :noh<CR>
 nnoremap <Leader>c :set ft=
 
 " make/cmake
-autocmd FileType make setlocal noet
+autocmd FileType make setlocal ts=4 sts=4 sw=4 noet
 
 " python
 let g:python_highlight_all = 1
 
 " go
-autocmd FileType go setlocal noet
+autocmd FileType go setlocal ts=4 sts=4 sw=4 noet
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
 let g:go_highlight_build_constraints = 1
