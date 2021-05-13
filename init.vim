@@ -225,6 +225,9 @@ nnoremap <silent> <Leader>n :noh<CR>
 " Change filetype
 nnoremap <Leader>c :set ft=
 
+" Search visually selected text
+vnoremap // y/\V<C-R>=escape(@", '/\')<CR><CR>
+
 " make/cmake
 autocmd FileType make setlocal ts=4 sts=4 sw=4 noet
 
