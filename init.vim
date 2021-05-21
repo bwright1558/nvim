@@ -29,6 +29,7 @@ set backspace=indent,eol,start          " Fix backspace in insert mode
 set hidden                              " Required to keep multiple buffers open
 set nowrap                              " Display long lines as just one line
 set ruler                               " Show the cursor position all the time
+set mouse=a                             " Enable your mouse
 set splitbelow                          " Horizontal splits will automatically be below
 set splitright                          " Vertical splits will automatically be to the right
 set ts=2 sts=2 sw=2 et                  " Make tabs be 2 spaces and convert tab characters to spaces
