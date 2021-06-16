@@ -81,6 +81,7 @@ let g:airline_powerline_fonts = 1
 
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --no-ignore --glob '!.git/**' -- ".shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fg :Rg<CR>
 nnoremap <Leader>fb :Buffers<CR>
