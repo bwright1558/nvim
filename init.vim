@@ -21,6 +21,7 @@ Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'vimwiki/vimwiki'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 syntax on                               " Enables syntax highlighting
@@ -100,6 +101,11 @@ nmap <Leader>gK 9999<Leader>gk
 
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+" vim-easymotion
+map \ <Plug>(easymotion-prefix)
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable
 
 " Coc extensions
 let g:coc_global_extensions = [
