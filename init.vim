@@ -20,7 +20,6 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'vimwiki/vimwiki'
 Plug 'easymotion/vim-easymotion'
 call plug#end()
 
@@ -39,7 +38,7 @@ set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
 set laststatus=2                        " Always display the status line
 set number                              " Show line numbers
-set relativenumber                      " Use relative numbers
+" set relativenumber                      " Use relative numbers
 set noswapfile                          " Don't create a swap file
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
@@ -99,13 +98,21 @@ nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
 
-let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
 " vim-easymotion
-map \ <Plug>(easymotion-prefix)
 autocmd User EasyMotionPromptBegin silent! CocDisable
 autocmd User EasyMotionPromptEnd silent! CocEnable
+
+" <Leader>f{char} to move to {char}
+map <Leader>s <Plug>(easymotion-bd-f)
+nmap <Leader>s <Plug>(easymotion-overwin-f)
+
+" Move to line
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+map <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Coc extensions
 let g:coc_global_extensions = [
