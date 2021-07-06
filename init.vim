@@ -104,15 +104,15 @@ autocmd User EasyMotionPromptEnd silent! CocEnable
 
 " <Leader>f{char} to move to {char}
 map <Leader>s <Plug>(easymotion-bd-f)
-nmap <Leader>s <Plug>(easymotion-overwin-f)
+" nmap <Leader>s <Plug>(easymotion-overwin-f)
 
 " Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader>l <Plug>(easymotion-overwin-line)
+" nmap <Leader>l <Plug>(easymotion-overwin-line)
 
 " Move to word
 map <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " Coc extensions
 let g:coc_global_extensions = [
