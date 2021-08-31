@@ -4,7 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'kaicataldo/material.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sainnhe/edge'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
