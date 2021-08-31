@@ -68,6 +68,7 @@ let mapleader = ' '
 set termguicolors
 set background=dark
 
+let g:material_terminal_italics = 1
 let g:material_theme_style = 'palenight'
 colorscheme material
 
