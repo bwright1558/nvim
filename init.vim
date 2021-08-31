@@ -4,6 +4,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'kaicataldo/material.vim'
 Plug 'sainnhe/edge'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -20,7 +21,7 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'easymotion/vim-easymotion'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 syntax on                               " Enables syntax highlighting
@@ -38,7 +39,7 @@ set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
 set laststatus=2                        " Always display the status line
 set number                              " Show line numbers
-" set relativenumber                      " Use relative numbers
+set relativenumber                      " Use relative numbers
 set noswapfile                          " Don't create a swap file
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
@@ -67,10 +68,8 @@ let mapleader = ' '
 set termguicolors
 set background=dark
 
-" let g:edge_style = 'default'
-let g:edge_style = 'aura'
-" let g:edge_style = 'neon'
-colorscheme edge
+let g:material_theme_style = 'palenight'
+colorscheme material
 
 " airline
 let g:airline#extensions#branch#enabled = 1
@@ -98,21 +97,21 @@ nmap <Leader>gk <Plug>(signify-prev-hunk)
 nmap <Leader>gJ 9999<Leader>gj
 nmap <Leader>gK 9999<Leader>gk
 
-" vim-easymotion
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd silent! CocEnable
+" vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
-" <Leader>f{char} to move to {char}
-map <Leader>s <Plug>(easymotion-bd-f)
-" nmap <Leader>s <Plug>(easymotion-overwin-f)
+" " vim-easymotion
+" autocmd User EasyMotionPromptBegin silent! CocDisable
+" autocmd User EasyMotionPromptEnd silent! CocEnable
 
-" Move to line
-map <Leader>l <Plug>(easymotion-bd-jk)
-" nmap <Leader>l <Plug>(easymotion-overwin-line)
+" " <Leader>f{char} to move to {char}
+" map <Leader>s <Plug>(easymotion-bd-f)
 
-" Move to word
-map <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>w <Plug>(easymotion-overwin-w)
+" " Move to line
+" map <Leader>l <Plug>(easymotion-bd-jk)
+
+" " Move to word
+" map <Leader>w <Plug>(easymotion-bd-w)
 
 " Coc extensions
 let g:coc_global_extensions = [
