@@ -4,12 +4,15 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'EdenEast/nightfox.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'sainnhe/edge'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -21,7 +24,6 @@ Plug 'junegunn/gv.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'vimwiki/vimwiki'
 call plug#end()
 
 syntax on                               " Enables syntax highlighting
@@ -68,16 +70,33 @@ let mapleader = ' '
 set termguicolors
 set background=dark
 
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'palenight'
-colorscheme material
+" let g:material_terminal_italics = 1
+" let g:material_theme_style = 'palenight'
+" colorscheme material
+
+" let g:tokyonight_style = 'night'
+" colorscheme tokyonight
+
+colorscheme nightfox
+
+" lightline
+let g:lightline = {
+  \ 'colorscheme': 'nightfox',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'gitbranch', 'readonly', 'filename', 'modified', ] ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'FugitiveHead'
+  \ },
+  \ }
 
 " airline
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#branch#vcs_checks = []
-let g:airline#extensions#ale#enabled = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#branch#vcs_checks = []
+" let g:airline#extensions#ale#enabled = 1
+" let g:airline_skip_empty_sections = 1
+" let g:airline_powerline_fonts = 1
 
 " fzf
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
