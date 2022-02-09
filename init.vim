@@ -266,6 +266,7 @@ vnoremap // y/\V<C-R>=escape(@", '/\')<CR><CR>
 autocmd FileType make setlocal ts=4 sts=4 sw=4 noet
 
 " python
+autocmd FileType python setlocal ts=4 sts=4 sw=4 et
 let g:python_highlight_all = 1
 
 " go
@@ -287,8 +288,8 @@ let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_imports_autosave = 1
 
-" python
-autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+" fish
+autocmd FileType fish setlocal ts=4 sts=4 sw=4 et
 
 " markdown
 let g:vim_markdown_conceal = 0
