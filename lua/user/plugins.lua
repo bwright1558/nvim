@@ -29,6 +29,13 @@ return packer.startup({
     use "nvim-lua/popup.nvim"
     use "kyazdani42/nvim-web-devicons"
 
+    -- General
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      config = function() require("user.treesitter") end,
+      run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
+    }
+
     -- Themes
     use "EdenEast/nightfox.nvim"
 
@@ -41,6 +48,10 @@ return packer.startup({
     use {
       "nvim-lualine/lualine.nvim",
       config = function() require("user.lualine") end,
+    }
+    use {
+      "anuvyklack/pretty-fold.nvim",
+      config = function() require("user.pretty-fold") end,
     }
 
 
