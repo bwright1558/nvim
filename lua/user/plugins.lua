@@ -12,12 +12,12 @@ end
 local packer_bootstrap = ensure_packer()
 
 -- Autocommand that reloads neovim whenever you save the plugins file
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost plugins.lua source <afile> | PackerSync
---   augroup end
--- ]])
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
 
 local packer = require("packer")
 
@@ -32,12 +32,12 @@ return packer.startup({
     -- General
     use {
       "nvim-treesitter/nvim-treesitter",
-      config = function() require("user.plugins.configs.treesitter") end,
+      config = function() require("user.configs.treesitter") end,
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
     use {
       "nvim-telescope/telescope.nvim",
-      config = function() require("user.plugins.configs.telescope") end,
+      config = function() require("user.configs.telescope") end,
     }
     use {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -45,7 +45,7 @@ return packer.startup({
     }
     use {
       "ahmedkhalf/project.nvim",
-      config = function() require("user.plugins.configs.project") end,
+      config = function() require("user.configs.project") end,
     }
 
     -- Themes
@@ -54,7 +54,7 @@ return packer.startup({
     -- Completion
     use {
       "hrsh7th/nvim-cmp",
-      config = function() require("user.plugins.configs.cmp") end,
+      config = function() require("user.configs.cmp") end,
     }
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
@@ -68,31 +68,31 @@ return packer.startup({
     -- UI
     use {
       "nvim-lualine/lualine.nvim",
-      config = function() require("user.plugins.configs.lualine") end,
+      config = function() require("user.configs.lualine") end,
     }
     use {
       "lewis6991/gitsigns.nvim",
-      config = function() require("user.plugins.configs.gitsigns") end,
+      config = function() require("user.configs.gitsigns") end,
       event = "BufRead"
     }
     use {
       "lukas-reineke/indent-blankline.nvim",
-      config = function() require("user.plugins.configs.indentline") end,
+      config = function() require("user.configs.indentline") end,
     }
     use {
       "kyazdani42/nvim-tree.lua",
-      config = function() require("user.plugins.configs.nvim-tree") end,
+      config = function() require("user.configs.nvim-tree") end,
     }
     use {
       "anuvyklack/pretty-fold.nvim",
-      config = function() require("user.plugins.configs.pretty-fold") end,
+      config = function() require("user.configs.pretty-fold") end,
       event = "BufRead",
     }
 
     -- Language specific plugins
     use {
       "ray-x/go.nvim",
-      config = function() require("user.plugins.configs.go") end,
+      config = function() require("user.configs.go") end,
       ft = "go",
     }
     use {
