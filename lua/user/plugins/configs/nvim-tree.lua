@@ -23,6 +23,13 @@ end
 
 nvim_tree.setup({
   auto_reload_on_write = false,
+  sync_root_with_cwd = true, -- REQUIRES: project.nvim
+  respect_buf_cwd = true, -- REQUIRES: project.nvim
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
   hijack_directories = {
     enable = false,
   },
@@ -35,11 +42,6 @@ nvim_tree.setup({
       warning = icons.diagnostics.BoldWarning,
       error = icons.diagnostics.BoldError,
     },
-  },
-  update_focused_file = {
-    enable = true,
-    update_cwd = true,
-    ignore_list = {},
   },
   view = {
     width = 30,

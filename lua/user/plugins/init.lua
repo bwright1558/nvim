@@ -35,6 +35,10 @@ return packer.startup({
       config = function() require("user.plugins.configs.treesitter") end,
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
+    use {
+      "ahmedkhalf/project.nvim",
+      config = function() require("user.plugins.configs.project") end,
+    }
 
     -- Themes
     use "EdenEast/nightfox.nvim"
