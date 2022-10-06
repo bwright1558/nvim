@@ -51,7 +51,7 @@ return packer.startup({
     -- Themes
     use "EdenEast/nightfox.nvim"
 
-    -- Completion
+    -- Completion +sources
     use {
       "hrsh7th/nvim-cmp",
       config = function() require("user.configs.cmp") end,
@@ -64,6 +64,18 @@ return packer.startup({
     -- Snippets
     use "L3MON4D3/LuaSnip" -- snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
+    -- LSP
+    use {
+      "williamboman/mason.nvim",
+      config = function() require("user.configs.mason") end,
+    }
+    use "williamboman/mason-lspconfig.nvim"
+    use "neovim/nvim-lspconfig"
+    use {
+      "tamago324/nlsp-settings.nvim",
+      config = function() require("user.configs.nlspsettings") end,
+    }
 
     -- UI
     use {
