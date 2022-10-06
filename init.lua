@@ -1,3 +1,4 @@
-require "core.options"
-require "core.theme"
-require "core.keymaps"
+require "user.options"
+require "user.plugins"
+require "user.theme"
+require "user.keymaps"
