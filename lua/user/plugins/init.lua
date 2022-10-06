@@ -11,13 +11,13 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+-- Autocommand that reloads neovim whenever you save the plugins file
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]])
 
 local packer = require("packer")
 
@@ -51,7 +51,11 @@ return packer.startup({
     }
     use {
       "lukas-reineke/indent-blankline.nvim",
-      config = function() require("user.plugins.configs.indentline") end
+      config = function() require("user.plugins.configs.indentline") end,
+    }
+    use {
+      "kyazdani42/nvim-tree.lua",
+      config = function() require("user.plugins.configs.nvim-tree") end,
     }
     use {
       "anuvyklack/pretty-fold.nvim",
