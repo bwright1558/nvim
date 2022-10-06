@@ -3,6 +3,40 @@ if not ok then
   return
 end
 
+local icons = require("user.icons")
+
+-- diff component
+local diff = {
+  "diff",
+  source = function()
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+      return {
+        added = gitsigns.added,
+        modified = gitsigns.changed,
+        removed = gitsigns.removed,
+      }
+    end
+  end,
+  symbols = {
+    added = icons.git.LineAdded .. " ",
+    modified = icons.git.LineModified .. " ",
+    removed = icons.git.LineRemoved .. " ",
+  },
+}
+
+-- diagnostics component
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = {
+    error = icons.diagnostics.BoldError .. " ",
+    warn = icons.diagnostics.BoldWarning .. " ",
+    info = icons.diagnostics.BoldInformation .. " ",
+    hint = icons.diagnostics.BoldHint .. " ",
+  }
+}
+
 lualine.setup({
   options = {
     icons_enabled = true,
@@ -14,7 +48,7 @@ lualine.setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", "diff", "diagnostics" },
+    lualine_b = { "branch", diff, diagnostics },
     lualine_c = { "filename" },
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
