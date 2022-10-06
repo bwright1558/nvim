@@ -1,2 +1,3 @@
 # nvim
+
 Neovim configuration files
