@@ -1,3 +1,5 @@
+local cache_dir = vim.fn.stdpath("cache")
+
 vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
 vim.opt.shortmess:append("I") -- don't show the default intro message
 -- vim.opt.whichwrap:append("<,>,[,],h,l")
@@ -29,7 +31,7 @@ vim.opt.termguicolors = true -- set term gui colors (most terminals support this
 vim.opt.timeoutlen = 500 -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.title = true -- set the title of window to the value of the titlestring
 -- vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
-vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo" -- set an undo directory
+vim.opt.undodir = cache_dir .. "/undo" -- set an undo directory
 vim.opt.undofile = true -- enable persistent undo
 vim.opt.updatetime = 100 -- faster completion (in milliseconds)
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -42,6 +44,6 @@ vim.opt.relativenumber = true -- set relative numbered lines
 vim.opt.numberwidth = 4 -- set width of number column
 vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
 vim.opt.wrap = false -- display lines as one long line
-vim.opt.shadafile = vim.fn.stdpath("cache") .. "/nvim.shada"
+vim.opt.shadafile = cache_dir .. "/nvim.shada"
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen lines to keep left and right of the cursor
