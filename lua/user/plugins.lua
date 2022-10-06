@@ -41,17 +41,29 @@ return packer.startup({
 
     -- UI
     use {
+      "nvim-lualine/lualine.nvim",
+      config = function() require("user.lualine") end,
+    }
+    use {
       "lewis6991/gitsigns.nvim",
       config = function() require("user.gitsigns") end,
       event = "BufRead"
     }
     use {
-      "nvim-lualine/lualine.nvim",
-      config = function() require("user.lualine") end,
-    }
-    use {
       "anuvyklack/pretty-fold.nvim",
       config = function() require("user.pretty-fold") end,
+      event = "BufRead",
+    }
+
+    -- Language specific plugins
+    use {
+      "ray-x/go.nvim",
+      config = function() require("user.go") end,
+      ft = "go",
+    }
+    use {
+      "Vimjas/vim-python-pep8-indent",
+      ft = "python",
     }
 
 
