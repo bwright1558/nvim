@@ -11,14 +11,31 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-return require("packer").startup({
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
+local packer = require("packer")
+
+return packer.startup({
   function(use)
     use "wbthomason/packer.nvim"
     use "lewis6991/impatient.nvim"
+    use "nvim-lua/plenary.nvim"
+    use "nvim-lua/popup.nvim"
+    use "kyazdani42/nvim-web-devicons"
+
+    -- Themes
+    use "EdenEast/nightfox.nvim"
+
 
     -- Automatically set up your configuration after cloning packer.nvim
     if packer_bootstrap then
-      require("packer").sync()
+      packer.sync()
     end
   end,
 
