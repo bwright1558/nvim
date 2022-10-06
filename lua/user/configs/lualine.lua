@@ -32,7 +32,7 @@ local diagnostics = {
   symbols = {
     error = icons.diagnostics.BoldError .. " ",
     warn = icons.diagnostics.BoldWarning .. " ",
-    info = icons.diagnostics.BoldInformation .. " ",
+    info = icons.diagnostics.BoldInfo .. " ",
     hint = icons.diagnostics.BoldHint .. " ",
   }
 }
