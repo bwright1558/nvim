@@ -32,7 +32,7 @@ return packer.startup({
     -- General
     use {
       "nvim-treesitter/nvim-treesitter",
-      config = function() require("user.treesitter") end,
+      config = function() require("user.plugins.configs.treesitter") end,
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
 
@@ -42,27 +42,27 @@ return packer.startup({
     -- UI
     use {
       "nvim-lualine/lualine.nvim",
-      config = function() require("user.lualine") end,
+      config = function() require("user.plugins.configs.lualine") end,
     }
     use {
       "lewis6991/gitsigns.nvim",
-      config = function() require("user.gitsigns") end,
+      config = function() require("user.plugins.configs.gitsigns") end,
       event = "BufRead"
     }
     use {
       "lukas-reineke/indent-blankline.nvim",
-      config = function() require("user.indentline") end
+      config = function() require("user.plugins.configs.indentline") end
     }
     use {
       "anuvyklack/pretty-fold.nvim",
-      config = function() require("user.pretty-fold") end,
+      config = function() require("user.plugins.configs.pretty-fold") end,
       event = "BufRead",
     }
 
     -- Language specific plugins
     use {
       "ray-x/go.nvim",
-      config = function() require("user.go") end,
+      config = function() require("user.plugins.configs.go") end,
       ft = "go",
     }
     use {
