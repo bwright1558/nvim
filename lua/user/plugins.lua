@@ -50,6 +50,10 @@ return packer.startup({
       event = "BufRead"
     }
     use {
+      "lukas-reineke/indent-blankline.nvim",
+      config = function() require("user.indentline") end
+    }
+    use {
       "anuvyklack/pretty-fold.nvim",
       config = function() require("user.pretty-fold") end,
       event = "BufRead",
