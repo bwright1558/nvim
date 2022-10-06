@@ -32,6 +32,17 @@ return packer.startup({
     -- Themes
     use "EdenEast/nightfox.nvim"
 
+    -- UI
+    use {
+      "lewis6991/gitsigns.nvim",
+      config = function() require("user.gitsigns") end,
+      event = "BufRead"
+    }
+    use {
+      "nvim-lualine/lualine.nvim",
+      config = function() require("user.lualine") end,
+    }
+
 
     -- Automatically set up your configuration after cloning packer.nvim
     if packer_bootstrap then
