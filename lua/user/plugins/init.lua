@@ -36,6 +36,14 @@ return packer.startup({
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
     use {
+      "nvim-telescope/telescope.nvim",
+      config = function() require("user.plugins.configs.telescope") end,
+    }
+    use {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
+    }
+    use {
       "ahmedkhalf/project.nvim",
       config = function() require("user.plugins.configs.project") end,
     }
