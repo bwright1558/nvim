@@ -17,3 +17,7 @@ keymap("n", "mm", "<Cmd>WinShift<CR>", opts)
 keymap("n", "mx", "<Cmd>WinShift swap<CR>", opts)
 keymap("n", "ga", "<Plug>(EasyAlign)", opts)
 keymap("x", "ga", "<Plug>(EasyAlign)", opts)
+
+-- Special mappings to adjust indentation when moving blocks of code up and down lines.
+keymap("x", "J", ":move '>+1<CR>gv=gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv=gv", opts)
