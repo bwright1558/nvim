@@ -53,6 +53,12 @@ return packer.startup({
       config = function() require("user.configs.project") end,
     }
 
+    -- Which Key
+    use {
+      "folke/which-key.nvim",
+      config = function() require("user.configs.which-key") end,
+    }
+
     -- Completion
     use {
       "hrsh7th/nvim-cmp",
