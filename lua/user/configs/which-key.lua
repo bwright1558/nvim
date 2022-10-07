@@ -3,6 +3,24 @@ if not ok then
   return
 end
 
+local opts = {
+  mode = "n",
+  prefix = "<leader>",
+}
+
+local vopts = {
+  mode = "v",
+  prefix = "<leader>",
+}
+
+local mappings = {
+  ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
+}
+
+local vmappings = {
+  ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
+}
+
 local icons = require("user.icons")
 
 whichkey.setup({
@@ -17,24 +35,10 @@ whichkey.setup({
     separator = icons.ui.BoldArrowRight,
     group = icons.ui.Plus,
   },
+  window = {
+    border = "rounded",
+  },
 })
 
--- Register normal-mode keymaps.
-whichkey.register({}, {
-  mode = "n",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-})
-
--- Register visual-mode keymaps.
-whichkey.register({}, {
-  mode = "v",
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-})
+whichkey.register(mappings, opts)
+whichkey.register(vmappings, vopts)

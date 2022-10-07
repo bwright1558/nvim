@@ -12,4 +12,8 @@ treesitter.setup({
     enable = true,
     disable = { "python" },
   },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  },
 })

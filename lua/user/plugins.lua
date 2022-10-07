@@ -38,6 +38,11 @@ return packer.startup({
       config = function() require("user.configs.treesitter") end,
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
+    use {
+      "numToStr/Comment.nvim",
+      config = function() require("user.configs.comment") end,
+    }
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Telescope
     use {
