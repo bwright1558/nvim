@@ -1,5 +1,11 @@
 local cache_dir = vim.fn.stdpath("cache")
 
+-- Remap space as leader key
+-- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
 vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
 vim.opt.shortmess:append("I") -- don't show the default intro message
 -- vim.opt.whichwrap:append("<,>,[,],h,l")
