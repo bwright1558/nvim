@@ -38,8 +38,8 @@ local mappings = {
   },
   g = {
     name = "Git",
+    [";"] = { ":Git ", "Git Command", silent = false },
     g = { "<Cmd>G<CR>", "Git Status" },
-    G = { ":Git ", "Git Command", silent = false },
     j = { "<Cmd>lua require 'gitsigns'.next_hunk()<CR>", "Next Hunk" },
     k = { "<Cmd>lua require 'gitsigns'.prev_hunk()<CR>", "Prev Hunk" },
     l = { "<Cmd>lua require 'gitsigns'.blame_line()<CR>", "Blame" },
