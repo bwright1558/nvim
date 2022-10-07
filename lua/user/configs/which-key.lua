@@ -5,12 +5,12 @@ end
 
 local opts = {
   mode = "n",
-  prefix = "<leader>",
+  prefix = "<Leader>",
 }
 
 local vopts = {
   mode = "v",
-  prefix = "<leader>",
+  prefix = "<Leader>",
 }
 
 local mappings = {
