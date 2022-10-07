@@ -29,12 +29,17 @@ return packer.startup({
     use "nvim-lua/popup.nvim"
     use "kyazdani42/nvim-web-devicons"
 
-    -- General
+    -- Themes
+    use "EdenEast/nightfox.nvim"
+
+    -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
       config = function() require("user.configs.treesitter") end,
       run = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
     }
+
+    -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
       config = function() require("user.configs.telescope") end,
@@ -47,9 +52,6 @@ return packer.startup({
       "ahmedkhalf/project.nvim",
       config = function() require("user.configs.project") end,
     }
-
-    -- Themes
-    use "EdenEast/nightfox.nvim"
 
     -- Completion
     use {
@@ -99,7 +101,6 @@ return packer.startup({
       "Vimjas/vim-python-pep8-indent",
       ft = "python",
     }
-
 
     -- Automatically set up your configuration after cloning packer.nvim
     if packer_bootstrap then
