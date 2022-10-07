@@ -74,6 +74,7 @@ local mappings = {
   T = {
     name = "Treesitter",
     i = { "<Cmd>TSConfigInfo<CR>", "Info" },
+    m = { "<Cmd>TSModuleInfo<CR>", "Module Info" },
   },
 }
 
