@@ -102,7 +102,27 @@ return packer.startup({
       event = "BufRead",
     }
 
-    -- Language specific plugins
+    -- General
+    use "tpope/vim-surround"
+    use "tpope/vim-repeat"
+    use "junegunn/vim-easy-align"
+
+    -- Navigation
+    use "sindrets/winshift.nvim"
+    use {
+      "beauwilliams/focus.nvim",
+      config = function() require("user.configs.focus") end,
+    }
+
+    -- Git
+    use {
+      "tpope/vim-fugitive",
+      cmd = { "G", "Git" },
+      ft = "fugitive",
+    }
+    use "sindrets/diffview.nvim"
+
+    -- Language specific
     use {
       "ray-x/go.nvim",
       config = function() require("user.configs.go") end,
