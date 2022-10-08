@@ -11,11 +11,25 @@ autocmd({ "BufWritePre" }, {
   end,
 })
 
+-- Format options (disables continuing comments on Enter)
+autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
+  group = group,
+  pattern = { "*" },
+  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+})
+
 -- Spell checking
 autocmd({ "FileType" }, {
   group = group,
   pattern = { "gitcommit", "markdown" },
   callback = function() vim.opt_local.spell = true end,
+})
+
+-- Highlight on yank
+autocmd({ "TextYankPost" }, {
+  group = group,
+  pattern = { "*" },
+  callback = function() vim.highlight.on_yank() end,
 })
 
 -- Set filetype for certain files with alternate file extension.
