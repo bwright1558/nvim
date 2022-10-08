@@ -53,3 +53,6 @@ vim.opt.wrap = false -- display lines as one long line
 vim.opt.shadafile = cache_dir .. "/nvim.shada"
 vim.opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8 -- minimal number of screen lines to keep left and right of the cursor
+vim.opt.showcmd = false -- Don't show key presses in status line
+vim.opt.ruler = false -- Don't show ruler
+-- vim.opt.laststatus = 3 -- lualine sets this automatically based on globalstatus option
