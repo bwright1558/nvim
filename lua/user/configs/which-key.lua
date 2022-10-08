@@ -3,6 +3,16 @@ if not ok then
   return
 end
 
+-- Smartly opens either git_files or find_files, depending on whether the
+-- working directory is contained in a Git repo.
+local find_project_files = function()
+  local ok = pcall(vim.cmd, "Telescope git_files")
+
+  if not ok then
+    vim.cmd("Telescope find_files")
+  end
+end
+
 local opts = {
   mode = "n",
   prefix = "<Leader>",
@@ -20,7 +30,7 @@ local mappings = {
   q = { "<Cmd>q<CR>", "Quit" },
   w = { "<Cmd>w<CR>", "Save" },
   c = { "<Cmd>bd<CR>", "Close Buffer" },
-  f = { "<Cmd>Telescope find_files<CR>", "Find File" },
+  f = { find_project_files, "Find File" },
   h = { "<Cmd>nohlsearch<CR>", "No Highlight" },
   e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
   P = { "<Cmd>Telescope projects<CR>", "Projects" },
@@ -42,14 +52,14 @@ local mappings = {
     name = "Git",
     [";"] = { ":Git ", "Git Command", silent = false },
     g = { "<Cmd>G<CR>", "Git Status" },
-    j = { "<Cmd>lua require 'gitsigns'.next_hunk()<CR>", "Next Hunk" },
-    k = { "<Cmd>lua require 'gitsigns'.prev_hunk()<CR>", "Prev Hunk" },
-    l = { "<Cmd>lua require 'gitsigns'.blame_line()<CR>", "Blame" },
-    p = { "<Cmd>lua require 'gitsigns'.preview_hunk()<CR>", "Preview Hunk" },
-    r = { "<Cmd>lua require 'gitsigns'.reset_hunk()<CR>", "Reset Hunk" },
-    R = { "<Cmd>lua require 'gitsigns'.reset_buffer()<CR>", "Reset Buffer" },
-    s = { "<Cmd>lua require 'gitsigns'.stage_hunk()<CR>", "Stage Hunk" },
-    u = { "<Cmd>lua require 'gitsigns'.undo_stage_hunk()<CR>", "Undo Stage Hunk" },
+    j = { function() require "gitsigns".next_hunk() end, "Next Hunk" },
+    k = { function() require "gitsigns".prev_hunk() end, "Prev Hunk" },
+    l = { function() require "gitsigns".blame_line() end, "Blame" },
+    p = { function() require "gitsigns".preview_hunk() end, "Preview Hunk" },
+    r = { function() require "gitsigns".reset_hunk() end, "Reset Hunk" },
+    R = { function() require "gitsigns".reset_buffer() end, "Reset Buffer" },
+    s = { function() require "gitsigns".stage_hunk() end, "Stage Hunk" },
+    u = { function() require "gitsigns".undo_stage_hunk() end, "Undo Stage Hunk" },
     o = { "<Cmd>Telescope git_status<CR>", "Open changed file" },
     b = { "<Cmd>Telescope git_branches<CR>", "Checkout branch" },
     c = { "<Cmd>Telescope git_comments<CR>", "Checkout commit" },
@@ -71,7 +81,7 @@ local mappings = {
     t = { "<Cmd>Telescope live_grep<CR>", "Text" },
     k = { "<Cmd>Telescope keymaps<CR>", "Keymaps" },
     C = { "<Cmd>Telescope commands<CR>", "Commands" },
-    p = { "<Cmd>lua require 'telescope.builtin'.colorscheme({ enable_preview = true })<CR>", "Colorscheme with Preview" },
+    p = { function() require "telescope.builtin".colorscheme({ enable_preview = true }) end, "Colorscheme with Preview" },
   },
   T = {
     name = "Treesitter",
