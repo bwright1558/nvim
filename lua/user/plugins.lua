@@ -41,6 +41,7 @@ return packer.startup({
     use {
       "numToStr/Comment.nvim",
       config = function() require("user.configs.comment") end,
+      event = "BufRead",
     }
     use "JoosepAlviste/nvim-ts-context-commentstring"
 
@@ -68,6 +69,7 @@ return packer.startup({
     use {
       "folke/which-key.nvim",
       config = function() require("user.configs.which-key") end,
+      event = "BufWinEnter",
     }
 
     -- Completion
