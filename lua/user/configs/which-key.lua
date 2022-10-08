@@ -21,6 +21,7 @@ local mappings = {
   c = { "<Cmd>bd<CR>", "Close Buffer" },
   f = { "<Cmd>Telescope find_files<CR>", "Find File" },
   h = { "<Cmd>nohlsearch<CR>", "No Highlight" },
+  e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
   P = { "<Cmd>Telescope projects<CR>", "Projects" },
   b = {
     name = "Buffers",
