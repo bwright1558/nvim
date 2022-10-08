@@ -109,7 +109,7 @@ whichkey.setup({
     group = icons.ui.Plus .. " ",
   },
   window = {
-    border = "rounded",
+    border = "single",
   },
 })
 
