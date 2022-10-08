@@ -113,6 +113,15 @@ return packer.startup({
       "beauwilliams/focus.nvim",
       config = function() require("user.configs.focus") end,
     }
+    use {
+      "kevinhwang91/nvim-bqf",
+      config = function() require("user.configs.bqf") end,
+      ft = "qf",
+    }
+    use {
+      "junegunn/fzf",
+      run = function() vim.fn["fzf#install"]() end,
+    }
 
     -- Git
     use {
