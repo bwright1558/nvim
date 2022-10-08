@@ -44,6 +44,12 @@ return packer.startup({
     }
     use "JoosepAlviste/nvim-ts-context-commentstring"
 
+    -- Autopairs
+    use {
+      "windwp/nvim-autopairs",
+      config = function() require("user.configs.autopairs") end,
+    }
+
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
