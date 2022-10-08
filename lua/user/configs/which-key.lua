@@ -16,6 +16,7 @@ local vopts = {
 local mappings = {
   [";"] = { "<Cmd>Telescope filetypes<CR>", "Filetypes" },
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
+  [","] = { "<Cmd>call QuickFixToggle()<CR>", "QuickFix" },
   q = { "<Cmd>q<CR>", "Quit" },
   w = { "<Cmd>w<CR>", "Save" },
   c = { "<Cmd>bd<CR>", "Close Buffer" },
