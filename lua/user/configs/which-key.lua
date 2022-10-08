@@ -6,10 +6,20 @@ end
 -- Smartly opens either git_files or find_files, depending on whether the
 -- working directory is contained in a Git repo.
 local find_project_files = function()
-  local ok = pcall(vim.cmd, "Telescope git_files")
+  local git_files_ok = pcall(vim.cmd, "Telescope git_files")
 
-  if not ok then
+  if not git_files_ok then
     vim.cmd("Telescope find_files")
+  end
+end
+
+-- Toggle quickfix window.
+local toggle_quickfix = function()
+  local fn = vim.fn
+  if #fn.filter(fn.getwininfo(), "v:val.quickfix") == 0 then
+    vim.cmd("copen")
+  else
+    vim.cmd("cclose")
   end
 end
 
@@ -26,7 +36,7 @@ local vopts = {
 local mappings = {
   [";"] = { "<Cmd>Telescope filetypes<CR>", "Filetypes" },
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
-  [","] = { "<Cmd>call QuickFixToggle()<CR>", "QuickFix" },
+  [","] = { toggle_quickfix, "QuickFix" },
   q = { "<Cmd>q<CR>", "Quit" },
   w = { "<Cmd>w<CR>", "Save" },
   c = { "<Cmd>bd<CR>", "Close Buffer" },
