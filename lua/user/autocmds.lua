@@ -15,7 +15,9 @@ autocmd({ "BufWritePre" }, {
 autocmd({ "BufWinEnter", "BufRead", "BufNewFile" }, {
   group = group,
   pattern = { "*" },
-  command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+  end,
 })
 
 -- Spell checking
