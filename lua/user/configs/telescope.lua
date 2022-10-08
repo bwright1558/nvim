@@ -35,7 +35,7 @@ telescope.setup({
         ["<C-k>"] = actions.move_selection_previous,
       },
     },
-    path_display = { "smart" },
+    path_display = { shorten = 5 },
     set_env = { COLORTERM = "truecolor" },
   },
   pickers = {
