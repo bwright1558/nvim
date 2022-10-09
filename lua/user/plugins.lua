@@ -86,6 +86,15 @@ return packer.startup({
     use "L3MON4D3/LuaSnip" -- snippet engine
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+    -- LSP
+    use {
+      "williamboman/mason.nvim",
+      config = function() require("user.configs.mason") end,
+    }
+    use "williamboman/mason-lspconfig.nvim"
+    use "neovim/nvim-lspconfig"
+    use "tamago324/nlsp-settings.nvim"
+
     -- UI
     use {
       "nvim-lualine/lualine.nvim",
