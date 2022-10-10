@@ -122,6 +122,7 @@ local vmappings = {
 }
 
 local icons = require("user.icons")
+local border = require("user.borders").style
 
 whichkey.setup({
   plugins = {
@@ -136,7 +137,7 @@ whichkey.setup({
     group = icons.ui.Plus .. " ",
   },
   window = {
-    border = "single",
+    border = border,
   },
 })
 

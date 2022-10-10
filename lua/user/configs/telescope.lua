@@ -4,12 +4,14 @@ if not ok then
 end
 
 local icons = require("user.icons")
+local border = require("user.borders").telescope
 local actions = require("telescope.actions")
 
 telescope.setup({
   defaults = {
     prompt_prefix = icons.ui.Telescope .. " ",
     selection_caret = icons.ui.Forward .. " ",
+    borderchars = border,
     vimgrep_arguments = {
       "rg",
       "--color=never",

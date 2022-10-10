@@ -4,6 +4,7 @@ if not ok then
 end
 
 local icons = require("user.icons")
+local border = require("user.borders").style
 
 local start_telescope = function(telescope_mode)
   local node = require("nvim-tree.lib").get_node_at_cursor()
@@ -61,6 +62,11 @@ nvim_tree.setup({
     number = false,
     relativenumber = false,
     signcolumn = "yes",
+    float = {
+      open_win_config = {
+        border = border,
+      },
+    },
   },
   renderer = {
     add_trailing = true,
@@ -97,6 +103,13 @@ nvim_tree.setup({
           symlink = icons.ui.FolderSymlink,
           symlink_open = icons.ui.FolderSymlink,
         },
+      },
+    },
+  },
+  actions = {
+    file_popup = {
+      open_win_config = {
+        border = border,
       },
     },
   },

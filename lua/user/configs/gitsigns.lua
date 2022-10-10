@@ -4,6 +4,7 @@ if not ok then
 end
 
 local icons = require("user.icons")
+local border = require("user.borders").style
 
 gitsigns.setup({
   signs = {
@@ -63,7 +64,7 @@ gitsigns.setup({
   max_file_length = 50000, -- Disable if file is longer than this (in lines)
   preview_config = {
     -- Options passed to nvim_open_win
-    border = "rounded",
+    border = border,
     style = "minimal",
     relative = "cursor",
     row = 0,

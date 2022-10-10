@@ -3,8 +3,10 @@ if not ok then
   return
 end
 
+local border = require("user.borders").style
+
 mason.setup({
   ui = {
-    border = "rounded",
+    border = border,
   },
 })

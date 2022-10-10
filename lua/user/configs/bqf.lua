@@ -4,6 +4,7 @@ if not ok then
 end
 
 local icons = require("user.icons")
+local border = require("user.borders").bqf
 local fn = vim.fn
 
 function _G.qftf(info)
@@ -59,6 +60,9 @@ end
 vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 
 bqf.setup({
+  preview = {
+    border_chars = border,
+  },
   filter = {
     fzf = {
       extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", icons.ui.LineMiddle },

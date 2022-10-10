@@ -19,6 +19,8 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source <afile> | PackerSync",
 })
 
+local border = require("user.borders").style
+
 local packer = require("packer")
 
 return packer.startup({
@@ -180,9 +182,9 @@ return packer.startup({
 
   config = {
     display = {
-      prompt_border = "rounded",
+      prompt_border = border,
       open_fn = function()
-        return require("packer.util").float({ border = "rounded" })
+        return require("packer.util").float({ border = border })
       end,
     },
   },

@@ -11,6 +11,8 @@ end
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local icons = require("user.icons")
+local border = require("user.borders").style
+
 local source_names = {
   nvim_lsp = "(LSP)",
   path = "(Path)",
@@ -48,8 +50,8 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered({ border = border }),
+    documentation = cmp.config.window.bordered({ border = border }),
   },
   sources = {
     { name = "nvim_lsp" },
