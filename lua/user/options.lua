@@ -10,6 +10,8 @@ vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completi
 vim.opt.shortmess:append("I") -- don't show the default intro message
 -- vim.opt.whichwrap:append("<,>,[,],h,l")
 
+vim.opt.sessionoptions:remove({ "tabpages" }) -- tab-scoped sessions.
+
 vim.opt.modeline = false -- sets options for a particular file using modelines
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
