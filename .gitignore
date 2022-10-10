@@ -1,5 +1,4 @@
-.netrwhist
-autoload
-plugged
-undodir
-startify-bookmarks.vim
+.DS_Store
+.vscode
+.idea
+plugin
