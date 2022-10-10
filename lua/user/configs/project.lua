@@ -4,7 +4,7 @@ if not ok then
 end
 
 project.setup({
-  manual_mode = false,
+  manual_mode = true,
   detection_methods = { "pattern" }, -- NOTE: lsp detection gets annoying with multiple langs in one project
   patterns = {
     ".git",
