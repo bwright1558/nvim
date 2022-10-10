@@ -29,6 +29,7 @@ local opts = {
 }
 
 handlers.setup()
+require("user.lsp.lua-dev") -- XXX: consider putting in handlers.setup()
 require("user.lsp.nlspsettings") -- XXX: consider putting in handlers.setup()
 
 mason_lspconfig.setup({
