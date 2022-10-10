@@ -88,8 +88,20 @@ return packer.startup({
 
     -- LSP
     use {
+      "williamboman/mason.nvim",
+      config = function() require("user.configs.mason") end,
+    }
+    use "williamboman/mason-lspconfig.nvim"
+    use "neovim/nvim-lspconfig"
+    use "folke/lua-dev.nvim"
+    use "tamago324/nlsp-settings.nvim"
+    use {
       "RRethy/vim-illuminate",
       config = function() require("user.configs.illuminate") end,
+    }
+    use {
+      "ray-x/lsp_signature.nvim",
+      config = function() require("user.configs.lsp-signature") end,
     }
 
     -- UI
