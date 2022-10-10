@@ -94,6 +94,10 @@ return packer.startup({
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
     use "tamago324/nlsp-settings.nvim"
+    use {
+      "RRethy/vim-illuminate",
+      config = function() require("user.configs.illuminate") end,
+    }
 
     -- UI
     use {
