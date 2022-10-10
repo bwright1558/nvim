@@ -34,6 +34,21 @@ autocmd({ "TextYankPost" }, {
   callback = function() vim.highlight.on_yank() end,
 })
 
+-- Format on save
+autocmd({ "BufWritePre" }, {
+  group = group,
+  pattern = { "*.json", "*.lua" },
+  callback = function() vim.lsp.buf.format() end,
+})
+autocmd({ "BufWritePre" }, {
+  group = group,
+  pattern = { "*.go" },
+  callback = function()
+    require("go.format").goimport()
+    vim.lsp.buf.format()
+  end,
+})
+
 -- Set filetype for certain files with alternate file extension.
 autocmd({ "BufRead", "BufNewFile" }, {
   group = group,
@@ -54,14 +69,4 @@ autocmd({ "BufRead", "BufNewFile" }, {
   group = group,
   pattern = { "haproxy.cfg.j2" },
   callback = function() vim.opt_local.filetype = "haproxy" end,
-})
-
--- Run gofmt + goimport on save.
-autocmd({ "BufWritePre" }, {
-  group = group,
-  pattern = { "*.go" },
-  callback = function()
-    require("go.format").goimport()
-    vim.lsp.buf.formatting_seq_sync({})
-  end,
 })
