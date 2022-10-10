@@ -9,7 +9,7 @@ end
 
 M.setup = function()
   local sign = function(name, text)
-    vim.fn.sign_define(name, { texthl = name, text = text, numhl = name }) -- XXX: is numhl needed?
+    vim.fn.sign_define(name, { texthl = name, text = text, numhl = name })
   end
 
   sign("DiagnosticSignError", icons.diagnostics.Error)
@@ -44,10 +44,6 @@ if cmp_ok then
 end
 
 M.on_attach = function(client, bufnr)
-  -- document highlight (optional)
-  -- codelens refresh (optional)
-
-  -- buffer keymappings
   keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Show Hover")
   keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Goto Definition")
   keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
@@ -57,9 +53,6 @@ M.on_attach = function(client, bufnr)
   keymap(bufnr, "n", "gl", vim.diagnostic.open_float, "Show Line Diagnostics")
   keymap(bufnr, "n", "]d", vim.diagnostic.goto_next, "Next Diagnostic")
   keymap(bufnr, "n", "[d", vim.diagnostic.goto_prev, "Prev Diagnostic")
-
-  -- buffer options
-  -- document symbols
 end
 
 return M
