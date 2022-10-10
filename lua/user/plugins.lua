@@ -99,6 +99,10 @@ return packer.startup({
       "RRethy/vim-illuminate",
       config = function() require("user.configs.illuminate") end,
     }
+    use {
+      "ray-x/lsp_signature.nvim",
+      config = function() require("user.configs.lsp-signature") end,
+    }
 
     -- UI
     use {
