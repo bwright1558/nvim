@@ -8,6 +8,10 @@ if not mason_lspconfig_ok then
   return
 end
 
+require("user.lsp.config")
+require("user.lsp.lua-dev")
+require("user.lsp.nlspsettings")
+
 local servers = {
   "bashls",
   "cssls",
@@ -27,10 +31,6 @@ local opts = {
   on_attach = handlers.on_attach,
   capabilities = handlers.capabilities,
 }
-
-handlers.setup()
-require("user.lsp.lua-dev") -- XXX: consider putting in handlers.setup()
-require("user.lsp.nlspsettings") -- XXX: consider putting in handlers.setup()
 
 mason_lspconfig.setup({
   ensure_installed = servers,
