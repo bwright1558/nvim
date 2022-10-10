@@ -4,7 +4,7 @@ if not ok then
 end
 
 project.setup({
-  manual_mode = true,
+  manual_mode = false,
   detection_methods = { "pattern" }, -- NOTE: lsp detection gets annoying with multiple langs in one project
   patterns = {
     ".git",
@@ -18,6 +18,7 @@ project.setup({
   },
   show_hidden = false,
   silent_chdir = true,
+  scope_chdir = "tab",
   ignore_lsp = {},
   datapath = vim.fn.stdpath("cache"),
 })
