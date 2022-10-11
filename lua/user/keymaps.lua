@@ -37,3 +37,10 @@ keymap("x", "K", ":move '<-2<CR>gv=gv", opts)
 -- EasyAlign
 keymap("n", "ga", "<Plug>(EasyAlign)", opts)
 keymap("x", "ga", "<Plug>(EasyAlign)", opts)
+
+-- Terminal
+keymap("t", "<C-,>", "<C-\\><C-n>")
+keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
+keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
+keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
+keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")

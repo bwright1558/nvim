@@ -106,6 +106,12 @@ return packer.startup({
       config = function() require("user.configs.lsp-signature") end,
     }
 
+    -- Terminal
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function() require("user.configs.toggleterm") end,
+    }
+
     -- UI
     use {
       "nvim-lualine/lualine.nvim",
