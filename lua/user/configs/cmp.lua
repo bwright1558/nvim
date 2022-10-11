@@ -13,6 +13,12 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local icons = require("user.icons")
 local border = require("user.borders").style
 
+-- Used by nvim-cmp to override the completion menu popups.
+-- FloatBorder is removed to leave it as the default.
+-- Default: "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None"
+-- NOTE: This is related to the theme. So maybe consider defining this in theme.lua.
+local winhighlight = "Normal:NormalFloat,CursorLine:Visual,Search:None"
+
 local source_names = {
   nvim_lsp = "(LSP)",
   path = "(Path)",
@@ -50,8 +56,14 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered({ border = border }),
-    documentation = cmp.config.window.bordered({ border = border }),
+    completion = cmp.config.window.bordered({
+      border = border,
+      winhighlight = winhighlight,
+    }),
+    documentation = cmp.config.window.bordered({
+      border = border,
+      winhighlight = winhighlight,
+    }),
   },
   sources = {
     { name = "nvim_lsp" },
