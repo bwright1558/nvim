@@ -23,16 +23,7 @@ local groups = {
 }
 
 nightfox.setup({
-  -- options = {
-  --   styles = {
-  --     comments = "italic",
-  --     keywords = "italic",
-  --   },
-  -- },
   groups = groups,
 })
 
--- Use pcall because colorscheme plugin may not exist, yet.
-pcall(function()
-  vim.cmd [[colorscheme nightfox]]
-end)
+vim.cmd [[colorscheme nightfox]]
