@@ -12,6 +12,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 local icons = require("user.icons")
 local border = require("user.borders").style
+local winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None"
 
 local source_names = {
   nvim_lsp = "(LSP)",
@@ -50,8 +51,14 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered({ border = border }),
-    documentation = cmp.config.window.bordered({ border = border }),
+    completion = cmp.config.window.bordered({
+      border = border,
+      winhighlight = winhighlight,
+    }),
+    documentation = cmp.config.window.bordered({
+      border = border,
+      winhighlight = winhighlight,
+    }),
   },
   sources = {
     { name = "nvim_lsp" },
