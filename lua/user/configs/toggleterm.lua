@@ -8,7 +8,7 @@ local border = require("user.borders").style
 toggleterm.setup({
   size = 20,
   open_mapping = [[<C-;>]],
-  direction = "horizontal",
+  direction = "float",
   highlights = {
     Normal = { link = "NormalFloat" },
     NormalFloat = { link = "NormalFloat" },
