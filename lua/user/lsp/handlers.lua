@@ -13,7 +13,7 @@ if cmp_ok then
 end
 
 -- on_attach handler
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
   keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Show Hover")
   keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Goto Definition")
   keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
