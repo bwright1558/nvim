@@ -10,7 +10,7 @@ treesitter.setup({
   },
   indent = {
     enable = true,
-    disable = { "python" },
+    disable = { "python", "yaml" },
   },
   context_commentstring = {
     enable = true,
