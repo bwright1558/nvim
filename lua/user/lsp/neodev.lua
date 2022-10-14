@@ -1,9 +1,9 @@
-local ok, lua_dev = pcall(require, "lua-dev")
+local ok, neodev = pcall(require, "neodev")
 if not ok then
   return
 end
 
-lua_dev.setup({
+neodev.setup({
   library = {
     plugins = false,
   },

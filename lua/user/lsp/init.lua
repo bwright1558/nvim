@@ -9,7 +9,7 @@ if not mason_lspconfig_ok then
 end
 
 require("user.lsp.config")
-require("user.lsp.lua-dev")
+require("user.lsp.neodev")
 require("user.lsp.nlspsettings")
 
 local servers = {

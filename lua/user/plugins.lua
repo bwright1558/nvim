@@ -95,7 +95,7 @@ return packer.startup({
     }
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
-    use "folke/lua-dev.nvim"
+    use "folke/neodev.nvim"
     use "tamago324/nlsp-settings.nvim"
     use {
       "RRethy/vim-illuminate",
