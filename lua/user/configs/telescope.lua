@@ -56,4 +56,3 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf") -- REQUIRES: nvim-telescope-fzf-native
-telescope.load_extension("projects") -- REQUIRES: project.nvim

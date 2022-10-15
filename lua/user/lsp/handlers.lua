@@ -6,10 +6,11 @@ local keymap = function(bufnr, mode, lhs, rhs, desc)
 end
 
 -- capabilities handler
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if cmp_ok then
-  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+  M.capabilities = cmp_nvim_lsp.default_capabilities()
+else
+  M.capabilities = vim.lsp.protocol.make_client_capabilities()
 end
 
 -- on_attach handler

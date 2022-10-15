@@ -24,11 +24,11 @@ end
 
 nvim_tree.setup({
   auto_reload_on_write = false,
-  sync_root_with_cwd = true, -- REQUIRES: project.nvim
-  respect_buf_cwd = true, -- REQUIRES: project.nvim
+  sync_root_with_cwd = false,
+  respect_buf_cwd = false,
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    update_root = true,
     ignore_list = {},
   },
   hijack_directories = {

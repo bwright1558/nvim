@@ -22,14 +22,14 @@ local winhighlight = "Normal:NormalFloat,CursorLine:Visual,Search:None"
 local source_names = {
   nvim_lsp = "(LSP)",
   path = "(Path)",
-  buffer = "(Buffer)",
   luasnip = "(Snippet)",
+  buffer = "(Buffer)",
 }
 local duplicates = {
   nvim_lsp = 0,
   path = 1,
-  buffer = 1,
   luasnip = 1,
+  buffer = 1,
 }
 
 local has_words_before = function()

@@ -58,14 +58,7 @@ return packer.startup({
       "nvim-telescope/telescope.nvim",
       config = function() require("user.configs.telescope") end,
     }
-    use {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make",
-    }
-    use {
-      "ahmedkhalf/project.nvim",
-      config = function() require("user.configs.project") end,
-    }
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
     -- Which Key
     use {
@@ -80,9 +73,9 @@ return packer.startup({
       config = function() require("user.configs.cmp") end,
     }
     use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/cmp-buffer"
 
     -- Snippets
     use "L3MON4D3/LuaSnip" -- snippet engine
@@ -156,10 +149,7 @@ return packer.startup({
       config = function() require("user.configs.bqf") end,
       ft = "qf",
     }
-    use {
-      "junegunn/fzf",
-      run = function() vim.fn["fzf#install"]() end,
-    }
+    use { "junegunn/fzf", run = function() vim.fn["fzf#install"]() end }
 
     -- Git
     use {

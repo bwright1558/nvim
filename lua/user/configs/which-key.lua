@@ -43,7 +43,6 @@ local mappings = {
   f = { find_project_files, "Find File" },
   h = { "<Cmd>nohlsearch<CR>", "No Highlight" },
   e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
-  P = { "<Cmd>Telescope projects<CR>", "Projects" },
   b = {
     name = "Buffers",
     f = { "<Cmd>Telescope buffers<CR>", "Find" },
