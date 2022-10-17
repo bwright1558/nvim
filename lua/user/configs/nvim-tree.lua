@@ -39,7 +39,7 @@ nvim_tree.setup({
     show_on_dirs = false,
     icons = {
       hint = icons.diagnostics.BoldHint,
-      info = icons.diagnostics.BoldInfo,
+      info = icons.diagnostics.BoldInformation,
       warning = icons.diagnostics.BoldWarning,
       error = icons.diagnostics.BoldError,
     },

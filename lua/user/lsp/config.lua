@@ -8,7 +8,7 @@ end
 sign("DiagnosticSignError", icons.diagnostics.Error)
 sign("DiagnosticSignWarn", icons.diagnostics.Warning)
 sign("DiagnosticSignHint", icons.diagnostics.Hint)
-sign("DiagnosticSignInfo", icons.diagnostics.Info)
+sign("DiagnosticSignInfo", icons.diagnostics.Information)
 
 vim.diagnostic.config({
   virtual_text = false,
