@@ -38,6 +38,7 @@ local mappings = {
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   [","] = { toggle_quickfix, "QuickFix" },
   q = { "<Cmd>q<CR>", "Quit" },
+  Q = { "<Cmd>qall<CR>", "Quit All" },
   w = { "<Cmd>w<CR>", "Save" },
   c = { "<Cmd>bd<CR>", "Close Buffer" },
   f = { find_project_files, "Find File" },
