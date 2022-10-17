@@ -135,10 +135,6 @@ return packer.startup({
     use "junegunn/vim-easy-align"
 
     -- Navigation
-    use {
-      "ggandor/leap.nvim",
-      config = function() require("user.configs.leap") end,
-    }
     use "sindrets/winshift.nvim"
     use {
       "beauwilliams/focus.nvim",
