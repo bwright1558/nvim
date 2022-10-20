@@ -44,3 +44,6 @@ keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
 keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
 keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
 keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
+
+-- Don't copy the replaced text after pasting in visual mode.
+keymap("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>')
