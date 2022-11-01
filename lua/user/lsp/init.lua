@@ -19,7 +19,7 @@ local servers = {
   "gopls",
   "html",
   "jsonls",
-  "marksman",
+  -- "marksman", -- doesn't work on arm processors
   "pyright",
   "rust_analyzer",
   "sumneko_lua",
