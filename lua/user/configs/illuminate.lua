@@ -15,4 +15,5 @@ illuminate.configure({
     "Outline",
     "TelescopePrompt",
   },
+  large_file_cutoff = 100000,
 })
