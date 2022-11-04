@@ -38,6 +38,7 @@ local has_words_before = function()
 end
 
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   experimental = {
     ghost_text = true,
   },
