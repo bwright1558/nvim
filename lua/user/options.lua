@@ -19,10 +19,13 @@ vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying me
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8" -- the encoding written to a file
-vim.opt.foldmethod = "expr" -- folding, set to "expr" for treesitter based folding
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
-vim.opt.foldenable = true -- allows code folding
-vim.opt.foldlevel = 99 -- zero closes all folds, higher numbers close fewer folds
+
+-- XXX: Folding causes performance issues on large files.
+-- vim.opt.foldmethod = "expr" -- folding, set to "expr" for treesitter based folding
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+-- vim.opt.foldenable = true -- allows code folding
+-- vim.opt.foldlevel = 99 -- zero closes all folds, higher numbers close fewer folds
+
 vim.opt.hidden = true -- required to keep multiple buffers and open multiple buffers
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- ignore case in search patterns
