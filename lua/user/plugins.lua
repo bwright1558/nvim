@@ -145,7 +145,7 @@ return packer.startup({
       config = function() require("user.configs.bqf") end,
       ft = "qf",
     }
-    use { "junegunn/fzf", run = function() vim.fn["fzf#install"]() end }
+    use { "junegunn/fzf", run = function() vim.fn["fzf#install"]() end } -- optional dependency for nvim-bqf
 
     -- Git
     use {
