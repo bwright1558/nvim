@@ -44,6 +44,8 @@ local sources = {
       "+",
       "?",
       " ",
+      -- "\t",
+      -- "\n",
     },
   },
   { name = "nvim_lsp" },
