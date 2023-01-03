@@ -21,7 +21,31 @@ local winhighlight = "Normal:NormalFloat,CursorLine:Visual,Search:None"
 
 -- Order determines the order that items appear in the completion menu.
 local sources = {
-  { name = "cmp_tabnine" },
+  {
+    name = "cmp_tabnine",
+    max_item_count = 5,
+    trigger_characters = {
+      ".",
+      ":",
+      "(",
+      "'",
+      '"',
+      "[",
+      ",",
+      "#",
+      "*",
+      "@",
+      "|",
+      "=",
+      "-",
+      "{",
+      "/",
+      "\\",
+      "+",
+      "?",
+      " ",
+    },
+  },
   { name = "nvim_lsp" },
   { name = "path" },
   { name = "luasnip" },
