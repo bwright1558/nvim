@@ -74,6 +74,11 @@ return packer.startup({
     }
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-path"
+    use {
+      "tzachar/cmp-tabnine",
+      config = function() require("user.configs.tabnine") end,
+      run = "./install.sh",
+    }
     use "saadparwaiz1/cmp_luasnip"
     use "hrsh7th/cmp-buffer"
 

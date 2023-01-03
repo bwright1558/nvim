@@ -19,7 +19,16 @@ local border = require("user.borders").style
 -- NOTE: This is related to the theme. So maybe consider defining this in theme.lua.
 local winhighlight = "Normal:NormalFloat,CursorLine:Visual,Search:None"
 
+-- Order determines the order that items appear in the completion menu.
+local sources = {
+  { name = "cmp_tabnine" },
+  { name = "nvim_lsp" },
+  { name = "path" },
+  { name = "luasnip" },
+  { name = "buffer" },
+}
 local source_names = {
+  cmp_tabnine = "(Tabnine)",
   nvim_lsp = "(LSP)",
   path = "(Path)",
   luasnip = "(Snippet)",
@@ -48,6 +57,26 @@ cmp.setup({
       vim_item.kind = icons.kind[vim_item.kind]
       vim_item.menu = source_names[entry.source.name]
       vim_item.dup = duplicates[entry.source.name] or 0
+
+      -- Set custom kind icons for specific sources.
+      if entry.source.name == "cmp_tabnine" then
+        -- vim_item.kind = ""
+        vim_item.kind = icons.misc.Robot
+        local detail = (entry.completion_item.data or {}).detail
+        if detail and detail:find(".*%%.*") then
+          vim_item.kind = vim_item.kind .. " " .. detail
+        end
+
+        if (entry.completion_item.data or {}).multiline then
+          vim_item.kind = vim_item.kind .. " " .. "[ML]"
+        end
+      end
+
+      local max_width = 80
+      if #vim_item.abbr > max_width then
+        vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) .. icons.ui.Ellipsis
+      end
+
       return vim_item
     end,
   },
@@ -66,12 +95,7 @@ cmp.setup({
       winhighlight = winhighlight,
     }),
   },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "luasnip" },
-    { name = "buffer" },
-  },
+  sources = sources,
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
