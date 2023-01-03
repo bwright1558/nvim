@@ -86,8 +86,7 @@ cmp.setup({
 
       -- Set custom kind icons for specific sources.
       if entry.source.name == "cmp_tabnine" then
-        -- vim_item.kind = ""
-        vim_item.kind = icons.misc.Robot
+        vim_item.kind = icons.kind.Event
         local detail = (entry.completion_item.data or {}).detail
         if detail and detail:find(".*%%.*") then
           vim_item.kind = vim_item.kind .. " " .. detail
