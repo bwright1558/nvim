@@ -3,6 +3,16 @@ if not cmp_ok then
   return
 end
 
+local compare_ok, compare = pcall(require, "cmp.config.compare")
+if not compare_ok then
+  return
+end
+
+local compare_tabnine_ok, compare_tabnine = pcall(require, "cmp_tabnine.compare")
+if not compare_tabnine_ok then
+  return
+end
+
 local luasnip_ok, luasnip = pcall(require, "luasnip")
 if not luasnip_ok then
   return
@@ -121,6 +131,21 @@ cmp.setup({
     }),
   },
   sources = sources,
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      compare_tabnine,
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    },
+  },
   mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
