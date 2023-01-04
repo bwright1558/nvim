@@ -29,40 +29,6 @@ local border = require("user.borders").style
 -- NOTE: This is related to the theme. So maybe consider defining this in theme.lua.
 local winhighlight = "Normal:NormalFloat,CursorLine:Visual,Search:None"
 
--- Order determines the order that items appear in the completion menu.
-local sources = {
-  {
-    name = "cmp_tabnine",
-    max_item_count = 5,
-    trigger_characters = {
-      ".",
-      ":",
-      "(",
-      "'",
-      '"',
-      "[",
-      ",",
-      "#",
-      "*",
-      "@",
-      "|",
-      "=",
-      "-",
-      "{",
-      "/",
-      "\\",
-      "+",
-      "?",
-      " ",
-      -- "\t",
-      -- "\n",
-    },
-  },
-  { name = "nvim_lsp" },
-  { name = "path" },
-  { name = "luasnip" },
-  { name = "buffer" },
-}
 local source_names = {
   cmp_tabnine = "(Tabnine)",
   nvim_lsp = "(LSP)",
@@ -70,6 +36,7 @@ local source_names = {
   luasnip = "(Snippet)",
   buffer = "(Buffer)",
 }
+
 local duplicates = {
   nvim_lsp = 0,
   path = 1,
@@ -130,7 +97,37 @@ cmp.setup({
       winhighlight = winhighlight,
     }),
   },
-  sources = sources,
+  sources = {
+    {
+      name = "cmp_tabnine",
+      max_item_count = 5,
+      trigger_characters = {
+        ".",
+        ":",
+        "(",
+        "'",
+        '"',
+        "[",
+        ",",
+        "#",
+        "*",
+        "@",
+        "|",
+        "=",
+        "-",
+        "{",
+        "/",
+        "\\",
+        "+",
+        "?",
+        " ",
+      },
+    },
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "luasnip" },
+    { name = "buffer" },
+  },
   sorting = {
     priority_weight = 2,
     comparators = {
