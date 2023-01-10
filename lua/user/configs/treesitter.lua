@@ -7,7 +7,6 @@ treesitter.setup({
   ensure_installed = "all",
   highlight = {
     enable = true,
-    disable = { "yaml" },
   },
   indent = {
     enable = true,
