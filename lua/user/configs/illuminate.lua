@@ -11,6 +11,7 @@ illuminate.configure({
     "fugitive",
     "NvimTree",
     "packer",
+    "lazy",
     "Trouble",
     "Outline",
     "TelescopePrompt",

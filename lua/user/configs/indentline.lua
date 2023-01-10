@@ -11,6 +11,7 @@ indent_blankline.setup({
     "help",
     "dashboard",
     "packer",
+    "lazy",
     "NvimTree",
     "Trouble",
     "text",

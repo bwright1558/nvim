@@ -50,14 +50,7 @@ local mappings = {
     j = { "<Cmd>bn<CR>", "Next" },
     k = { "<Cmd>bp<CR>", "Previous" },
   },
-  p = {
-    name = "Packer",
-    c = { "<Cmd>PackerCompile<CR>", "Compile" },
-    i = { "<Cmd>PackerInstall<CR>", "Install" },
-    s = { "<Cmd>PackerSync<CR>", "Sync" },
-    S = { "<Cmd>PackerStatus<CR>", "Status" },
-    u = { "<Cmd>PackerUpdate<CR>", "Update" },
-  },
+  p = { "<Cmd>Lazy<CR>", "Plugins" },
   g = {
     name = "Git",
     [";"] = { ":Git ", "Git Command", silent = false },
