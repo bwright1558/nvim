@@ -9,7 +9,7 @@ local M = {
 }
 
 M.config = function()
-  require("user.lsp").setup()
+  require("user.lsp")
 end
 
 return M
