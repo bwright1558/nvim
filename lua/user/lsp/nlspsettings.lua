@@ -1,9 +1,4 @@
-local ok, nlspsettings = pcall(require, "nlspsettings")
-if not ok then
-  return
-end
-
-nlspsettings.setup({
+require("nlspsettings").setup({
   config_home = vim.fn.stdpath("config") .. "/lsp-settings",
   local_settings_dir = ".lsp-settings",
   local_settings_root_markers_fallback = { ".git" },
