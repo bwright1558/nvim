@@ -3,7 +3,7 @@ local M = {
   build = function() require("nvim-treesitter.install").update({ with_sync = true }) end,
 }
 
-M.config = function()
+function M.config()
   require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
     highlight = {

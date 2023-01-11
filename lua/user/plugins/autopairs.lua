@@ -2,7 +2,7 @@ local M = {
   "windwp/nvim-autopairs",
 }
 
-M.config = function()
+function M.config()
   require("nvim-autopairs").setup({
     check_ts = true,
     fast_wrap = {

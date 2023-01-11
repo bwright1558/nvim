@@ -2,7 +2,7 @@ local M = {
   "williamboman/mason.nvim",
 }
 
-M.config = function()
+function M.config()
   local border = require("user.borders").style
 
   require("mason").setup({

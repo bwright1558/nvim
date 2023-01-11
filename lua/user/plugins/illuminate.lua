@@ -2,7 +2,7 @@ local M = {
   "RRethy/vim-illuminate",
 }
 
-M.config = function()
+function M.config()
   require("illuminate").configure({
     delay = 250,
     filetypes_denylist = {

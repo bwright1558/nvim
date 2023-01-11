@@ -6,7 +6,7 @@ local M = {
   ft = "qf",
 }
 
-M.config = function()
+function M.config()
   local icons = require("user.icons")
   local border = require("user.borders").bqf
 

@@ -3,7 +3,7 @@ local M = {
   event = "BufRead",
 }
 
-M.config = function()
+function M.config()
   local icons = require("user.icons")
   local border = require("user.borders").style
 

@@ -3,7 +3,7 @@ local M = {
   ft = "go",
 }
 
-M.config = function()
+function M.config()
   require("go").setup()
 end
 

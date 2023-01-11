@@ -8,7 +8,7 @@ local M = {
   },
 }
 
-M.config = function()
+function M.config()
   require("user.lsp")
 end
 

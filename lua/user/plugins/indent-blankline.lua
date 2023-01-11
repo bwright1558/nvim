@@ -2,7 +2,7 @@ local M = {
   "lukas-reineke/indent-blankline.nvim",
 }
 
-M.config = function()
+function M.config()
   local icons = require("user.icons")
 
   require("indent_blankline").setup({

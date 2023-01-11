@@ -3,7 +3,7 @@ local M = {
   keys = { "<C-;>" },
 }
 
-M.config = function()
+function M.config()
   local border = require("user.borders").style
 
   require("toggleterm").setup({

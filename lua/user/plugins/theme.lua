@@ -4,7 +4,7 @@ local M = {
   priority = 1000,
 }
 
-M.config = function()
+function M.config()
   -- Nightfox border background is not set by default. We override this option here.
   -- TODO: Consider using a dimmer border foreground like `fg = "bg4"` (telescope default).
   local border = { fg = "fg3", bg = "bg0" }

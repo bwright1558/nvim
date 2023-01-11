@@ -2,7 +2,7 @@ local M = {
   "ray-x/lsp_signature.nvim",
 }
 
-M.config = function()
+function M.config()
   local border = require("user.borders").style
 
   require("lsp_signature").setup({

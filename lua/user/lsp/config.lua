@@ -1,7 +1,7 @@
 local icons = require("user.icons")
 local border = require("user.borders").style
 
-local sign = function(name, text)
+local function sign(name, text)
   vim.fn.sign_define(name, { texthl = name, text = text, numhl = name })
 end
 

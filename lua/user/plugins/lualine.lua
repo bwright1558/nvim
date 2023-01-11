@@ -5,7 +5,7 @@ local M = {
   },
 }
 
-M.config = function()
+function M.config()
   local icons = require("user.icons")
 
   -- diff component

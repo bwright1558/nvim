@@ -3,10 +3,10 @@ local M = {
   event = "BufWinEnter",
 }
 
-M.config = function()
+function M.config()
   -- Smartly opens either git_files or find_files, depending on whether the
   -- working directory is contained in a Git repo.
-  local find_project_files = function()
+  local function find_project_files()
     local git_files_ok = pcall(function() vim.cmd("Telescope git_files") end)
     if not git_files_ok then
       vim.cmd("Telescope find_files")
@@ -14,7 +14,7 @@ M.config = function()
   end
 
   -- Toggle quickfix window.
-  local toggle_quickfix = function()
+  local function toggle_quickfix()
     local fn = vim.fn
     if #fn.filter(fn.getwininfo(), "v:val.quickfix") == 0 then
       vim.cmd("copen")

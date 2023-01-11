@@ -3,7 +3,7 @@ local M = {
   event = "BufRead",
 }
 
-M.config = function()
+function M.config()
   require("pretty-fold").setup({
     keep_indentation = false,
     fill_char = "━",

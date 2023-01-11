@@ -1,7 +1,7 @@
 local M = {}
 
 -- Helper function to set keymap for specific buffer with a description.
-local keymap = function(bufnr, mode, lhs, rhs, desc)
+local function keymap(bufnr, mode, lhs, rhs, desc)
   vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc, silent = true })
 end
 
@@ -9,7 +9,7 @@ end
 M.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- on_attach handler
-M.on_attach = function(_, bufnr)
+function M.on_attach(_, bufnr)
   keymap(bufnr, "n", "K", vim.lsp.buf.hover, "Show Hover")
   keymap(bufnr, "n", "gd", vim.lsp.buf.definition, "Goto Definition")
   keymap(bufnr, "n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
