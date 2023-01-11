@@ -12,10 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local border = require("user.borders").style
-local opts = {
+
+require("lazy").setup("user.plugins", {
   ui = {
     border = border,
   },
-}
-
-require("lazy").setup("user.plugins", opts)
+})
