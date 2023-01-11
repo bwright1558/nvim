@@ -1,11 +1,26 @@
-local ok, bqf = pcall(require, "bqf")
-if not ok then
-  return
-end
+local M = {
+  "kevinhwang91/nvim-bqf",
+  dependencies = {
+    { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end },
+  },
+  ft = "qf",
+}
 
-local icons = require("user.icons")
-local border = require("user.borders").bqf
-local fn = vim.fn
+M.config = function()
+  local icons = require("user.icons")
+  local border = require("user.borders").bqf
+
+  require("bqf").setup({
+    preview = {
+      border_chars = border,
+    },
+    filter = {
+      fzf = {
+        extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", icons.ui.LineMiddle },
+      },
+    },
+  })
+end
 
 function _G.qftf(info)
   local items
@@ -19,9 +34,9 @@ function _G.qftf(info)
   -- vim.cmd(('noa lcd %s'):format(fn.fnameescape(root)))
   --
   if info.quickfix == 1 then
-    items = fn.getqflist({ id = info.id, items = 0 }).items
+    items = vim.fn.getqflist({ id = info.id, items = 0 }).items
   else
-    items = fn.getloclist(info.winid, { id = info.id, items = 0 }).items
+    items = vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
   end
   local limit = 31
   local fnameFmt1, fnameFmt2 = "%-" .. limit .. "s", "…%." .. (limit - 1) .. "s"
@@ -32,7 +47,7 @@ function _G.qftf(info)
     local str
     if e.valid == 1 then
       if e.bufnr > 0 then
-        fname = fn.bufname(e.bufnr)
+        fname = vim.fn.bufname(e.bufnr)
         if fname == "" then
           fname = "[No Name]"
         else
@@ -59,13 +74,4 @@ end
 
 vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 
-bqf.setup({
-  preview = {
-    border_chars = border,
-  },
-  filter = {
-    fzf = {
-      extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", icons.ui.LineMiddle },
-    },
-  },
-})
+return M
