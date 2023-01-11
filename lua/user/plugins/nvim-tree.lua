@@ -1,8 +1,10 @@
 local M = {
   "kyazdani42/nvim-tree.lua",
   dependencies = {
+    "kyazdani42/nvim-web-devicons",
     "nvim-telescope/telescope.nvim",
   },
+  cmd = "NvimTreeToggle",
 }
 
 M.config = function()
