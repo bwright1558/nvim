@@ -1,3 +1,27 @@
+local M = {
+  "kevinhwang91/nvim-bqf",
+  dependencies = {
+    { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end },
+  },
+  ft = "qf",
+}
+
+M.config = function()
+  local icons = require("user.icons")
+  local border = require("user.borders").bqf
+
+  require("bqf").setup({
+    preview = {
+      border_chars = border,
+    },
+    filter = {
+      fzf = {
+        extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", icons.ui.LineMiddle },
+      },
+    },
+  })
+end
+
 function _G.qftf(info)
   local items
   local ret = {}
@@ -50,25 +74,4 @@ end
 
 vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 
-return {
-  "kevinhwang91/nvim-bqf",
-  dependencies = {
-    { "junegunn/fzf", build = function() vim.fn["fzf#install"]() end },
-  },
-  ft = "qf",
-  config = function()
-    local icons = require("user.icons")
-    local border = require("user.borders").bqf
-
-    require("bqf").setup({
-      preview = {
-        border_chars = border,
-      },
-      filter = {
-        fzf = {
-          extra_opts = { "--bind", "ctrl-o:toggle-all", "--delimiter", icons.ui.LineMiddle },
-        },
-      },
-    })
-  end,
-}
+return M

@@ -1,9 +1,12 @@
-return {
+local M = {
   "beauwilliams/focus.nvim",
-  config = function()
-    require("focus").setup({
-      autoresize = false,
-      signcolumn = false,
-    })
-  end,
 }
+
+M.config = function()
+  require("focus").setup({
+    autoresize = false,
+    signcolumn = false,
+  })
+end
+
+return M
