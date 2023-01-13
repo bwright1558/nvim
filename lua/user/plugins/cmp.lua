@@ -4,6 +4,7 @@ local M = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-cmdline",
     "saadparwaiz1/cmp_luasnip",
 
     -- Snippets
@@ -34,6 +35,7 @@ function M.config()
     path = "(Path)",
     luasnip = "(Snippet)",
     buffer = "(Buffer)",
+    cmdline = "(Cmd)",
   }
   local duplicates = {
     nvim_lsp = 0,
@@ -133,6 +135,21 @@ function M.config()
         end
       end, { "i", "s" }),
     }),
+  })
+
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" },
+    },
+  })
+
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "path" },
+      { name = "cmdline" },
+    },
   })
 
   local on_confirm_done = require("nvim-autopairs.completion.cmp").on_confirm_done()
