@@ -13,6 +13,7 @@ local M = {
     -- Autopairs integration
     "windwp/nvim-autopairs",
   },
+  event = { "InsertEnter", "CmdlineEnter" },
 }
 
 function M.config()
