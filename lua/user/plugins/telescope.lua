@@ -5,6 +5,8 @@ local M = {
     "kyazdani42/nvim-web-devicons",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
+  lazy = true,
+  cmd = "Telescope",
 }
 
 function M.config()

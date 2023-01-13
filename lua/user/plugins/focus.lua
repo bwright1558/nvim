@@ -1,5 +1,6 @@
 local M = {
   "beauwilliams/focus.nvim",
+  event = "VeryLazy",
 }
 
 function M.config()
