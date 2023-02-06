@@ -105,6 +105,12 @@ function M.config()
       p = { function() require("telescope.builtin").colorscheme({ enable_preview = true }) end,
         "Colorscheme with Preview" },
     },
+    S = {
+      name = "Session",
+      s = { function() require("persistence").load() end, "Restore Session" },
+      l = { function() require("persistence").load({ last = true }) end, "Restore Last Session" },
+      d = { function() require("persistence").stop() end, "Don't Save Current Session" },
+    },
     T = {
       name = "Treesitter",
       i = { "<Cmd>TSConfigInfo<CR>", "Info" },
