@@ -1,3 +1,5 @@
+-- NOTE: Leader keymaps go in plugins/which-key.lua
+
 -- Modes
 --   normal_mode = "n"
 --   insert_mode = "i"
