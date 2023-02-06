@@ -3,11 +3,14 @@ local M = {
   event = "VeryLazy",
 }
 
+-- TODO: Maybe rename session prefix from "S" to "s", and then rename search prefix from "s" to "f".
+--       Then move the current "f" find-files mapping under the new "f" search mapping with a new key.
+--       Or, maybe just get rid of the find_project_files function all together. git_files is rarely useful.
 function M.config()
   -- Smartly opens either git_files or find_files, depending on whether the
   -- working directory is contained in a Git repo.
   local function find_project_files()
-    local git_files_ok = pcall(function() vim.cmd("Telescope git_files") end)
+    local git_files_ok = pcall(function() vim.cmd("Telescope git_files show_untracked=true") end)
     if not git_files_ok then
       vim.cmd("Telescope find_files")
     end
