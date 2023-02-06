@@ -1,5 +1,8 @@
 local M = {
   "ggandor/leap.nvim",
+  dependencies = {
+    "ggandor/flit.nvim",
+  },
   event = "VeryLazy",
 }
 
@@ -9,6 +12,11 @@ function M.config()
     fg = "white", -- for light themes, set to "black" or similar
     bold = true,
     nocombine = true,
+  })
+
+  -- Enhanced f/t motions with leap.
+  require("flit").setup({
+    labeled_modes = "nv",
   })
 
   local leap = require("leap")
