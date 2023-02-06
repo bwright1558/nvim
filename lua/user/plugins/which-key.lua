@@ -53,7 +53,7 @@ function M.config()
     p = { "<Cmd>Lazy<CR>", "Plugins" },
     g = {
       name = "Git",
-      [";"] = { ":Git ", "Git Command", silent = false },
+      [";"] = { "<Cmd>Git push<CR>", "Git Push" }, -- for best experience, use `git config --global push.autoSetupRemote true`
       g = { "<Cmd>G<CR>", "Git Status" },
       j = { function() require("gitsigns").next_hunk() end, "Next Hunk" },
       k = { function() require("gitsigns").prev_hunk() end, "Prev Hunk" },
