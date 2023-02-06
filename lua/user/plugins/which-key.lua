@@ -53,9 +53,8 @@ function M.config()
     p = { "<Cmd>Lazy<CR>", "Plugins" },
     g = {
       name = "Git",
-      [";"] = { ":Git ", "Git Command", silent = false },
+      [";"] = { "<Cmd>Git push<CR>", "Git Push" },
       g = { "<Cmd>G<CR>", "Git Status" },
-      P = { "<Cmd>G push<CR>", "Git Push" },
       j = { function() require("gitsigns").next_hunk() end, "Next Hunk" },
       k = { function() require("gitsigns").prev_hunk() end, "Prev Hunk" },
       l = { function() require("gitsigns").blame_line() end, "Blame" },
