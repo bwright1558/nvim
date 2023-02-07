@@ -2,7 +2,6 @@ local M = {
   "EdenEast/nightfox.nvim",
   lazy = false,
   priority = 1000,
-  enabled = false,
 }
 
 function M.config()
@@ -29,7 +28,7 @@ function M.config()
     groups = groups,
   })
 
-  vim.cmd [[colorscheme nightfox]]
+  vim.cmd.colorscheme("nightfox")
 end
 
 return M

@@ -3,7 +3,6 @@ local M = {
   name = "catppuccin",
   lazy = false,
   priority = 1000,
-  enabled = false,
 }
 
 function M.config()
@@ -26,7 +25,7 @@ function M.config()
     end,
   })
 
-  vim.cmd [[colorscheme catppuccin]]
+  vim.cmd.colorscheme("catppuccin")
 end
 
 return M
