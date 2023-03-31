@@ -69,3 +69,8 @@ autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "haproxy.cfg.j2" },
   callback = function() vim.opt_local.filetype = "haproxy" end,
 })
+autocmd({ "BufRead", "BufNewFile" }, {
+  group = group,
+  pattern = { "*/sway/config.d/*" },
+  callback = function() vim.opt_local.filetype = "swayconfig" end,
+})
