@@ -43,7 +43,6 @@ function M.config()
     c = { "<Cmd>bd<CR>", "Close Buffer" },
     f = { find_project_files, "Find File" },
     h = { "<Cmd>nohlsearch<CR>", "No Highlight" },
-    e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
     b = {
       name = "Buffers",
       f = { "<Cmd>Telescope buffers<CR>", "Find" },
