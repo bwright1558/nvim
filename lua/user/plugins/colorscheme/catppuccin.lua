@@ -18,6 +18,10 @@ function M.config()
         -- transparency, e.g. lualine.
         Normal = transparent_bg,
         NormalNC = transparent_bg,
+
+        -- Make line numbers more visibile against a transparent background.
+        LineNr = { fg = C.overlay1 },
+
         -- Custom highlights on specific components.
         NormalFloat = normal_float,
         FloatBorder = float_border,
