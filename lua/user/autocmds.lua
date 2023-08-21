@@ -37,7 +37,7 @@ autocmd({ "TextYankPost" }, {
 -- Format on save
 autocmd({ "BufWritePre" }, {
   group = group,
-  pattern = { "*.json", "*.lua", "*.ts", "*.tsx" },
+  pattern = { "*.json", "*.lua" },
   callback = function() vim.lsp.buf.format() end,
 })
 autocmd({ "BufWritePre" }, {
