@@ -14,10 +14,6 @@ function M.config()
       enable = true,
       disable = { "python", "yaml" },
     },
-    context_commentstring = {
-      enable = true,
-      enable_autocmd = false,
-    },
   })
 end
 
