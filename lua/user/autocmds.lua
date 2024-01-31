@@ -1,6 +1,14 @@
 local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup("user_autocmds", { clear = true })
 
+local function autoft(ft, pattern)
+  autocmd({ "BufRead", "BufNewFile" }, {
+    group = group,
+    pattern = pattern,
+    callback = function() vim.opt_local.filetype = ft end,
+  })
+end
+
 -- Trim trailing whitespace and newlines on save.
 autocmd({ "BufWritePre" }, {
   group = group,
@@ -49,28 +57,9 @@ autocmd({ "BufWritePre" }, {
 })
 
 -- Set filetype for certain files with alternate file extension.
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "*/.ebextensions/*.config", "*.yml.j2" },
-  callback = function() vim.opt_local.filetype = "yaml" end,
-})
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "*.json.j2" },
-  callback = function() vim.opt_local.filetype = "json" end,
-})
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "*.conf.j2" },
-  callback = function() vim.opt_local.filetype = "conf" end,
-})
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "haproxy.cfg.j2" },
-  callback = function() vim.opt_local.filetype = "haproxy" end,
-})
-autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "*/sway/config.d/*" },
-  callback = function() vim.opt_local.filetype = "swayconfig" end,
-})
+autoft("yaml", { "*/.ebextensions/*.config", "*.yml.j2" })
+autoft("json", { "*.json.j2" })
+autoft("conf", { "*.conf.j2" })
+autoft("haproxy", { "haproxy.cfg.j2" })
+autoft("swayconfig", { "*/sway/config.d/*" })
+autoft("sh", { "env", ".env", "env.*", ".env.*" })
