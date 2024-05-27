@@ -14,6 +14,9 @@ function M.config()
       enable = true, -- there's some wonky indent crap with *.tsx files.
       disable = { "python", "yaml" },
     },
+    matchup = {
+      enable = true,
+    },
   })
 end
 
