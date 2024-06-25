@@ -3,7 +3,7 @@ local M = {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
   },
   cmd = "Telescope",
 }
@@ -62,7 +62,10 @@ function M.config()
     },
   })
 
-  telescope.load_extension("fzf")
+  local ok, _ = pcall(require, 'fzf_lib')
+  if ok then
+    telescope.load_extension("fzf")
+  end
 end
 
 return M
