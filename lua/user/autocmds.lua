@@ -14,8 +14,8 @@ autocmd({ "BufWritePre" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.api.nvim_exec("TrimWhitespace", false)
-    vim.api.nvim_exec("TrimNewlines", false)
+    vim.api.nvim_exec2("TrimWhitespace", {})
+    vim.api.nvim_exec2("TrimNewlines", {})
   end,
 })
 
