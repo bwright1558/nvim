@@ -13,7 +13,7 @@ local servers = {
   -- "marksman", -- doesn't work on arm processors
   "pyright",
   "rust_analyzer",
-  "tsserver",
+  "ts_ls",
   "vimls",
 }
 
