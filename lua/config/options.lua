@@ -46,6 +46,7 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
+vim.opt.virtualedit = "block"
 
 -- Indentation -----------------------------------------------------------------
 vim.opt.expandtab   = true
@@ -56,6 +57,3 @@ vim.opt.smartindent = true
 -- File handling ---------------------------------------------------------------
 vim.opt.swapfile = false
 vim.opt.undofile = true
-
--- Performance -----------------------------------------------------------------
-vim.opt.virtualedit = "block"
