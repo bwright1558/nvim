@@ -1,3 +1,5 @@
+-- TODO: Autoformat json, lua, and go files on save (BufWritePre)
+
 -------------------------------------------------------------------------------
 -- autocmds.lua
 --
@@ -67,6 +69,44 @@ local ft_overrides = {
 for _, spec in ipairs(ft_overrides) do
   ft(spec[1], spec[2])
 end
+
+-------------------------------------------------------------------------------
+-- CUSTOM FILETYPE DETECTION (manual overrides)
+-------------------------------------------------------------------------------
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("custom_filetypes"),
+  pattern = {
+    "*/.ebextensions/*.config",
+    "*/ebextensions/*.config",
+    "*.j2",
+    "*/sway/config.d/*",
+    "env",
+    ".env",
+    "env.*",
+    ".env.*",
+  },
+  callback = function(args)
+    local path = args.file
+
+    if path:match("%.j2$") then
+      -- Try to infer the original filetype by stripping the .j2
+      local basename = path:gsub(".j2$", "")
+      local inferred_ft = vim.filetype.match({ filename = basename })
+      if not inferred_ft and basename:match("%.config$") then
+        inferred_ft = "yaml" -- fallback for ebextensions/*.config.j2
+      end
+      if inferred_ft then
+        vim.bo.filetype = inferred_ft
+      end
+    elseif path:match("%.config$") then
+      vim.bo.filetype = "yaml"
+    elseif path:match("sway/config%.d/") then
+      vim.bo.filetype = "swayconfig"
+    elseif path:match("^%.?env") then
+      vim.bo.filetype = "sh"
+    end
+  end,
+})
 
 -------------------------------------------------------------------------------
 -- GLOBAL AUTOCMDS (apply to *every* buffer)
