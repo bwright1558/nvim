@@ -29,8 +29,8 @@ map("v", ">", ">gv", { desc = "Indent right and reselect", silent = true })
 -------------------------------------------------------------------------------
 -- Command-line popup-menu navigation
 -------------------------------------------------------------------------------
-map("c", "<C-j>", [[pumvisible() ? "\<C-n>" : "\<C-j>"]], { expr = true, desc = "Next completion item" })
-map("c", "<C-k>", [[pumvisible() ? "\<C-p>" : "\<C-k>"]], { expr = true, desc = "Previous completion item" })
+map("c", "<C-j>", [[pumvisible() ? "<C-n>" : "<C-j>"]], { expr = true, desc = "Next completion item" })
+map("c", "<C-k>", [[pumvisible() ? "<C-p>" : "<C-k>"]], { expr = true, desc = "Previous completion item" })
 
 -------------------------------------------------------------------------------
 -- Quickfix navigation
