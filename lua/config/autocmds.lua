@@ -1,5 +1,3 @@
--- TODO: Autoformat json, lua, and go files on save (BufWritePre)
-
 -------------------------------------------------------------------------------
 -- autocmds.lua
 --
