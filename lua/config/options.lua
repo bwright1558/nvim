@@ -1,25 +1,61 @@
--- Remap space as leader key
--- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- Leader configuration --------------------------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- Disable optional vim.provider (silence warnings in :checkhealth).
+-- Disable unused language providers ------------------------------------------
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
-vim.opt.shortmess:append("I") -- don't show the default intro message
+-- Short message tweaks --------------------------------------------------------
+vim.opt.shortmess:append("c") -- suppress ins‑completion “match xx of yy”
+vim.opt.shortmess:append("I") -- skip the intro splash
 
-vim.opt.modeline = false                        -- sets options for a particular file using modelines
-vim.opt.backup = false                          -- creates a backup file
-vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
+-- General editing behaviour ---------------------------------------------------
+vim.opt.modeline = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.fileencoding = "utf-8"
+vim.opt.mouse = "a"
+vim.opt.termguicolors = true
+
+-- Search ----------------------------------------------------------------------
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Completion / popup menu -----------------------------------------------------
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
+vim.opt.pumheight = 10
+vim.opt.updatetime = 100
 
-vim.opt.ignorecase = true -- ignore case in search patterns
-vim.opt.mouse = "a"       -- allow the mouse to be used in neovim
-vim.opt.pumheight = 10    -- pop up menu height
-vim.opt.showmode = false  -- we don't need to see things like -- INSERT -- anymore
+-- Window management -----------------------------------------------------------
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Interface / UI --------------------------------------------------------------
+vim.opt.showmode = false
+vim.opt.showcmd = false
+vim.opt.ruler = false
+vim.opt.showtabline = 0
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"
+vim.opt.wrap = false
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.timeoutlen = 500
+
+-- Indentation -----------------------------------------------------------------
+vim.opt.expandtab   = true
+vim.opt.shiftwidth  = 2
+vim.opt.tabstop     = 2
+vim.opt.smartindent = true
+
+-- File handling ---------------------------------------------------------------
+vim.opt.swapfile = false
+vim.opt.undofile = true
+
+-- Performance -----------------------------------------------------------------
+vim.opt.virtualedit = "block"
