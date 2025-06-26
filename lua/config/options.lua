@@ -34,6 +34,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Interface / UI --------------------------------------------------------------
+vim.opt.winborder = "rounded"
 vim.opt.showmode = false
 vim.opt.showcmd = false
 vim.opt.ruler = false
