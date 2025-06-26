@@ -36,6 +36,14 @@ end
 -- FILETYPE-SPECIFIC OVERRIDES
 -------------------------------------------------------------------------------
 local ft_overrides = {
+  -- Lazy → <Esc> to close the Lazy window
+  { "lazy", function(event)
+      vim.keymap.set("n", "<Esc>", "<Cmd>q<CR>", {
+        buffer = event.buf,
+        desc = "Close",
+        silent = true,
+      })
+    end },
   -- spell + soft wrap for writing-heavy files
   { { "gitcommit", "markdown" }, function()
       vim.opt_local.spell = true

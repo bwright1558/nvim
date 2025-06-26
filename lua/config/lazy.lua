@@ -35,5 +35,5 @@ require("lazy").setup({
   -- Disable luarocks support (no plugins use it)
   rocks = { enabled = false },
   -- Look and feel
-  ui = { border = "single" },
+  ui = { border = "rounded" },
 })
