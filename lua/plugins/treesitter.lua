@@ -1,3 +1,11 @@
+-- treesitter.lua
+--
+-- Plugin configuration for nvim-treesitter.
+-- Provides incremental parsing and syntax-aware features
+-- like highlighting, indentation, folding, etc.
+--
+-- See: https://github.com/nvim-treesitter/nvim-treesitter
+
 local M = {
   "nvim-treesitter/nvim-treesitter",
   branch = "master",
