@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("gI", vim.lsp.buf.implementation, "Goto Implementation")
     map("gK", vim.lsp.buf.signature_help, "Show Signature Help")
     map("gl", vim.diagnostic.open_float, "Show Line Diagnostics")
-    map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
-    map("[d", vim.diagnostic.goto_prev, "Prev Diagnostic")
+    map("]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
+    map("[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev Diagnostic")
   end,
 })
