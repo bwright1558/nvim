@@ -24,6 +24,7 @@ local M = {
     ensure_installed = "all",
     ignore_install = {
       "norg", -- causes build issues on some systems
+      "ipkg",
     },
 
     highlight = {
