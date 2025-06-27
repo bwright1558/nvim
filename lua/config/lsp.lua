@@ -1,5 +1,3 @@
-local icons = require("config.icons")
-
 vim.diagnostic.config({
   severity_sort = true,
   float = {
@@ -9,10 +7,10 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
-      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
-      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
-      [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "󰌶",
     },
   },
 })
