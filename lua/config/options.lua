@@ -34,7 +34,6 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Interface / UI --------------------------------------------------------------
-vim.opt.winborder = "rounded"
 vim.opt.showmode = false
 vim.opt.showcmd = false
 vim.opt.ruler = false
@@ -48,6 +47,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
 vim.opt.virtualedit = "block"
+-- vim.opt.winborder = "rounded" -- commented out b/c Lazy and Telescope has weird UI
 
 -- Indentation -----------------------------------------------------------------
 vim.opt.expandtab   = true
