@@ -27,7 +27,7 @@ local split_cmd = {
 -- @param dir 'h'|'j'|'k'|'l'
 function M.focus(dir)
   if not split_cmd[dir] then
-    vim.api.nvim_err_writeln("smart_split.focus: dir must be h/j/k/l, got " .. tostring(dir))
+    vim.notify("smart_split.focus: dir must be h/j/k/l, got " .. tostring(dir), vim.log.levels.ERROR)
     return
   end
 
