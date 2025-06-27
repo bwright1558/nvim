@@ -1,3 +1,10 @@
+-- lazydev.lua
+--
+-- LSP enhancements for Lua development in Neovim.
+-- Filetype-based lazy loading for Lua files only.
+--
+-- See: https://github.com/folke/lazydev.nvim
+
 local M = {
   "folke/lazydev.nvim",
   ft = "lua",
