@@ -10,6 +10,7 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "andymass/vim-matchup",
   },
   branch = "master",
   lazy = false,
@@ -84,6 +85,10 @@ local M = {
           ["<Leader>A"] = "@parameter.inner",
         },
       },
+    },
+
+    matchup = {
+      enable = true,
     },
   },
 }
