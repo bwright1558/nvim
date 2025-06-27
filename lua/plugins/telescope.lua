@@ -17,6 +17,7 @@ local M = {
       prompt_prefix = " ",
       selection_caret = " ",
       path_display = { "smart", "filename_first" },
+      layout_strategy = "flex",
 
       -- Override live_grep command to include hidden files and exclude .git
       vimgrep_arguments = {
