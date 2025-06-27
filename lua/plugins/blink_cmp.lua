@@ -20,6 +20,7 @@ local M = {
     },
     completion = {
       menu = {
+        border = "rounded",
         draw = {
           columns = {
             { "kind_icon" },
@@ -29,12 +30,14 @@ local M = {
           },
         },
       },
+      documentation = { window = { border = "rounded" } },
     },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },
     signature = {
       enabled = true,
+      window = { border = "rounded" },
     },
   },
   opts_extend = { "sources.default" },
