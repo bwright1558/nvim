@@ -44,11 +44,6 @@ local ft_overrides = {
         silent = true,
       })
     end },
-  -- Lazy backdrop → workaround to remove backdrop border.
-  { "lazy_backdrop", function(event)
-      local win = vim.fn.win_findbuf(event.buf)[1]
-      vim.api.nvim_win_set_config(win, { border = "none" })
-    end },
   -- spell + soft wrap for writing-heavy files
   { { "gitcommit", "markdown" }, function()
       vim.opt_local.spell = true
