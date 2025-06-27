@@ -1,0 +1,56 @@
+-- telescope.lua
+--
+-- Find, filter, preview, and pick.
+--
+-- See: https://github.com/nvim-telescope/telescope.nvim
+
+local M = {
+  "nvim-telescope/telescope.nvim",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  },
+  cmd = "Telescope",
+  opts = {
+    defaults = {
+      prompt_prefix = " ",
+      selection_caret = " ",
+      path_display = { "smart", "filename_first" },
+
+      -- Override live_grep command to include hidden files and exclude .git
+      vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+        "--hidden",
+        "--glob=!**/.git/*",
+      },
+    },
+    pickers = {
+      find_files = {
+        -- Override find_files command to include hidden files and exclude .git
+        find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+      },
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
+    },
+  },
+  config = function(_, opts)
+    local telescope = require("telescope")
+    telescope.setup(opts)
+    telescope.load_extension("fzf")
+  end,
+}
+
+return M
