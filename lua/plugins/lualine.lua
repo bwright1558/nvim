@@ -13,7 +13,7 @@ local M = {
     options = {
       globalstatus = vim.opt.laststatus == 3,
       disabled_filetypes = {
-        statusline = { "NvimTree", "Outline" },
+        statusline = { "NvimTree", "neo-tree", "Outline" },
       },
       component_separators = { left = "", right = "" },
       section_separators = { left = " ", right = " " },
