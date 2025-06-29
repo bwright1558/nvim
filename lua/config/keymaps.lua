@@ -23,8 +23,8 @@ map("n", "<C-l>", "<Cmd>SplitRight<CR>", { desc = "Smart split right", silent = 
 -------------------------------------------------------------------------------
 -- Indenting helpers (keep visual selection)
 -------------------------------------------------------------------------------
-map("v", "<", "<gv", { desc = "Indent left and reselect",  silent = true })
-map("v", ">", ">gv", { desc = "Indent right and reselect", silent = true })
+map("x", "<", "<gv", { desc = "Indent left and reselect",  silent = true })
+map("x", ">", ">gv", { desc = "Indent right and reselect", silent = true })
 
 -------------------------------------------------------------------------------
 -- Command-line popup-menu navigation
@@ -58,3 +58,4 @@ map("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Terminal window right", silent
 -------------------------------------------------------------------------------
 map("x", "p", '"_dP', { desc = "Preserve register (paste)", silent = true })
 map("x", "P", '"_dP', { desc = "Preserve register (Paste)", silent = true })
+-- map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>')
