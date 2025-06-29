@@ -57,7 +57,16 @@ map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { desc = "Paste without yanking",
 -- <Leader> mappings
 -------------------------------------------------------------------------------
 
--- Toggle Quickfix window
+-- Basic operations
+map("n", "<Leader>q", "<Cmd>q<CR>", { desc = "Quit", silent = true })
+map("n", "<Leader>Q", "<Cmd>qall<CR>", { desc = "Quit All", silent = true })
+map("n", "<Leader>w", "<Cmd>w<CR>", { desc = "Save", silent = true })
+map("n", "<Leader>h", "<Cmd>nohlsearch<CR>", { desc = "Clear Search Highlight", silent = true })
+map("n", "<Leader>:", "<Cmd>Telescope command_history<CR>", { desc = "Command History", silent = true })
+map("n", "<Leader>e", "<Cmd>Neotree toggle<CR>", { desc = "File Explorer", silent = true })
+map("n", "<Leader>p", "<Cmd>Lazy<CR>", { desc = "Lazy Plugin Manager", silent = true })
+
+-- Quickfix
 map("n", "<Leader>,", function()
   local is_open = false
   for _, win in ipairs(vim.fn.getwininfo()) do
@@ -69,12 +78,18 @@ map("n", "<Leader>,", function()
   vim.cmd(is_open and "cclose" or "copen")
 end, { desc = "Toggle Quickfix", silent = true })
 
--- Basic operations
-map("n", "<Leader>q", "<Cmd>q<CR>", { desc = "Quit", silent = true })
-map("n", "<Leader>Q", "<Cmd>qall<CR>", { desc = "Quit All", silent = true })
-map("n", "<Leader>w", "<Cmd>w<CR>", { desc = "Save", silent = true })
-map("n", "<Leader>h", "<Cmd>nohlsearch<CR>", { desc = "Clear Search Highlight", silent = true })
-map("n", "<Leader>:", "<Cmd>Telescope command_history<CR>", { desc = "Command History", silent = true })
+-- File operations
+map("n", "<Leader>ff", function()
+  local tele
+  local ok = pcall(require("telescope.builtin").git_files, { show_untracked = true })
+  if not ok then
+    require("telescope.builtin").find_files()
+  end
+end, { desc = "Find Files (Git-aware)", silent = true })
+map("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>", { desc = "Recent Files", silent = true })
+map("n", "<Leader>fn", "<Cmd>enew<CR>", { desc = "New File", silent = true })
+map("n", "<Leader>fe", "<Cmd>Neotree toggle<CR>", { desc = "File Explorer", silent = true })
+map("n", "<Leader>fs", "<Cmd>w<CR>", { desc = "Save", silent = true })
 
 -- Comments
 map("n", "<Leader>/", "gcc", { desc = "Toggle Comment Line", silent = true, remap = true })
@@ -128,3 +143,7 @@ map("n", "<Leader>sC", "<Cmd>Telescope colorscheme<CR>", { desc = "Colorschemes"
 map("n", "<Leader>sp", function()
   require("telescope.builtin").colorscheme({ enable_preview = true })
 end, { desc = "Colorschemes (Preview)", silent = true })
+
+-- Treesitter
+map("n", "<Leader>ti", "<Cmd>TSConfigInfo<CR>", { desc = "Treesitter Info", silent = true })
+map("n", "<Leader>tm", "<Cmd>TSModuleInfo<CR>", { desc = "Treesitter Modules", silent = true })
