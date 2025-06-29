@@ -46,7 +46,7 @@ local ft_overrides = {
     end },
   -- spell + soft wrap for writing-heavy files
   { { "gitcommit", "markdown" }, function()
-      vim.opt_local.spell = true
+      vim.opt_local.spell = false
       vim.opt_local.wrap = true
     end },
 
