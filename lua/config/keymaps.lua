@@ -58,4 +58,3 @@ map("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Terminal window right", silent
 -------------------------------------------------------------------------------
 map("x", "p", '"_dP', { desc = "Preserve register (paste)", silent = true })
 map("x", "P", '"_dP', { desc = "Preserve register (Paste)", silent = true })
--- map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>')
