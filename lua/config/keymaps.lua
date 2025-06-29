@@ -1,13 +1,7 @@
 -------------------------------------------------------------------------------
 -- keymaps.lua
 --
--- Keymaps that rely **only on core Neovim**.
--- (Plugin-specific maps live alongside their respective plugin configs.)
---
--- Conventions
--- -----------
--- * <Leader>-prefixed maps will be defined in which-key plugin.
--- * Non-leader maps live here.
+-- Keymaps to make life a little easier.
 -------------------------------------------------------------------------------
 
 local map = vim.keymap.set
@@ -80,6 +74,7 @@ map("n", "<Leader>q", "<Cmd>q<CR>", { desc = "Quit", silent = true })
 map("n", "<Leader>Q", "<Cmd>qall<CR>", { desc = "Quit All", silent = true })
 map("n", "<Leader>w", "<Cmd>w<CR>", { desc = "Save", silent = true })
 map("n", "<Leader>h", "<Cmd>nohlsearch<CR>", { desc = "Clear Search Highlight", silent = true })
+map("n", "<Leader>:", "<Cmd>Telescope command_history<CR>", { desc = "Command History", silent = true })
 
 -- Comments
 map("n", "<Leader>/", "gcc", { desc = "Toggle Comment Line", silent = true, remap = true })
@@ -113,3 +108,23 @@ map("n", "<Leader>go", "<Cmd>Telescope git_status<CR>", { desc = "Git Status (Te
 map("n", "<Leader>gb", "<Cmd>Telescope git_branches<CR>", { desc = "Git Branches", silent = true })
 map("n", "<Leader>gc", "<Cmd>Telescope git_commits<CR>", { desc = "Git Commits", silent = true })
 map("n", "<Leader>gC", "<Cmd>Telescope git_bcommits<CR>", { desc = "File Commits", silent = true })
+
+-- Search
+map("n", "<Leader>sf", "<Cmd>Telescope find_files<CR>", { desc = "Find Files", silent = true })
+map("n", "<Leader>sg", "<Cmd>Telescope live_grep<CR>", { desc = "Search Text (Grep)", silent = true })
+map("n", "<Leader>sb", "<Cmd>Telescope buffers<CR>", { desc = "Open Buffers", silent = true })
+map("n", "<Leader>sh", "<Cmd>Telescope help_tags<CR>", { desc = "Help Tags", silent = true })
+map("n", "<Leader>sr", "<Cmd>Telescope oldfiles<CR>", { desc = "Recent Files", silent = true })
+map("n", "<Leader>sq", "<Cmd>Telescope quickfix<CR>", { desc = "Quickfix", silent = true })
+map("n", "<Leader>sk", "<Cmd>Telescope keymaps<CR>", { desc = "Keymaps", silent = true })
+map("n", "<Leader>sm", "<Cmd>Telescope marks<CR>", { desc = "Marks", silent = true })
+map("n", "<Leader>ss", "<Cmd>Telescope grep_string<CR>", { desc = "Search Word Under Cursor", silent = true })
+map("x", "<Leader>ss", "<Cmd>Telescope grep_string<CR>", { desc = "Search Word Under Cursor", silent = true })
+map("n", "<Leader>sR", "<Cmd>Telescope registers<CR>", { desc = "Registers", silent = true })
+map("n", "<Leader>sc", "<Cmd>Telescope commands<CR>", { desc = "Commands", silent = true })
+map("n", "<Leader>sM", "<Cmd>Telescope man_pages<CR>", { desc = "Man Pages", silent = true })
+map("n", "<Leader>sH", "<Cmd>Telescope highlights<CR>", { desc = "Highlight Groups", silent = true })
+map("n", "<Leader>sC", "<Cmd>Telescope colorscheme<CR>", { desc = "Colorschemes", silent = true })
+map("n", "<Leader>sp", function()
+  require("telescope.builtin").colorscheme({ enable_preview = true })
+end, { desc = "Colorschemes (Preview)", silent = true })
