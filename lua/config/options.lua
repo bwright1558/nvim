@@ -27,7 +27,7 @@ vim.opt.smartcase = true
 -- Completion / popup menu -----------------------------------------------------
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.pumheight = 10
-vim.opt.updatetime = 100
+vim.opt.updatetime = 250
 
 -- Window management -----------------------------------------------------------
 vim.opt.splitright = true
