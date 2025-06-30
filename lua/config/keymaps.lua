@@ -49,7 +49,7 @@ map("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up",   silent = true 
 -------------------------------------------------------------------------------
 -- Terminal-mode mappings
 -------------------------------------------------------------------------------
-map("t", "<C-,>", [[<C-\><C-n>]],       { desc = "Exit terminal mode",    silent = true })
+map("t", "<C-;>", [[<C-\><C-n>]],       { desc = "Exit terminal mode",    silent = true })
 map("t", "<C-h>", [[<C-\><C-n><C-w>h]], { desc = "Terminal window left",  silent = true })
 map("t", "<C-j>", [[<C-\><C-n><C-w>j]], { desc = "Terminal window down",  silent = true })
 map("t", "<C-k>", [[<C-\><C-n><C-w>k]], { desc = "Terminal window up",    silent = true })
