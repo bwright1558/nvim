@@ -8,7 +8,7 @@ local M = {
   "akinsho/toggleterm.nvim",
   version = "*",
   opts = {
-    open_mapping = "<Leader>;",
+    open_mapping = "<C-;>",
     float_opts = {
       border = "rounded",
     },

@@ -10,10 +10,11 @@ local M = {
     "nvim-tree/nvim-web-devicons",
   },
   lazy = false,
-  keys = {
-    { "-", "<Cmd>Oil<CR>", desc = "Oil" },
+  opts = {
+    view_options = {
+      show_hidden = true,
+    },
   },
-  opts = {},
 }
 
 return M

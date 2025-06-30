@@ -31,7 +31,7 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "catppuccin", "habamax" } },
   -- Automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
   -- Disable luarocks support (no plugins use it)
   rocks = { enabled = false },
   -- Look and feel
