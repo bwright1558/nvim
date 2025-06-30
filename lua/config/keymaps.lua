@@ -6,6 +6,14 @@
 
 local map = vim.keymap.set
 
+-- All these are remapped to something else.
+-- Delete these mappings to remove conflict with new `gr` mapping.
+vim.keymap.del("n", "gra")
+vim.keymap.del("x", "gra")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "grr")
+
 -------------------------------------------------------------------------------
 -- Window navigation (uses your smart_split commands)
 -------------------------------------------------------------------------------
