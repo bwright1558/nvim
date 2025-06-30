@@ -130,7 +130,7 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 api.nvim_create_autocmd("TextYankPost", {
   group = augroup("yank_highlight"),
   callback = function()
-    vim.highlight.on_yank({ timeout = 200 })
+    vim.hl.on_yank({ timeout = 200 })
   end,
 })
 

@@ -11,6 +11,7 @@ local M = {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
+    latex = { enabled = false },
     completions = {
       lsp = { enabled = true },
       blink = { enabled = true },

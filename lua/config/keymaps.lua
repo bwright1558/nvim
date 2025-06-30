@@ -80,7 +80,6 @@ end, { desc = "Toggle Quickfix", silent = true })
 
 -- File operations
 map("n", "<Leader>ff", function()
-  local tele
   local ok = pcall(require("telescope.builtin").git_files, { show_untracked = true })
   if not ok then
     require("telescope.builtin").find_files()
@@ -89,7 +88,6 @@ end, { desc = "Find Files (Git-aware)", silent = true })
 map("n", "<Leader>fr", "<Cmd>Telescope oldfiles<CR>", { desc = "Recent Files", silent = true })
 map("n", "<Leader>fn", "<Cmd>enew<CR>", { desc = "New File", silent = true })
 map("n", "<Leader>fe", "<Cmd>Neotree toggle<CR>", { desc = "File Explorer", silent = true })
-map("n", "<Leader>fs", "<Cmd>w<CR>", { desc = "Save", silent = true })
 
 -- Comments
 map("n", "<Leader>/", "gcc", { desc = "Toggle Comment Line", silent = true, remap = true })
@@ -97,13 +95,10 @@ map("x", "<Leader>/", "gc", { desc = "Toggle Comment Block", silent = true, rema
 
 -- Buffer navigation
 map("n", "<Leader>bd", "<Cmd>bd<CR>", { desc = "Delete Buffer", silent = true })
-map("n", "<Leader>bj", "<Cmd>bj<CR>", { desc = "Next Buffer", silent = true })
+map("n", "<Leader>bj", "<Cmd>bn<CR>", { desc = "Next Buffer", silent = true })
 map("n", "<Leader>bk", "<Cmd>bp<CR>", { desc = "Prev Buffer", silent = true })
 map("n", "<Leader>bl", "<Cmd>b#<CR>", { desc = "Last Buffer", silent = true })
 map("n", "<Leader>bb", "<Cmd>Telescope buffers<CR>", { desc = "Buffer List", silent = true })
-
--- Quickfix
-map("n", "<Leader>sq", "<Cmd>Telescope quickfix<CR>", { desc = "Quickfix List", silent = true })
 
 -- Git: Fugitive
 map("n", "<Leader>gg", "<Cmd>G<CR>", { desc = "Git Status (Fugitive)", silent = true })
