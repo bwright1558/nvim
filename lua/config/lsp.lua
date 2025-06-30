@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc, silent = true })
     end
 
-    -- Global mappings
+    -- Core LSP mappings
     map("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover Documentation")
     map("n", "gK", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, "Signature Help")
     map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
     map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev Diagnostic")
 
-    -- <Leader> mappings
+    -- <Leader> LSP mappings
     map("n", "<Leader>la", vim.lsp.buf.code_action, "Code Action")
     map("x", "<Leader>la", vim.lsp.buf.code_action, "Code Action (Visual)")
     map("n", "<Leader>lf", vim.lsp.buf.format, "Format")
