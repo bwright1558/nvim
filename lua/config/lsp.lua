@@ -35,8 +35,9 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user_config_lsp_attach", { clear = true }),
   callback = function(event)
+
     local map = function(mode, keys, func, desc)
-      vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc, silent = true })
+      vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc, silent = true })
     end
 
     -- Core LSP mappings
@@ -66,6 +67,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<Leader>lS", "<Cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols")
     map("n", "<Leader>li", "<Cmd>LspInfo<CR>", "LSP Info")
     map("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
-    map("n", "<Leader>lI", "<Cmd>Mason<CR>", "Open Mason")
   end,
 })

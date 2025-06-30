@@ -61,6 +61,13 @@ map("t", "<C-l>", [[<C-\><C-n><C-w>l]], { desc = "Terminal window right", silent
 map("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { desc = "Paste without yanking", silent = true })
 map("x", "P", 'P:let @+=@0<CR>:let @"=@0<CR>', { desc = "Paste without yanking", silent = true })
 
+-- Alternative version for paste without yanking.
+-- map("x", "p", function()
+--   vim.cmd('normal! p')
+--   vim.fn.setreg("+", vim.fn.getreg("0"))
+--   vim.fn.setreg('"', vim.fn.getreg("0"))
+-- end, { desc = "Paste without yanking", silent = true })
+
 -------------------------------------------------------------------------------
 -- <Leader> mappings
 -------------------------------------------------------------------------------
@@ -150,3 +157,6 @@ end, { desc = "Colorschemes (Preview)", silent = true })
 -- Treesitter
 map("n", "<Leader>ti", "<Cmd>TSConfigInfo<CR>", { desc = "Treesitter Info", silent = true })
 map("n", "<Leader>tm", "<Cmd>TSModuleInfo<CR>", { desc = "Treesitter Modules", silent = true })
+
+-- Mason
+map("n", "<Leader>lI", "<Cmd>Mason<CR>", { desc = "Mason", silent = true })
