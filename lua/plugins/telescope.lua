@@ -6,6 +6,7 @@
 
 local M = {
   "nvim-telescope/telescope.nvim",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
