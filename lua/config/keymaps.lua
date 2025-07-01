@@ -99,7 +99,7 @@ map("n", "<Leader>,", function()
 end, { desc = "Toggle Quickfix", silent = true })
 
 -- File operations
-map("n", "<Leader>ff", function() Snacks.picker.files() end, { desc = "Find Files", silent = true })
+map("n", "<Leader>ff", function() Snacks.picker.files({ hidden = true }) end, { desc = "Find Files", silent = true })
 map("n", "<Leader>fr", function() Snacks.picker.recent() end, { desc = "Recent Files", silent = true })
 map("n", "<Leader>fn", "<Cmd>enew<CR>", { desc = "New File", silent = true })
 map("n", "<Leader>fe", "<Cmd>Neotree toggle<CR>", { desc = "File Explorer", silent = true })
@@ -135,7 +135,7 @@ map("n", "<Leader>gc", function() Snacks.picker.git_log() end, { desc = "Git Com
 map("n", "<Leader>gC", function() Snacks.picker.git_log({ current_file = true }) end, { desc = "File Commits", silent = true })
 
 -- Search
-map("n", "<Leader>sf", function() Snacks.picker.files() end, { desc = "Find Files", silent = true })
+map("n", "<Leader>sf", function() Snacks.picker.files({ hidden = true }) end, { desc = "Find Files", silent = true })
 map("n", "<Leader>sg", function() Snacks.picker.git_files({ cwd = Snacks.git.get_root(vim.uv.cwd()) }) end, { desc = "Find Files (Git-aware)", silent = true })
 map("n", "<Leader>st", function() Snacks.picker.grep() end, { desc = "Search Text (Grep)", silent = true })
 map("n", "<Leader>sb", function() Snacks.picker.buffers() end, { desc = "Open Buffers", silent = true })
