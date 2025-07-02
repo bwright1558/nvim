@@ -7,8 +7,10 @@
 
 local M = {
   "RRethy/vim-illuminate",
+  enabled = false,
   event = { "CursorHold", "CursorHoldI" },
   opts = {
+    providers = { "lsp" },
     filetypes_denylist = {
       "dirbuf",
       "dirvish",
