@@ -18,6 +18,10 @@ local M = {
     terminal = { enabled = true },
     explorer = { enabled = true },
     words = { enabled = true },
+    indent = {
+      enabled = true,
+      -- scope = { hl = "@text" },
+    },
   },
 }
 
