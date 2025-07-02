@@ -35,37 +35,39 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user_config_lsp_attach", { clear = true }),
   callback = function(event)
+    local keymaps = {
+      { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, desc = "Hover Documentation" },
+      { "gK", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, desc = "Signature Help" },
+      { "gy", vim.lsp.buf.type_definition, desc = "Goto Type Definition" },
+      { "gd", vim.lsp.buf.definition, desc = "Goto Definition" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+      { "gi", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+      { "gr", function() Snacks.picker.lsp_references() end, desc = "References" },
+      { "gl", vim.diagnostic.open_float, desc = "Show Line Diagnostics" },
+      { "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
+      { "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
+      { "<Leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
+      { "<Leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
+      { "<Leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
+      { "<Leader>lf", vim.lsp.buf.format, desc = "Format" },
+      { "<Leader>lr", vim.lsp.buf.rename, desc = "Rename" },
+      { "<Leader>ll", vim.lsp.codelens.run, desc = "Run CodeLens" },
+      { "<Leader>lq", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
+      { "<Leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
+      { "<Leader>lD", function() Snacks.picker.diagnostics() end, desc = "Workspace Diagnostics" },
+      { "<Leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Symbols" },
+      { "<Leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
+      { "<Leader>li", "<Cmd>LspInfo<CR>", desc = "LSP Info" },
+      { "<Leader>lR", "<Cmd>LspRestart<CR>", desc = "Restart LSP" },
+    }
 
-    local map = function(mode, keys, func, desc)
-      vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc, silent = true })
+    for _, map in ipairs(keymaps) do
+      local lhs, rhs = map[1], map[2]
+      vim.keymap.set(map.mode or "n", lhs, rhs, {
+        buffer = event.buf,
+        desc = map.desc,
+        silent = true,
+      })
     end
-
-    -- Core LSP mappings
-    map("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover Documentation")
-    map("n", "gK", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, "Signature Help")
-    map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
-    map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-    map("n", "gi", vim.lsp.buf.implementation, "Goto Implementation")
-    -- map("n", "gr", vim.lsp.buf.references, "Goto References")
-    map("n", "gr", function() Snacks.picker.lsp_references() end, "References")
-    map("n", "gl", vim.diagnostic.open_float, "Show Line Diagnostics")
-    map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
-    map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev Diagnostic")
-
-    -- <Leader> LSP mappings
-    map("n", "<Leader>la", vim.lsp.buf.code_action, "Code Action")
-    map("x", "<Leader>la", vim.lsp.buf.code_action, "Code Action (Visual)")
-    map("n", "<Leader>lf", vim.lsp.buf.format, "Format")
-    map("n", "<Leader>lr", vim.lsp.buf.rename, "Rename Symbol")
-    map("n", "<Leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next Diagnostic")
-    map("n", "<Leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev Diagnostic")
-    map("n", "<Leader>ll", vim.lsp.codelens.run, "Run CodeLens")
-    map("n", "<Leader>lq", vim.diagnostic.setloclist, "Diagnostics → Loclist")
-    map("n", "<Leader>ld", function() Snacks.picker.diagnostics_buffer() end, "Buffer Diagnostics")
-    map("n", "<Leader>lw", function() Snacks.picker.diagnostics() end, "Workspace Diagnostics")
-    map("n", "<Leader>ls", function() Snacks.picker.lsp_symbols() end, "Document Symbols")
-    map("n", "<Leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, "Workspace Symbols")
-    map("n", "<Leader>li", "<Cmd>LspInfo<CR>", "LSP Info")
-    map("n", "<Leader>lR", "<Cmd>LspRestart<CR>", "Restart LSP")
   end,
 })

@@ -21,15 +21,6 @@ local M = {
       border = "rounded",
     },
   },
-  keys = {
-    {
-      "<Leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
-  },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
@@ -39,8 +30,10 @@ local M = {
       { "<Leader>f", group = "Files" },
       { "<Leader>g", group = "Git" },
       { "<Leader>l", group = "LSP" },
+      { "<Leader>x", group = "Quickfix" },
       { "<Leader>s", group = "Search" },
       { "<Leader>t", group = "Treesitter" },
+      { "<Leader>u", group = "UI/UX" },
     })
   end,
 }

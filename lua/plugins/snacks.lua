@@ -15,6 +15,9 @@ local M = {
     picker = { enabled = true },
     git = { enabled = true },
     notifier = { enabled = true },
+    terminal = { enabled = true },
+    explorer = { enabled = true },
+    words = { enabled = true },
   },
 }
 
