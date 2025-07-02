@@ -12,16 +12,20 @@ local M = {
   priority = 1000,
   lazy = false,
   opts = {
-    picker = { enabled = true },
-    git = { enabled = true },
-    notifier = { enabled = true },
-    terminal = { enabled = true },
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
     explorer = { enabled = true },
-    words = { enabled = true },
+    git = { enabled = true },
     indent = {
       enabled = true,
       -- scope = { hl = "@text" },
     },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    picker = { enabled = true },
+    scroll = { enabled = true },
+    terminal = { enabled = true },
+    words = { enabled = true },
   },
 }
 
