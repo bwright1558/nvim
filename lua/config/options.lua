@@ -14,6 +14,7 @@ vim.opt.shortmess:append("c") -- suppress ins‑completion “match xx of yy”
 vim.opt.shortmess:append("I") -- skip the intro splash
 
 -- General editing behaviour ---------------------------------------------------
+vim.opt.confirm = true
 vim.opt.modeline = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.fileencoding = "utf-8"
