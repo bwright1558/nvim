@@ -4,7 +4,7 @@
 
 local M = {
   "lewis6991/gitsigns.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   opts = {
     signs = {
       add = { text = "▎" },
