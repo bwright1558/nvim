@@ -45,7 +45,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "gi", vim.lsp.buf.implementation, desc = "Goto Implementation" },
       { "gy", vim.lsp.buf.type_definition, desc = "Goto Type Definition" },
-      { "gr", function() Snacks.picker.lsp_references() end, desc = "References" },
+      { "gr", vim.lsp.buf.references, desc = "References" },
+      -- { "gr", function() Snacks.picker.lsp_references() end, desc = "References" },
 
       ------------------------- Diagnostics --------------------------
       { "gl", vim.diagnostic.open_float, desc = "Show Line Diagnostics" },

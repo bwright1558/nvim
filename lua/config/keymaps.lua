@@ -10,6 +10,12 @@ vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grr")
 
+local function toggle_quickfix()
+  local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0
+                        and vim.cmd.cclose or vim.cmd.copen)
+  if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
+end
+
 local keymaps = {
   ---------------- Window / split navigation & resize ----------------
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Smart Split Left" },
@@ -65,11 +71,7 @@ local keymaps = {
   ----------------------- Diagnostics / lists ------------------------
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
   { "[q", "<Cmd>cprev<CR>", desc = "Prev Quickfix" },
-  { "<Leader>xq", function()
-    local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0
-                          and vim.cmd.cclose or vim.cmd.copen)
-    if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
-  end, desc = "Toggle Quickfix List" },
+  { "<Leader>xq", toggle_quickfix, desc = "Toggle Quickfix List" },
   { "<Leader>xl", function()
     local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0
                           and vim.cmd.lclose or vim.cmd.lopen)
@@ -135,6 +137,7 @@ local keymaps = {
   { "<Leader>h", "<Cmd>nohlsearch<CR>", desc = "Clear hlsearch" },
   { "<Leader>/", "gcc", desc = "Toggle Comment", remap = true },
   { "<Leader>/", "gc", desc = "Toggle Comment", mode = "x", remap = true },
+  { "<Leader>,", toggle_quickfix, desc = "Toggle Quickfix List" },
   { "<Leader>;", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
   { "<Leader>p", "<Cmd>Lazy<CR>", desc = "Lazy" },
