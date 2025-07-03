@@ -14,6 +14,7 @@ local M = {
     "rafamadriz/friendly-snippets",
   },
   version = "1.*",
+  event = { "InsertEnter", "CmdlineEnter" },
   opts = {
     keymap = {
       preset = "enter",
