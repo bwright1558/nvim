@@ -1,4 +1,5 @@
 -- smart_split.lua ------------------------------------------------------------
+--
 -- A tiny helper that jumps to an existing split in the requested direction,
 -- or creates one there if none exists. Works with the classic Vim direction
 -- keys (h = left, j = down, k = up, l = right).
@@ -12,6 +13,7 @@
 -- vim.keymap.set("n", "<C-j>", function() require("smart_split").focus("j") end)
 -- vim.keymap.set("n", "<C-k>", function() require("smart_split").focus("k") end)
 -- vim.keymap.set("n", "<C-l>", function() require("smart_split").focus("l") end)
+
 local M = {}
 
 -- lookup to force a split *into* the requested direction regardless of

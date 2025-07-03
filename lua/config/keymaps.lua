@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
---- keymaps.lua
----
---- Keymaps to make life a little easier.
+-- keymaps.lua
+--
+-- Keymaps to make life a little easier.
 --------------------------------------------------------------------------------
 
 -- Disable built-ins that clash with our custom `gr` LSP keys.
@@ -39,7 +39,6 @@ local keymaps = {
   { "<Leader>fG", function() Snacks.picker.git_files({ untracked = true }) end, desc = "Find Git Files (cwd)" },
   { "<Leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
   { "<Leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-  { "<Leader>fe", function() Snacks.explorer() end, desc = "File Explorer" },
   { "<Leader>fn", "<Cmd>enew<CR>", desc = "New File" },
 
   ------------------------- Search / pickers -------------------------
@@ -135,6 +134,8 @@ local keymaps = {
   { "<Leader>q", "<Cmd>q<CR>", desc = "Quit" },
   { "<Leader>Q", "<Cmd>qall<CR>", desc = "Quit All" },
   { "<Leader>h", "<Cmd>nohlsearch<CR>", desc = "Clear hlsearch" },
+  { "<Leader>/", "gcc", desc = "Toggle Comment", remap = true },
+  { "<Leader>/", "gc", desc = "Toggle Comment", mode = "x", remap = true },
   { "<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
   { "<Leader>p", "<Cmd>Lazy<CR>", desc = "Lazy" },
