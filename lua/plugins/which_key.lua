@@ -11,7 +11,7 @@ local M = {
   },
   event = "VeryLazy",
   opts = {
-    preset = "modern", -- classic, modern, helix
+    preset = "helix", -- classic, modern, helix
     icons = {
       group = " ",
       separator = " ",
@@ -30,7 +30,7 @@ local M = {
       { "<Leader>f", group = "Files" },
       { "<Leader>g", group = "Git" },
       { "<Leader>l", group = "LSP" },
-      { "<Leader>x", group = "Quickfix" },
+      { "<Leader>x", group = "Diagnostics/Quickfix" },
       { "<Leader>s", group = "Search" },
       { "<Leader>t", group = "Treesitter" },
       { "<Leader>u", group = "UI/UX" },
