@@ -27,10 +27,10 @@ local keymaps = {
   { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Down", mode = "x" },
   { "K", ":m '<-2<CR>gv=gv", desc = "Move Selection Up", mode = "x" },
 
-  -- Quickfix
+  -- Diagnostics/Quickfix
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
   { "[q", "<Cmd>cprev<CR>", desc = "Previous Quickfix" },
-  { "<Leader>xx", function()
+  { "<Leader>xq", function()
     local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
     if not ok and err then
       vim.notify(err, vim.log.levels.ERROR)
@@ -42,6 +42,10 @@ local keymaps = {
       vim.notify(err, vim.log.levels.ERROR)
     end
   end, desc = "Location List" },
+  { "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+  { "<Leader>xX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
+  { "<Leader>xQ", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
+  { "<Leader>xL", "<Cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
 
   -- Buffers
   { "]b", "<Cmd>bnext<CR>", desc = "Next Buffer" },
@@ -79,10 +83,6 @@ local keymaps = {
   { "p", 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste without yanking", mode = "x" },
   { "P", 'P:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste without yanking", mode = "x" },
 
-  -- Comments
-  { "<Leader>/", "gcc", desc = "Toggle Comment", remap = true },
-  { "<Leader>/", "gc", desc = "Toggle Comment", mode = "x", remap = true },
-
   -- Words
   { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
   { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
@@ -99,6 +99,7 @@ local keymaps = {
   { "<Leader>fn", "<Cmd>enew<CR>", desc = "New File" },
 
   -- Search
+  { "<Leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
   { "<Leader>ss", function() Snacks.picker.grep() end, desc = "Grep" },
   { "<Leader>sr", "<Cmd>GrugFar<CR>", desc = "Search and Replace", mode = { "n", "x" } },
   { "<Leader>sg", function() Snacks.picker.git_grep({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Grep Git" },
