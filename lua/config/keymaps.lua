@@ -4,58 +4,85 @@
 --- Keymaps to make life a little easier.
 --------------------------------------------------------------------------------
 
--- All these are remapped to something else.
--- Delete these mappings to remove conflict with new `gr` mapping.
+-- Disable built-ins that clash with our custom `gr` LSP keys.
 vim.keymap.del({ "n", "x" }, "gra")
 vim.keymap.del("n", "gri")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grr")
 
-
 local keymaps = {
-  -- Splits
+  ---------------- Window / split navigation & resize ----------------
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Smart Split Left" },
   { "<C-j>", "<Cmd>SplitDown<CR>", desc = "Smart Split Down" },
   { "<C-k>", "<Cmd>SplitUp<CR>", desc = "Smart Split Up" },
   { "<C-l>", "<Cmd>SplitRight<CR>", desc = "Smart Split Right" },
 
-  -- Indenting
-  { "<", "<gv", desc = "Indent left and reselect", mode = "x" },
-  { ">", ">gv", desc = "Indent left and reselect", mode = "x" },
+  -- Terminal-mode counterpart (leave <C-...> identical for muscle memory)
+  { "<C-h>", [[<C-\><C-n><C-w>h]], desc = "Terminal Window Left", mode = "t" },
+  { "<C-j>", [[<C-\><C-n><C-w>j]], desc = "Terminal Window Down", mode = "t" },
+  { "<C-k>", [[<C-\><C-n><C-w>k]], desc = "Terminal Window Up", mode = "t" },
+  { "<C-l>", [[<C-\><C-n><C-w>l]], desc = "Terminal Window Right", mode = "t" },
 
-  -- Move visual selection
-  { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Down", mode = "x" },
-  { "K", ":m '<-2<CR>gv=gv", desc = "Move Selection Up", mode = "x" },
+  ------------------ Buffer navigation / lifecycle -------------------
+  { "]b", "<Cmd>bnext<CR>", desc = "Next Buffer" },
+  { "[b", "<Cmd>bprev<CR>", desc = "Prev Buffer" },
+  { "<Leader>bj", "<Cmd>bnext<CR>", desc = "Next Buffer" },
+  { "<Leader>bk", "<Cmd>bprev<CR>", desc = "Prev Buffer" },
+  { "<Leader>bb", function() Snacks.picker.buffers() end, desc = "Buffer List" },
+  { "<Leader>bd", "<Cmd>bd<CR>", desc = "Delete Buffer" },
 
-  -- Diagnostics/Quickfix
+  -------------------- Files & project navigation --------------------
+  { "-", "<Cmd>Oil<CR>", desc = "Oil" },
+  { "<Leader><Space>", function() Snacks.picker.smart() end, desc = "Smart Finder" },
+  { "<Leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
+  { "<Leader>fg", function() Snacks.picker.git_files({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Find Git Files (root)" },
+  { "<Leader>fG", function() Snacks.picker.git_files({ untracked = true }) end, desc = "Find Git Files (cwd)" },
+  { "<Leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
+  { "<Leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+  { "<Leader>fe", function() Snacks.explorer() end, desc = "File Explorer" },
+  { "<Leader>fn", "<Cmd>enew<CR>", desc = "New File" },
+
+  ------------------------- Search / pickers -------------------------
+  { "<Leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
+  { "<Leader>ss", function() Snacks.picker.grep() end, desc = "Live Grep" },
+  { "<Leader>sr", "<Cmd>GrugFar<CR>", desc = "Search & Replace", mode = { "n", "x" } },
+  { "<Leader>sg", function() Snacks.picker.git_grep({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Grep Git" },
+  { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+  { "<Leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+  { "<Leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+  { "<Leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+  { "<Leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+  { "<Leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+  { "<Leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+  { "<Leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+  { "<Leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+  { "<Leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights Groups" },
+  { "<Leader>sw", function() Snacks.picker.grep_word() end, desc = "Word / Visual", mode = { "n", "x" } },
+  { "<Leader>su", function() Snacks.picker.undo() end, desc = "Undo Tree" },
+  { '<Leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+  { "<Leader>sR", function() Snacks.picker.resume() end, desc = "Resume Last Picker" },
+  { "<Leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix Picker" },
+  { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location List Picker" },
+
+  ----------------------- Diagnostics / lists ------------------------
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
-  { "[q", "<Cmd>cprev<CR>", desc = "Previous Quickfix" },
+  { "[q", "<Cmd>cprev<CR>", desc = "Prev Quickfix" },
   { "<Leader>xq", function()
-    local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-    if not ok and err then
-      vim.notify(err, vim.log.levels.ERROR)
-    end
-  end, desc = "Quickfix List" },
+    local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0
+                          and vim.cmd.cclose or vim.cmd.copen)
+    if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
+  end, desc = "Toggle Quickfix List" },
   { "<Leader>xl", function()
-    local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-    if not ok and err then
-      vim.notify(err, vim.log.levels.ERROR)
-    end
-  end, desc = "Location List" },
+    local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0
+                          and vim.cmd.lclose or vim.cmd.lopen)
+    if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
+  end, desc = "Toggle Location List" },
   { "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
   { "<Leader>xX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
   { "<Leader>xQ", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
   { "<Leader>xL", "<Cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
 
-  -- Buffers
-  { "]b", "<Cmd>bnext<CR>", desc = "Next Buffer" },
-  { "[b", "<Cmd>bprev<CR>", desc = "Previous Buffer" },
-  { "<Leader>bj", "<Cmd>bnext<CR>", desc = "Next Buffer" },
-  { "<Leader>bk", "<Cmd>bprev<CR>", desc = "Previous Buffer" },
-  { "<Leader>bb", function() Snacks.picker.buffers() end, desc = "Buffer List" },
-  { "<Leader>bd", "<Cmd>bd<CR>", desc = "Delete Buffer" },
-
-  -- Git
+  -------------------- Git (gitsigns + fugitive) ---------------------
   { "]h", function() require("gitsigns").nav_hunk("next") end, desc = "Next Hunk" },
   { "[h", function() require("gitsigns").nav_hunk("prev") end, desc = "Prev Hunk" },
   { "<Leader>gj", function() require("gitsigns").nav_hunk("next") end, desc = "Next Hunk" },
@@ -69,81 +96,44 @@ local keymaps = {
   { "<Leader>gp", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
   { "<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
   { "<Leader>gc", function() Snacks.picker.git_log() end, desc = "Git Commits" },
-  { "<Leader>gC", function() Snacks.picker.git_log({ current_file = true }) end, desc = "Git Commits (current file)" },
+  { "<Leader>gC", function() Snacks.picker.git_log({ current_file = true }) end, desc = "Git Commits (file)" },
 
-  -- Terminal-mode mappings
+  -------------------- Terminal toggles / escape ---------------------
   { "<C-/>", function() Snacks.terminal() end, desc = "Toggle Terminal", mode = { "n", "t" } },
   { "<C-;>", [[<C-\><C-n>]], desc = "Exit Terminal Mode", mode = "t" },
-  { "<C-h>", [[<C-\><C-n><C-w>h]], desc = "Terminal Window Left", mode = "t" },
-  { "<C-j>", [[<C-\><C-n><C-w>j]], desc = "Terminal Window Down", mode = "t" },
-  { "<C-k>", [[<C-\><C-n><C-w>k]], desc = "Terminal Window Up", mode = "t" },
-  { "<C-l>", [[<C-\><C-n><C-w>l]], desc = "Terminal Window Right", mode = "t" },
 
-  -- Pasting
-  { "p", 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste without yanking", mode = "x" },
-  { "P", 'P:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste without yanking", mode = "x" },
+  ----------------------- Text-editing helpers -----------------------
+  { "<", "<gv", desc = "Indent left & keep", mode = "x" },
+  { ">", ">gv", desc = "Indent right & keep", mode = "x" },
+  { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Down", mode = "x" },
+  { "K", ":m '<-2<CR>gv=gv", desc = "Move Selection Up", mode = "x" },
+  { "p", 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste w/o yank", mode = "x" },
+  { "P", 'P:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste w/o yank", mode = "x" },
 
-  -- Words
+  ---------------------- Word / reference jumps ----------------------
   { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
   { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
-  -- Files
-  { "-", "<Cmd>Oil<CR>", desc = "Oil" },
-  { "<Leader><Space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-  { "<Leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
-  { "<Leader>fg", function() Snacks.picker.git_files({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Find Git Files" },
-  { "<Leader>fG", function() Snacks.picker.git_files({ untracked = true }) end, desc = "Find Git Files (current buffer)" },
-  { "<Leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
-  { "<Leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
-  { "<Leader>fe", function() Snacks.explorer() end, desc = "File Explorer" },
-  { "<Leader>fn", "<Cmd>enew<CR>", desc = "New File" },
-
-  -- Search
-  { "<Leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
-  { "<Leader>ss", function() Snacks.picker.grep() end, desc = "Grep" },
-  { "<Leader>sr", "<Cmd>GrugFar<CR>", desc = "Search and Replace", mode = { "n", "x" } },
-  { "<Leader>sg", function() Snacks.picker.git_grep({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Grep Git" },
-  { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
-  { "<Leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-  { "<Leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
-  { "<Leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
-  { "<Leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
-  { "<Leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-  { "<Leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-  { "<Leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
-  { "<Leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
-  { "<Leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-  { "<Leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual Selection or Word", mode = { "n", "x" } },
-  { "<Leader>su", function() Snacks.picker.undo() end, desc = "Undotree" },
-  { '<Leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
-  { "<Leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
-  { "<Leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-  { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
-
-  -- UI/UX
-  { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-
-  -- LSP
-  { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
-
-  -- Treesitter
-  { "<Leader>ti", "<Cmd>TSConfigInfo<CR>", desc = "Treesitter Info" },
-  { "<Leader>tm", "<Cmd>TSModuleInfo<CR>", desc = "Treesitter Modules" },
-
-  -- Flash.nvim
+  ------------ Plugin-specific (flash / which-key / misc) ------------
   { "s", function() require("flash").jump() end, desc = "Flash", mode = { "n", "x", "o" } },
   { "S", function() require("flash").treesitter() end, desc = "Flash Treesitter", mode = { "n", "x", "o" } },
   { "r", function() require("flash").remote() end, desc = "Remote Flash", mode = "o" },
   { "R", function() require("flash").treesitter_search() end, desc = "Treesitter Search", mode = { "x", "o" } },
   { "<C-s>", function() require("flash").toggle() end, desc = "Toggle Flash Search", mode = { "c" } },
-
-  -- Which-Key
   { "<Leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
 
-  -- Basic leader mappings
+  ------------------- Mason / Treesitter shortcuts -------------------
+  { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
+  { "<Leader>ti", "<Cmd>TSConfigInfo<CR>", desc = "Treesitter Config Info" },
+  { "<Leader>tm", "<Cmd>TSModuleInfo<CR>", desc = "Treesitter Module Info" },
+
+  -------------------------- UI / UX tweaks --------------------------
+  { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+
+  ---------------------- Core workflow (Leader) ----------------------
+  { "<Leader>w", "<Cmd>w<CR>", desc = "Save" },
   { "<Leader>q", "<Cmd>q<CR>", desc = "Quit" },
   { "<Leader>Q", "<Cmd>qall<CR>", desc = "Quit All" },
-  { "<Leader>w", "<Cmd>w<CR>", desc = "Save" },
   { "<Leader>h", "<Cmd>nohlsearch<CR>", desc = "Clear hlsearch" },
   { "<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
