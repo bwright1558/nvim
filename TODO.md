@@ -1,2 +1,0 @@
-- [ ] Add autocmds to auto-format go, json, and lua files?
-- [ ] Add EasyAlign and WinShift keymaps to keymaps.lua?
