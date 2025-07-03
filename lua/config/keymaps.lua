@@ -109,7 +109,7 @@ local keymaps = {
   { "<Leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
   { "<Leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-  { "<Leader>sm", function() Snacks.picker.marks() end, desc = "Keymaps" },
+  { "<Leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
   { "<Leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
   { "<Leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
   { "<Leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
@@ -151,12 +151,7 @@ local keymaps = {
 }
 
 for _, map in ipairs(keymaps) do
-  local lhs, rhs, opts = map[1], map[2], {
-    desc = map.desc,
-    silent = true,
-  }
-  if map.remap then
-    opts.remap = map.remap
-  end
+  local lhs, rhs, opts = map[1], map[2], { desc = map.desc, silent = true }
+  if map.remap then opts.remap = map.remap end
   vim.keymap.set(map.mode or "n", lhs, rhs, opts)
 end
