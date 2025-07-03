@@ -16,7 +16,8 @@ local M = {
   version = "1.*",
   opts = {
     keymap = {
-      preset = "super-tab",
+      preset = "enter",
+      ["<C-y>"] = { "select_and_accept" },
     },
     completion = {
       menu = {
@@ -39,6 +40,7 @@ local M = {
       enabled = true,
       window = { border = "rounded" },
     },
+    -- cmdline = { enabled = false },
   },
   opts_extend = { "sources.default" },
 }
