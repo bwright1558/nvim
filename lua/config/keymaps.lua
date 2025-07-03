@@ -136,7 +136,7 @@ local keymaps = {
   { "<Leader>h", "<Cmd>nohlsearch<CR>", desc = "Clear hlsearch" },
   { "<Leader>/", "gcc", desc = "Toggle Comment", remap = true },
   { "<Leader>/", "gc", desc = "Toggle Comment", mode = "x", remap = true },
-  { "<Leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
+  { "<Leader>;", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
   { "<Leader>p", "<Cmd>Lazy<CR>", desc = "Lazy" },
 }
