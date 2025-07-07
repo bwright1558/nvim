@@ -1,4 +1,5 @@
 require("config.options")
+require("config.quickfix")
 require("config.clipboard")
 require("config.lazy")
 require("config.user_commands")
