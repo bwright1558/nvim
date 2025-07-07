@@ -16,10 +16,6 @@ local M = {
   version = "1.*",
   event = { "InsertEnter", "CmdlineEnter" },
   opts = {
-    keymap = {
-      preset = "enter",
-      ["<C-y>"] = { "select_and_accept" },
-    },
     completion = {
       menu = {
         border = "rounded",
