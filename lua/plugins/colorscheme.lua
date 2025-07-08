@@ -10,6 +10,8 @@ local M = {
   priority = 1000,
   opts = {
     flavour = "mocha",
+    show_end_of_buffer = true,
+    -- transparent_background = true,
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
