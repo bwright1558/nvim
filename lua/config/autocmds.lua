@@ -114,6 +114,17 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("ghostty_filetypes"),
+  pattern = {
+    "*/ghostty/config",
+    "*/ghostty/*.conf",
+  },
+  callback = function()
+    vim.bo.filetype = "toml"
+  end,
+})
+
 -------------------------------------------------------------------------------
 -- GLOBAL AUTOCMDS (apply to *every* buffer)
 -------------------------------------------------------------------------------
