@@ -26,6 +26,7 @@ local M = {
       "rust_analyzer",
       "ts_ls",
       "vimls",
+      "zls",
     },
   },
 }
