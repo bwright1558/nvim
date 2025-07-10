@@ -16,10 +16,8 @@ local M = {
     dashboard = { enabled = true },
     explorer = { enabled = true },
     git = { enabled = true },
-    indent = {
-      enabled = true,
-      -- scope = { hl = "@text" },
-    },
+    image = { enabled = true },
+    indent = { enabled = true },
     input = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
