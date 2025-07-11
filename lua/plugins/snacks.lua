@@ -21,7 +21,6 @@ local M = {
     input = { enabled = true },
     notifier = { enabled = true },
     picker = { enabled = true },
-    -- scroll = { enabled = true },
     terminal = { enabled = true },
     words = { enabled = true },
   },
