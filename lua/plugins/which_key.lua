@@ -34,6 +34,7 @@ local M = {
       { "<Leader>s", group = "Search" },
       { "<Leader>t", group = "Treesitter" },
       { "<Leader>u", group = "UI/UX" },
+      { "<Leader><Tab>", group = "Tabs" },
     })
   end,
 }

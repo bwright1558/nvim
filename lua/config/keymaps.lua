@@ -130,6 +130,12 @@ local keymaps = {
   -------------------------- UI / UX tweaks --------------------------
   { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 
+  ------------------------------- Tabs -------------------------------
+  { "<Leader><Tab>n", "<Cmd>tabnew<CR>", desc = "New Tab" },
+  { "<Leader><Tab>q", "<Cmd>tabclose<CR>", desc = "Close Tab" },
+  { "<Leader><Tab>j", "<Cmd>tabnext<CR>", desc = "Next Tab" },
+  { "<Leader><Tab>k", "<Cmd>tabprev<CR>", desc = "Prev Tab" },
+
   ---------------------- Core workflow (Leader) ----------------------
   { "<Leader>w", "<Cmd>w<CR>", desc = "Save" },
   { "<Leader>q", "<Cmd>q<CR>", desc = "Quit" },
