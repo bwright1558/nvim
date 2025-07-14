@@ -59,3 +59,4 @@ vim.opt.smartindent = true
 -- File handling ---------------------------------------------------------------
 vim.opt.swapfile = false
 vim.opt.undofile = true
+vim.opt.path:append("**") -- include subdirectories in search
