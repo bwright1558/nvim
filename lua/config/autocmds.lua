@@ -161,3 +161,14 @@ api.nvim_create_autocmd("VimResized", {
     vim.cmd("tabdo wincmd =")
   end,
 })
+
+-- Create directories when saving files
+api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("file_saved"),
+  callback = function()
+    local dir = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+    end
+  end,
+})
