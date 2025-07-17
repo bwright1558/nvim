@@ -64,8 +64,8 @@ local ft_overrides = {
       vim.opt_local.tabstop = 8
     end },
 
-  -- Python & Rust → 4-space indent
-  { { "python", "rust" }, function()
+  -- Python, Rust, & Fish → 4-space indent
+  { { "python", "rust", "fish" }, function()
       vim.opt_local.expandtab = true
       vim.opt_local.shiftwidth = 4
       vim.opt_local.tabstop = 4
