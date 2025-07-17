@@ -13,10 +13,10 @@ local M = {
     options = {
       globalstatus = vim.opt.laststatus == 3,
       disabled_filetypes = {
-        statusline = { "NvimTree", "neo-tree", "Outline" },
+        statusline = { "NvimTree", "neo-tree", "Outline", "snacks_layout_box" },
       },
       component_separators = { left = "", right = "" },
-      section_separators = { left = " ", right = " " },
+      section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_a = { "mode" },
@@ -50,12 +50,8 @@ local M = {
       },
       lualine_c = { "filename" },
       lualine_x = { "encoding", "fileformat", "filetype" },
-      lualine_y = { "progress", "location" },
-      lualine_z = {
-        function()
-          return " " .. os.date("%I:%M %p")
-        end,
-      },
+      lualine_y = { "progress" },
+      lualine_z = { "location" },
     },
     inactive_sections = {
       lualine_a = {},
