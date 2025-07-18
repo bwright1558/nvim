@@ -15,8 +15,8 @@ local M = {
       disabled_filetypes = {
         statusline = { "NvimTree", "neo-tree", "Outline", "snacks_layout_box" },
       },
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_a = { "mode" },
