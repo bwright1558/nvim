@@ -5,5 +5,5 @@ end
 -- Transparent UI
 set_transparent("Normal")
 set_transparent("NormalNC")
--- set_transparent("NormalFloat")
--- set_transparent("FloatBorder")
+set_transparent("NormalFloat")
+set_transparent("FloatBorder")
