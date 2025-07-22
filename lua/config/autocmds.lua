@@ -126,6 +126,18 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 -------------------------------------------------------------------------------
+-- AUTO-FORMAT ON SAVE
+-------------------------------------------------------------------------------
+
+api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("auto_format"),
+  pattern = { "*.go" },
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+-------------------------------------------------------------------------------
 -- GLOBAL AUTOCMDS (apply to *every* buffer)
 -------------------------------------------------------------------------------
 
