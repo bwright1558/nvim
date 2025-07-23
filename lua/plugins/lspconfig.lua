@@ -18,6 +18,7 @@ local M = {
       "bashls",
       "cssls",
       "dockerls",
+      "fish_lsp",
       "gopls",
       "html",
       "jsonls",
