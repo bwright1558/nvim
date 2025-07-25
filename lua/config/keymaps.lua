@@ -49,7 +49,7 @@ local keymaps = {
 
   ------------------------- Search / pickers -------------------------
   { "<Leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
-  { "<Leader>ss", function() Snacks.picker.grep() end, desc = "Live Grep" },
+  { "<Leader>ss", function() Snacks.picker.grep({ hidden = true }) end, desc = "Live Grep" },
   { "<Leader>sr", "<Cmd>GrugFar<CR>", desc = "Search & Replace", mode = { "n", "x" } },
   { "<Leader>sg", function() Snacks.picker.git_grep({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Grep Git" },
   { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
