@@ -12,7 +12,7 @@ vim.keymap.del("n", "grr")
 
 local function toggle_quickfix()
   local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0
-                        and vim.cmd.cclose or vim.cmd.copen)
+    and vim.cmd.cclose or vim.cmd.copen)
   if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
 end
 

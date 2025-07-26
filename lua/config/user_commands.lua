@@ -46,13 +46,36 @@ end, { desc = "Remove extraneous blank lines at end of file" })
 -------------------------------------------------------------------------------
 -- LSP format
 -------------------------------------------------------------------------------
+-- vim.api.nvim_create_user_command("Format", function(opts)
+--   local range = nil
+--   if opts.count ~= -1 then
+--     local end_line = vim.api.nvim_buf_get_lines(0, opts.line2 - 1, opts.line2, true)[1]
+--     range = {
+--       start = { opts.line1, 0 },
+--       ["end"] = { opts.line2, end_line:len() },
+--     }
+--   end
+--
+--   local ok = pcall(vim.lsp.buf.format, { async = true, range = range })
+--   if not ok then
+--     vim.notify("No attached LSP client supports formatting", vim.log.levels.WARN)
+--   end
+-- end, {
+--   range = true,
+--   desc = "LSP format current buffer (add ! for async)",
+-- })
 vim.api.nvim_create_user_command("Format", function(opts)
-  local ok = pcall(vim.lsp.buf.format, { async = opts.bang })
-  if not ok then
-    vim.notify("No attached LSP client supports formatting", vim.log.levels.WARN)
+  local range = nil
+  if opts.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, opts.line2 - 1, opts.line2, true)[1]
+    range = {
+      start = { opts.line1, 0 },
+      ["end"] = { opts.line2, end_line:len() },
+    }
   end
+  require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, {
-  bang = true,
+  range = true,
   desc = "LSP format current buffer (add ! for async)",
 })
 
