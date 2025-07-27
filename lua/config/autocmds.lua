@@ -37,39 +37,55 @@ end
 -------------------------------------------------------------------------------
 local ft_overrides = {
   -- Lazy → <Esc> to close the Lazy window
-  { "lazy", function(event)
+  {
+    "lazy",
+    function(event)
       vim.keymap.set("n", "<Esc>", "<Cmd>q<CR>", {
         buffer = event.buf,
         desc = "Close",
         silent = true,
       })
-    end },
+    end,
+  },
+
   -- spell + soft wrap for writing-heavy files
-  { { "gitcommit", "markdown" }, function()
+  {
+    { "gitcommit", "markdown" },
+    function()
       vim.opt_local.spell = false
       vim.opt_local.wrap = true
-    end },
+    end,
+  },
 
   -- Makefiles → *hard* tabs, 4-space visual width
-  { "make", function()
+  {
+    "make",
+    function()
       vim.opt_local.expandtab = false
       vim.opt_local.shiftwidth = 4
       vim.opt_local.tabstop = 4
-    end },
+    end,
+  },
 
   -- Go → tabs, 8-space width
-  { "go", function()
+  {
+    "go",
+    function()
       vim.opt_local.expandtab = false
       vim.opt_local.shiftwidth = 8
       vim.opt_local.tabstop = 8
-    end },
+    end,
+  },
 
   -- Python, Rust, & Fish → 4-space indent
-  { { "python", "rust", "fish" }, function()
+  {
+    { "python", "rust", "fish" },
+    function()
       vim.opt_local.expandtab = true
       vim.opt_local.shiftwidth = 4
       vim.opt_local.tabstop = 4
-    end },
+    end,
+  },
 }
 
 for _, spec in ipairs(ft_overrides) do
@@ -122,18 +138,6 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   },
   callback = function()
     vim.bo.filetype = "toml"
-  end,
-})
-
--------------------------------------------------------------------------------
--- AUTO-FORMAT ON SAVE
--------------------------------------------------------------------------------
-
-api.nvim_create_autocmd("BufWritePre", {
-  group = augroup("auto_format"),
-  pattern = { "*.go" },
-  callback = function()
-    vim.lsp.buf.format({ async = false })
   end,
 })
 

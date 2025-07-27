@@ -13,9 +13,7 @@ local M = {
       -- Disable autoformat on certain filetypes
       -- This prevents autoformat for the specified filetypes, but the configured
       -- formatter can still be used when the document is formatted manually (by user command or keymap).
-      local ignore_filetypes = {
-        "lua",
-      }
+      local ignore_filetypes = {}
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then return end
 
       -- By setting `lsp_format = "never"`, conform will only format the

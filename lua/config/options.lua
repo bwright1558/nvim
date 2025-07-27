@@ -51,9 +51,9 @@ vim.opt.virtualedit = "block"
 -- vim.opt.winborder = "rounded" -- commented out b/c Lazy and Telescope has weird UI
 
 -- Indentation -----------------------------------------------------------------
-vim.opt.expandtab   = true
-vim.opt.shiftwidth  = 2
-vim.opt.tabstop     = 2
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
 vim.opt.smartindent = true
 
 -- File handling ---------------------------------------------------------------

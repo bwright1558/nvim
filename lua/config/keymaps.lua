@@ -11,11 +11,13 @@ vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grr")
 
 local function toggle_quickfix()
-  local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0
-                        and vim.cmd.cclose or vim.cmd.copen)
-  if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
+  local ok, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not ok and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
 end
 
+-- stylua: ignore start
 local keymaps = {
   ---------------- Window / split navigation & resize ----------------
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Smart Split Left" },
@@ -72,11 +74,16 @@ local keymaps = {
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
   { "[q", "<Cmd>cprev<CR>", desc = "Prev Quickfix" },
   { "<Leader>xq", toggle_quickfix, desc = "Toggle Quickfix List" },
-  { "<Leader>xl", function()
-    local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0
-                          and vim.cmd.lclose or vim.cmd.lopen)
-    if not ok and err then vim.notify(err, vim.log.levels.ERROR) end
-  end, desc = "Toggle Location List" },
+  {
+    "<Leader>xl",
+    function()
+      local ok, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+      if not ok and err then
+        vim.notify(err, vim.log.levels.ERROR)
+      end
+    end,
+    desc = "Toggle Location List",
+  },
   { "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
   { "<Leader>xX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
   { "<Leader>xQ", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
@@ -148,9 +155,12 @@ local keymaps = {
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
   { "<Leader>p", "<Cmd>Lazy<CR>", desc = "Lazy" },
 }
+-- stylua: ignore end
 
 for _, map in ipairs(keymaps) do
   local lhs, rhs, opts = map[1], map[2], { desc = map.desc, silent = true }
-  if map.remap then opts.remap = map.remap end
+  if map.remap then
+    opts.remap = map.remap
+  end
   vim.keymap.set(map.mode or "n", lhs, rhs, opts)
 end

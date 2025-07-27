@@ -19,6 +19,7 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user_config_lsp_attach", { clear = true }),
   callback = function(event)
+    -- stylua: ignore start
     local keymaps = {
       ---------------------- Hover & Signature -----------------------
       { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, desc = "Hover Documentation" },
@@ -71,6 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "<Leader>li", "<Cmd>LspInfo<CR>", desc = "LSP Info" },
       { "<Leader>lR", "<Cmd>LspRestart<CR>", desc = "Restart LSP" },
     }
+    -- stylua: ignore end
 
     for _, map in ipairs(keymaps) do
       local lhs, rhs = map[1], map[2]

@@ -21,10 +21,10 @@ local M = {}
 -- lookup to force a split *into* the requested direction regardless of
 -- splitbelow / splitright user settings.
 local split_cmd = {
-  h = "leftabove vsplit",  -- open at left and keep focus
+  h = "leftabove vsplit", -- open at left and keep focus
   l = "rightbelow vsplit", -- open at right and keep focus
-  k = "leftabove split",   -- open above
-  j = "rightbelow split",  -- open below
+  k = "leftabove split", -- open above
+  j = "rightbelow split", -- open below
 }
 
 -- Move to or create a split in the given direction.
@@ -36,7 +36,7 @@ function M.focus(dir)
   end
 
   local cur = vim.api.nvim_get_current_win() -- stable window handle
-  vim.cmd("wincmd " .. dir)                  -- try to move first
+  vim.cmd("wincmd " .. dir) -- try to move first
 
   if cur == vim.api.nvim_get_current_win() then -- didn't move ⇒ need split
     -- Use pcall in case splitting is impossible (e.g. terminal / floating win)
