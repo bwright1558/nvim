@@ -43,9 +43,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
       -------------------- Code Actions & Lenses ---------------------
       { "<Leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
-      { "<Leader>lf", vim.lsp.buf.format, desc = "Format Document" },
       { "<Leader>lr", vim.lsp.buf.rename, desc = "Rename Symbol" },
       { "<Leader>lc", vim.lsp.codelens.run, desc = "Run CodeLens" },
+      { "<Leader>lf", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, desc = "Format Document (Conform)" },
+      {
+        "<Leader>lf",
+        function()
+          require("conform").format({
+            range = {
+              start = vim.api.nvim_buf_get_mark(0, "<"),
+              ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+            },
+            async = true,
+            lsp_format = "fallback",
+          })
+        end,
+        desc = "Format Selection (Conform)",
+        mode = { "x" },
+      },
 
       --------------------- Symbols & Workspace ----------------------
       { "<Leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Symbols" },
