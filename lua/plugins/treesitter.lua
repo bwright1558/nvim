@@ -39,10 +39,10 @@ local M = {
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "<CR>",     -- Start selection
-        node_incremental = "<CR>",   -- Expand to next node
+        init_selection = "<CR>", -- Start selection
+        node_incremental = "<CR>", -- Expand to next node
         scope_incremental = "<Tab>", -- Expand to next scope
-        node_decremental = "<BS>",   -- Shrink selection
+        node_decremental = "<BS>", -- Shrink selection
       },
     },
 

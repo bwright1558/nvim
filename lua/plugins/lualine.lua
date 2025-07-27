@@ -31,11 +31,13 @@ local M = {
           },
           source = function()
             local gitsigns = vim.b.gitsigns_status_dict
-            return gitsigns and {
-              added = gitsigns.added,
-              modified = gitsigns.changed,
-              removed = gitsigns.removed,
-            } or {}
+            return gitsigns
+                and {
+                  added = gitsigns.added,
+                  modified = gitsigns.changed,
+                  removed = gitsigns.removed,
+                }
+              or {}
           end,
         },
         {
