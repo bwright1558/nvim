@@ -16,22 +16,6 @@ vim.diagnostic.config({
   },
 })
 
--- -- wrap hover
--- local _hover = vim.lsp.buf.hover
--- vim.lsp.buf.hover = function(opts)
---   opts = opts or {}
---   opts.border = opts.border or "rounded"
---   return _hover(opts)
--- end
---
--- -- wrap signature help
--- local _sig = vim.lsp.buf.signature_help
--- vim.lsp.buf.signature_help = function(opts)
---   opts = opts or {}
---   opts.border = "rounded"
---   return _sig(opts)
--- end
-
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("user_config_lsp_attach", { clear = true }),
   callback = function(event)
@@ -46,7 +30,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "gi", vim.lsp.buf.implementation, desc = "Goto Implementation" },
       { "gy", vim.lsp.buf.type_definition, desc = "Goto Type Definition" },
       { "gr", vim.lsp.buf.references, desc = "References" },
-      -- { "gr", function() Snacks.picker.lsp_references() end, desc = "References" },
 
       ------------------------- Diagnostics --------------------------
       { "gl", vim.diagnostic.open_float, desc = "Show Line Diagnostics" },
