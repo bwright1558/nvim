@@ -23,10 +23,7 @@ local M = {
     -- Install all available maintained parsers,
     -- except for those explicitly ignored
     ensure_installed = "all",
-    ignore_install = {
-      "norg", -- causes build issues on some systems
-      "ipkg",
-    },
+    ignore_install = { "ipkg" },
 
     highlight = {
       enable = true,
