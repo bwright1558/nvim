@@ -24,7 +24,6 @@ local M = {
       "jsonls",
       "lua_ls",
       "pyright",
-      "ruff",
       "rust_analyzer",
       "sqlls",
       "taplo",
@@ -32,6 +31,11 @@ local M = {
       "vimls",
       "yamlls",
       "zls",
+    },
+    automatic_enable = {
+      -- We use pyright for python LSP and ruff for python linting/formatting
+      -- mason-tool-installer installs ruff for conform.nvim.
+      exclude = { "ruff" },
     },
   },
 }
