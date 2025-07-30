@@ -26,6 +26,7 @@ local M = {
       "pyright",
       "rust_analyzer",
       "sqlls",
+      "taplo",
       "ts_ls",
       "vimls",
       "yamlls",

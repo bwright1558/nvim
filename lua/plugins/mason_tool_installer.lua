@@ -16,6 +16,7 @@ local M = {
       "gofumpt",
       "goimports",
       "isort",
+      "ruff",
       "prettierd",
       "stylua",
       "shfmt",
