@@ -29,7 +29,7 @@ local M = {
 
     -- Autocmd to refresh indent guides after opening a window or filetype detection.
     -- This is a workaround because Snacks.indent doesn't enable on its own when opening a new file.
-    local group = vim.api.nvim_create_augroup("SnacksIndentFix", { clear = true })
+    local group = vim.api.nvim_create_augroup("user_config_snacks_indent_fix", { clear = true })
     vim.api.nvim_create_autocmd({ "BufWinEnter", "FileType" }, {
       group = group,
       callback = function()
