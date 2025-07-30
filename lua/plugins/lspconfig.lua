@@ -24,6 +24,7 @@ local M = {
       "jsonls",
       "lua_ls",
       "pyright",
+      "ruff",
       "rust_analyzer",
       "sqlls",
       "taplo",
