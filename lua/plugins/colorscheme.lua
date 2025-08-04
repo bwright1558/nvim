@@ -11,13 +11,14 @@ local M = {
   opts = {
     flavour = "mocha",
     show_end_of_buffer = true,
-    integrations = {
-      grug_far = true,
-      mason = true,
-      lsp_trouble = true,
-      snacks = { enabled = true },
-      which_key = true,
-    },
+    auto_integrations = true,
+    -- integrations = {
+    --   grug_far = true,
+    --   mason = true,
+    --   lsp_trouble = true,
+    --   snacks = { enabled = true },
+    --   which_key = true,
+    -- },
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
