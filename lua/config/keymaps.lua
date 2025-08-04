@@ -69,6 +69,7 @@ local keymaps = {
   { "<Leader>sR", function() Snacks.picker.resume() end, desc = "Resume Last Picker" },
   { "<Leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix Picker" },
   { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location List Picker" },
+  { "<Leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo Comments" },
 
   ----------------------- Diagnostics / lists ------------------------
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
