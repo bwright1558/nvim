@@ -78,6 +78,7 @@ local ft_overrides = {
   },
 
   -- Python, Rust, & Fish → 4-space indent
+  -- TODO: Maybe add toml?
   {
     { "python", "rust", "fish" },
     function()
