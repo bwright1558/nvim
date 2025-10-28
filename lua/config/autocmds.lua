@@ -80,7 +80,7 @@ local ft_overrides = {
   -- Python, Rust, & Fish → 4-space indent
   -- TODO: Maybe add toml?
   {
-    { "python", "rust", "fish" },
+    { "python", "rust", "fish", "mermaid" },
     function()
       vim.opt_local.expandtab = true
       vim.opt_local.shiftwidth = 4
@@ -139,6 +139,14 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   },
   callback = function()
     vim.bo.filetype = "toml"
+  end,
+})
+
+api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("d2_filetypes"),
+  pattern = { "*.d2" },
+  callback = function()
+    vim.bo.filetype = "d2"
   end,
 })
 
