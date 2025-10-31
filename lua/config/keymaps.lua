@@ -122,13 +122,15 @@ local keymaps = {
   { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
   { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
-  ------------ Plugin-specific (flash / which-key / misc) ------------
+  ------------ Plugin-specific (flash / which-key / easy-align / misc) ------------
   { "s", function() require("flash").jump() end, desc = "Flash", mode = { "n", "x", "o" } },
   { "S", function() require("flash").treesitter() end, desc = "Flash Treesitter", mode = { "n", "x", "o" } },
   { "r", function() require("flash").remote() end, desc = "Remote Flash", mode = "o" },
   { "R", function() require("flash").treesitter_search() end, desc = "Treesitter Search", mode = { "x", "o" } },
   { "<C-s>", function() require("flash").toggle() end, desc = "Toggle Flash Search", mode = { "c" } },
   { "<Leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
+  { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign" },
+  { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = "x" },
 
   ------------------- Mason / Treesitter shortcuts -------------------
   { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
