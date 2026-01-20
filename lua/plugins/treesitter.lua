@@ -23,7 +23,16 @@ local M = {
     -- Install all available maintained parsers,
     -- except for those explicitly ignored
     ensure_installed = "all",
-    ignore_install = { "ipkg" },
+    ignore_install = {
+      "ipkg",
+      "mlir",
+      "ocamllex",
+      "latex",
+      "scfg",
+      "swift",
+      "teal",
+      "unison",
+    },
 
     highlight = {
       enable = true,
