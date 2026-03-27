@@ -19,6 +19,7 @@ local M = {
       "cssls",
       "dockerls",
       "fish_lsp",
+      "golangci_lint_ls",
       "gopls",
       "html",
       "jsonls",
