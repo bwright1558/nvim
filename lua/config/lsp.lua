@@ -74,13 +74,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     }
     -- stylua: ignore end
 
-    for _, map in ipairs(keymaps) do
-      local lhs, rhs = map[1], map[2]
-      vim.keymap.set(map.mode or "n", lhs, rhs, {
-        buffer = event.buf,
-        desc = map.desc,
-        silent = true,
-      })
-    end
+    local map = require("config.map")
+    map.register(keymaps, { buffer = event.buf })
   end,
 })

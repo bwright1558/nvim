@@ -17,6 +17,24 @@ local function toggle_quickfix()
   end
 end
 
+local function cached_require(modname)
+  local mod
+
+  return function()
+    if not mod then
+      mod = require(modname)
+    end
+    return mod
+  end
+end
+
+local gitsigns = cached_require("gitsigns")
+local flash = cached_require("flash")
+local whichkey = cached_require("which-key")
+local ts_select = cached_require("nvim-treesitter-textobjects.select")
+local ts_move = cached_require("nvim-treesitter-textobjects.move")
+local ts_swap = cached_require("nvim-treesitter-textobjects.swap")
+
 -- stylua: ignore start
 local keymaps = {
   ---------------- Window / split navigation & resize ----------------
@@ -91,17 +109,17 @@ local keymaps = {
   { "<Leader>xL", "<Cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
 
   -------------------- Git (gitsigns + fugitive) ---------------------
-  { "]h", function() require("gitsigns").nav_hunk("next") end, desc = "Next Hunk" },
-  { "[h", function() require("gitsigns").nav_hunk("prev") end, desc = "Prev Hunk" },
-  { "<Leader>gj", function() require("gitsigns").nav_hunk("next") end, desc = "Next Hunk" },
-  { "<Leader>gk", function() require("gitsigns").nav_hunk("prev") end, desc = "Prev Hunk" },
+  { "]h", function() gitsigns().nav_hunk("next") end, desc = "Next Hunk" },
+  { "[h", function() gitsigns().nav_hunk("prev") end, desc = "Prev Hunk" },
+  { "<Leader>gj", function() gitsigns().nav_hunk("next") end, desc = "Next Hunk" },
+  { "<Leader>gk", function() gitsigns().nav_hunk("prev") end, desc = "Prev Hunk" },
   { "<Leader>gg", "<Cmd>G<CR>", desc = "Git (Fugitive)" },
   { "<Leader>g;", "<Cmd>Git push<CR>", desc = "Git Push" },
-  { "<Leader>gs", function() require("gitsigns").stage_hunk() end, desc = "Stage Hunk" },
-  { "<Leader>gr", function() require("gitsigns").reset_hunk() end, desc = "Reset Hunk" },
-  { "<Leader>gR", function() require("gitsigns").reset_buffer() end, desc = "Reset Buffer" },
-  { "<Leader>gl", function() require("gitsigns").blame_line() end, desc = "Blame Line" },
-  { "<Leader>gp", function() require("gitsigns").preview_hunk() end, desc = "Preview Hunk" },
+  { "<Leader>gs", function() gitsigns().stage_hunk() end, desc = "Stage Hunk" },
+  { "<Leader>gr", function() gitsigns().reset_hunk() end, desc = "Reset Hunk" },
+  { "<Leader>gR", function() gitsigns().reset_buffer() end, desc = "Reset Buffer" },
+  { "<Leader>gl", function() gitsigns().blame_line() end, desc = "Blame Line" },
+  { "<Leader>gp", function() gitsigns().preview_hunk() end, desc = "Preview Hunk" },
   { "<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
   { "<Leader>gc", function() Snacks.picker.git_log() end, desc = "Git Commits" },
   { "<Leader>gC", function() Snacks.picker.git_log({ current_file = true }) end, desc = "Git Commits (file)" },
@@ -123,14 +141,34 @@ local keymaps = {
   { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
   ------------ Plugin-specific (flash / which-key / easy-align / misc) ------------
-  { "s", function() require("flash").jump() end, desc = "Flash", mode = { "n", "x", "o" } },
-  { "S", function() require("flash").treesitter() end, desc = "Flash Treesitter", mode = { "n", "x", "o" } },
-  { "r", function() require("flash").remote() end, desc = "Remote Flash", mode = "o" },
-  { "R", function() require("flash").treesitter_search() end, desc = "Treesitter Search", mode = { "x", "o" } },
-  { "<C-s>", function() require("flash").toggle() end, desc = "Toggle Flash Search", mode = { "c" } },
-  { "<Leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
+  { "s", function() flash().jump() end, desc = "Flash", mode = { "n", "x", "o" } },
+  { "S", function() flash().treesitter() end, desc = "Flash Treesitter", mode = { "n", "x", "o" } },
+  { "r", function() flash().remote() end, desc = "Remote Flash", mode = "o" },
+  { "R", function() flash().treesitter_search() end, desc = "Treesitter Search", mode = { "x", "o" } },
+  { "<C-s>", function() flash().toggle() end, desc = "Toggle Flash Search", mode = { "c" } },
+  { "<Leader>?", function() whichkey().show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
   { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign" },
   { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = "x" },
+
+  ----------------------- Treesitter Textobjects ---------------------
+  -- select
+  { "af", function() ts_select().select_textobject("@function.outer", "textobjects") end, desc = "Select outer part of a function region", mode = { "x", "o" } },
+  { "if", function() ts_select().select_textobject("@function.inner", "textobjects") end, desc = "Select inner part of a function region", mode = { "x", "o" } },
+  { "ac", function() ts_select().select_textobject("@class.outer", "textobjects") end, desc = "Select outer part of a class region", mode = { "x", "o" } },
+  { "ic", function() ts_select().select_textobject("@class.inner", "textobjects") end, desc = "Select inner part of a class region", mode = { "x", "o" } },
+  { "aa", function() ts_select().select_textobject("@parameter.outer", "textobjects") end, desc = "Select outer part of a parameter region", mode = { "x", "o" } },
+  { "ia", function() ts_select().select_textobject("@parameter.inner", "textobjects") end, desc = "Select inner part of a parameter region", mode = { "x", "o" } },
+  { "as", function() ts_select().select_textobject("@local.scope", "locals") end, desc = "Select language scope", mode = { "x", "o" } },
+
+  -- move
+  { "]m", function() ts_move().goto_next_start("@function.outer", "textobjects") end, desc = "Next function start", mode = { "n", "x", "o" } },
+  { "]c", function() ts_move().goto_next_start("@class.outer", "textobjects") end, desc = "Next class start", mode = { "n", "x", "o" } },
+  { "[m", function() ts_move().goto_previous_start("@function.outer", "textobjects") end, desc = "Previous function start", mode = { "n", "x", "o" } },
+  { "[c", function() ts_move().goto_previous_start("@class.outer", "textobjects") end, desc = "Previous class start", mode = { "n", "x", "o" } },
+
+  -- swap
+  { "<Leader>a", function() ts_swap().swap_next("@parameter.inner", "textobjects") end, desc = "Swap next parameter" },
+  { "<Leader>A", function() ts_swap().swap_previous("@parameter.inner", "textobjects") end, desc = "Swap previous parameter" },
 
   ------------------- Mason / Treesitter shortcuts -------------------
   { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
@@ -160,10 +198,5 @@ local keymaps = {
 }
 -- stylua: ignore end
 
-for _, map in ipairs(keymaps) do
-  local lhs, rhs, opts = map[1], map[2], { desc = map.desc, silent = true }
-  if map.remap then
-    opts.remap = map.remap
-  end
-  vim.keymap.set(map.mode or "n", lhs, rhs, opts)
-end
+local map = require("config.map")
+map.register(keymaps)
