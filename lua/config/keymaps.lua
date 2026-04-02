@@ -134,8 +134,8 @@ local keymaps = {
 
   ------------------- Mason / Treesitter shortcuts -------------------
   { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
-  { "<Leader>ti", "<Cmd>TSConfigInfo<CR>", desc = "Treesitter Config Info" },
-  { "<Leader>tm", "<Cmd>TSModuleInfo<CR>", desc = "Treesitter Module Info" },
+  { "<Leader>ti", "<Cmd>checkhealth nvim-treesitter<CR>", desc = "Treesitter Health" },
+  { "<Leader>tm", "<Cmd>TSLog<CR>", desc = "Treesitter Log" },
 
   -------------------------- UI / UX tweaks --------------------------
   { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },

@@ -6,97 +6,150 @@
 --
 -- See: https://github.com/nvim-treesitter/nvim-treesitter
 
+local ts_parsers = {
+  -- core nvim / docs / queries
+  "vim",
+  "vimdoc",
+  "query",
+  "comment",
+  "markdown",
+  "markdown_inline",
+
+  -- shells / config
+  "bash",
+  "fish",
+  "tmux",
+  "ssh_config",
+  "dockerfile",
+  "git_config",
+  "git_rebase",
+  "gitattributes",
+  "gitcommit",
+  "gitignore",
+  "json",
+  "json5",
+  "toml",
+  "yaml",
+  "hcl",
+  "terraform",
+
+  -- common programming
+  "c",
+  "cpp",
+  "go",
+  "gomod",
+  "gosum",
+  "gowork",
+  "python",
+  "rust",
+  "lua",
+
+  -- web
+  "html",
+  "css",
+  "scss",
+  "javascript",
+  "jsdoc",
+  "typescript",
+  "tsx",
+  "graphql",
+
+  -- misc common
+  "diff",
+  "http",
+  "jq",
+  "just",
+  "make",
+  "proto",
+  "regex",
+  "sql",
+  "xml",
+}
+
+local ts_filetypes = {
+  "c",
+  "cpp",
+  "css",
+  "diff",
+  "dockerfile",
+  "fish",
+  "gitattributes",
+  "gitcommit",
+  "gitconfig",
+  "gitignore",
+  "gitrebase",
+  "go",
+  "gomod",
+  "gosum",
+  "gowork",
+  "graphql",
+  "hcl",
+  "help",
+  "html",
+  "http",
+  "javascript",
+  "javascriptreact",
+  "jq",
+  "js",
+  "json",
+  "json5",
+  "jsonc",
+  "jsx",
+  "just",
+  "lua",
+  "make",
+  "markdown",
+  "pandoc",
+  "proto",
+  "python",
+  "query",
+  "rust",
+  "scss",
+  "sh",
+  "sql",
+  "sshconfig",
+  "terraform",
+  "terraform-vars",
+  "tmux",
+  "toml",
+  "ts",
+  "typescript",
+  "typescript.tsx",
+  "typescriptreact",
+  "vim",
+  "xml",
+  "xsd",
+  "xslt",
+  "svg",
+  "yaml",
+}
+
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "andymass/vim-matchup",
-  },
-  branch = "master",
   lazy = false,
   build = ":TSUpdate",
-
-  -- Uses the plugin's built-in setup function
-  main = "nvim-treesitter.configs",
-
   opts = {
-    -- Install all available maintained parsers,
-    -- except for those explicitly ignored
-    ensure_installed = "all",
-    ignore_install = {
-      "ipkg",
-      "mlir",
-      "ocamllex",
-      "latex",
-      "scfg",
-      "swift",
-      "teal",
-      "unison",
-    },
-
-    highlight = {
-      enable = true,
-    },
-
-    indent = {
-      enable = true,
-    },
-
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<CR>", -- Start selection
-        node_incremental = "<CR>", -- Expand to next node
-        scope_incremental = "<Tab>", -- Expand to next scope
-        node_decremental = "<BS>", -- Shrink selection
-      },
-    },
-
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Jump forward to textobj, like `]]`
-
-        keymaps = {
-          -- Use `a` for around and `i` for inner
-          ["af"] = { query = "@function.outer", desc = "Select outer part of a function region" },
-          ["if"] = { query = "@function.inner", desc = "Select inner part of a function region" },
-          ["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
-          ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-          ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter region" },
-          ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter region" },
-          ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-        },
-      },
-
-      move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-          ["]m"] = "@function.outer",
-          ["]c"] = "@class.outer",
-        },
-        goto_previous_start = {
-          ["[m"] = "@function.outer",
-          ["[c"] = "@class.outer",
-        },
-      },
-
-      swap = {
-        enable = true,
-        swap_next = {
-          ["<Leader>a"] = "@parameter.inner",
-        },
-        swap_previous = {
-          ["<Leader>A"] = "@parameter.inner",
-        },
-      },
-    },
-
-    matchup = {
-      enable = true,
-    },
+    install_dir = vim.fn.stdpath("data") .. "/site",
   },
+  config = function(_, opts)
+    local treesitter = require("nvim-treesitter")
+    treesitter.setup(opts)
+    treesitter.install(ts_parsers)
+
+    local group = vim.api.nvim_create_augroup("user_config_treesitter_start", { clear = true })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      group = group,
+      pattern = ts_filetypes,
+      callback = function()
+        if vim.bo.buftype ~= "" then
+          return
+        end
+
+        pcall(vim.treesitter.start)
+      end,
+    })
+  end,
 }
 
 return M
