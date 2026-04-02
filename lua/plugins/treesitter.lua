@@ -64,6 +64,12 @@ local ts_parsers = {
   "regex",
   "sql",
   "xml",
+
+  -- other
+  "latex",
+  "svelte",
+  "typst",
+  "vue",
 }
 
 local ts_filetypes = {
@@ -108,15 +114,20 @@ local ts_filetypes = {
   "sh",
   "sql",
   "sshconfig",
+  "svelte",
   "terraform",
   "terraform-vars",
+  "tex",
   "tmux",
   "toml",
   "ts",
+  "typ",
   "typescript",
   "typescript.tsx",
   "typescriptreact",
+  "typst",
   "vim",
+  "vue",
   "xml",
   "xsd",
   "xslt",
