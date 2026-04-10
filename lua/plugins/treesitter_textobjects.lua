@@ -1,5 +1,6 @@
 local M = {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  enabled = false,
   lazy = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter",

@@ -137,6 +137,7 @@ local ts_filetypes = {
 
 local M = {
   "nvim-treesitter/nvim-treesitter",
+  enabled = false,
   lazy = false,
   build = ":TSUpdate",
   opts = {
