@@ -1,4 +1,9 @@
-local ts_filetypes = {
+local auto_install = require("config.treesitter.auto_install")
+local highlight = require("config.treesitter.highlight")
+local parsers = require("config.treesitter.parsers")
+
+auto_install.run(parsers)
+highlight.enable({
   "c",
   "cpp",
   "css",
@@ -59,17 +64,4 @@ local ts_filetypes = {
   "xslt",
   "svg",
   "yaml",
-}
-
-local group = vim.api.nvim_create_augroup("user_config_treesitter_start", { clear = true })
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = group,
-  pattern = ts_filetypes,
-  callback = function()
-    if vim.bo.buftype ~= "" then
-      return
-    end
-    pcall(vim.treesitter.start)
-  end,
 })
