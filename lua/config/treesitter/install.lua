@@ -1,5 +1,7 @@
 local M = {}
 
+M._log = print
+
 -- Paths
 ---@type string
 local parser_dir = vim.fn.stdpath("data") .. "/site/parser"
@@ -48,9 +50,9 @@ local function clone(p)
     branch_flag = " --branch " .. p.branch
   end
 
-  print("  clone: " .. url .. (p.branch and (" (" .. p.branch .. ")") or ""))
+  M._log("  clone: " .. url .. (p.branch and (" (" .. p.branch .. ")") or ""))
   if not run("git clone --depth 1 --quiet" .. branch_flag .. " " .. url .. " " .. clone_dir) then
-    print("  FAILED: clone")
+    M._log("  FAILED: clone")
     return nil
   end
 
@@ -77,14 +79,14 @@ local function ensure_parser_c(src_dir)
     return true
   end
 
-  print("  parser.c not found, running tree-sitter generate...")
+  M._log("  parser.c not found, running tree-sitter generate...")
   if run("command -v tree-sitter >/dev/null 2>&1") then
     return run("cd " .. src_dir .. " && tree-sitter generate")
   elseif run("command -v npx >/dev/null 2>&1") then
     return run("cd " .. src_dir .. " && npx tree-sitter-cli generate")
   end
 
-  print("  FAILED: no parser.c and could not generate it")
+  M._log("  FAILED: no parser.c and could not generate it")
   return false
 end
 
@@ -122,7 +124,7 @@ local function compile(name, srcs, compiler, src_dir)
   for _, s in ipairs(srcs) do
     table.insert(filenames, s:match("[^/]+$"))
   end
-  print("  compile: " .. table.concat(filenames, " "))
+  M._log("  compile: " .. table.concat(filenames, " "))
 
   -- stylua: ignore start
   local cmd = compiler
@@ -133,12 +135,12 @@ local function compile(name, srcs, compiler, src_dir)
   -- stylua: ignore end
 
   if run(cmd) and file_exists(so_path) then
-    print("  installed: " .. so_path)
+    M._log("  installed: " .. so_path)
     return true
   end
 
   os.remove(so_path)
-  print("  FAILED: compile")
+  M._log("  FAILED: compile")
   return false
 end
 
@@ -151,10 +153,11 @@ end
 
 --- Install a single parser. Skips if already installed.
 ---@param p ParserEntry
+---@param force? boolean
 ---@return boolean
-function M.install(p)
-  if M.is_installed(p.name) then
-    print("  skip: already installed")
+function M.install(p, force)
+  if not force and M.is_installed(p.name) then
+    M._log("  skip: already installed")
     return true
   end
 
@@ -177,8 +180,9 @@ end
 --- Returns a list of failed parser names.
 ---@param parser_list ParserEntry[]
 ---@param filter_names? string[]
+---@param force? boolean
 ---@return string[] failed
-function M.install_all(parser_list, filter_names)
+function M.install_all(parser_list, filter_names, force)
   vim.fn.mkdir(parser_dir, "p")
   vim.fn.mkdir(tmp_dir, "p")
 
@@ -190,17 +194,17 @@ function M.install_all(parser_list, filter_names)
   end
   local has_filter = next(filter) ~= nil
 
-  print("Parser dir: " .. parser_dir)
-  print("")
+  M._log("Parser dir: " .. parser_dir)
+  M._log("")
 
   local failed = {}
   for _, p in ipairs(parser_list) do
     if not has_filter or filter[p.name] then
-      print("[" .. p.name .. "]")
-      if not M.install(p) then
+      M._log("[" .. p.name .. "]")
+      if not M.install(p, force) then
         table.insert(failed, p.name)
       end
-      print("")
+      M._log("")
     end
   end
 

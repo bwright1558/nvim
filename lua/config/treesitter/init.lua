@@ -1,5 +1,6 @@
 local auto_install = require("config.treesitter.auto_install")
 local highlight = require("config.treesitter.highlight")
+local install = require("config.treesitter.install")
 local parsers = require("config.treesitter.parsers")
 
 auto_install.run(parsers)
@@ -64,4 +65,28 @@ highlight.enable({
   "xslt",
   "svg",
   "yaml",
+})
+
+-- :TSInstall [name ...] - install missing parsers (or specific ones)
+vim.api.nvim_create_user_command("TSInstall", function(opts)
+  local args = #opts.fargs > 0 and opts.fargs or nil
+  local failed = install.install_all(parsers, args)
+  if #failed > 0 then
+    vim.notify("Failed: " .. table.concat(failed, ", "), vim.log.levels.WARN)
+  end
+end, {
+  nargs = "*",
+  desc = "Install missing treesitter parsers",
+})
+
+-- :TSUpdate [name ...] - force reinstall all parsers (or specific ones)
+vim.api.nvim_create_user_command("TSUpdate", function(opts)
+  local args = #opts.fargs > 0 and opts.fargs or nil
+  local failed = install.install_all(parsers, args, true)
+  if #failed > 0 then
+    vim.notify("Failed: " .. table.concat(failed, ", "), vim.log.levels.WARN)
+  end
+end, {
+  nargs = "*",
+  desc = "Update (force reinstall) treesitter parsers",
 })
