@@ -147,6 +147,10 @@ local M = {
     treesitter.setup(opts)
     treesitter.install(ts_parsers)
 
+    -- Fix markdown_inline messing with `${var}` rendering in Golang hover documentation
+    -- This disables markdown_inline injections
+    vim.treesitter.query.set("markdown_inline", "injections", "")
+
     local group = vim.api.nvim_create_augroup("user_config_treesitter_start", { clear = true })
 
     vim.api.nvim_create_autocmd("FileType", {
