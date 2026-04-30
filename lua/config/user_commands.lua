@@ -6,6 +6,7 @@
 --   :TrimEOF             - remove *extra* blank lines at EOF (leave at most 1)
 --   :Format              - LSP-format the current buffer (blocking by default, async with !)
 --   :SplitLeft / :SplitDown / :SplitUp / :SplitRight - smart split navigation
+--   :LspInfo / :LspStart / :LspStop / :LspRestart / :LspLog - LSP command aliases
 --
 -------------------------------------------------------------------------------
 
@@ -98,3 +99,64 @@ for name, def in pairs(split_cmds) do
     split.focus(def.key)
   end, { desc = def.desc })
 end
+
+-------------------------------------------------------------------------------
+-- LSP commands
+-------------------------------------------------------------------------------
+
+local function run_lsp_subcommand(subcommand, opts)
+  local args = { subcommand }
+  vim.list_extend(args, opts.fargs)
+  vim.cmd.lsp({ args = args })
+end
+
+local function complete_lsp_configs(arg_lead)
+  return vim.fn.getcompletion("lsp enable " .. arg_lead, "cmdline")
+end
+
+local function complete_lsp_clients(arg_lead)
+  local seen = {}
+  local clients = {}
+
+  for _, client in ipairs(vim.lsp.get_clients()) do
+    if client.name:sub(1, #arg_lead) == arg_lead and not seen[client.name] then
+      seen[client.name] = true
+      table.insert(clients, client.name)
+    end
+  end
+
+  table.sort(clients)
+  return clients
+end
+
+vim.api.nvim_create_user_command("LspInfo", function()
+  vim.cmd("checkhealth vim.lsp")
+end, { desc = "Show LSP health and status" })
+
+vim.api.nvim_create_user_command("LspLog", function()
+  vim.cmd.tabnew(vim.lsp.log.get_filename())
+end, { desc = "Open the LSP client log" })
+
+vim.api.nvim_create_user_command("LspStart", function(opts)
+  run_lsp_subcommand("enable", opts)
+end, {
+  complete = complete_lsp_configs,
+  desc = "Enable LSP config(s)",
+  nargs = "*",
+})
+
+vim.api.nvim_create_user_command("LspStop", function(opts)
+  run_lsp_subcommand("stop", opts)
+end, {
+  complete = complete_lsp_clients,
+  desc = "Stop LSP client(s)",
+  nargs = "*",
+})
+
+vim.api.nvim_create_user_command("LspRestart", function(opts)
+  run_lsp_subcommand("restart", opts)
+end, {
+  complete = complete_lsp_clients,
+  desc = "Restart LSP client(s)",
+  nargs = "*",
+})
