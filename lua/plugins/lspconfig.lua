@@ -21,6 +21,7 @@ local M = {
       "fish_lsp",
       "golangci_lint_ls",
       "gopls",
+      "graphql",
       "html",
       "jsonls",
       "lua_ls",
