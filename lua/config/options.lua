@@ -20,6 +20,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.fileencoding = "utf-8"
 vim.opt.mouse = "a"
 vim.opt.termguicolors = true
+vim.opt.breakindent = true
 
 -- Search ----------------------------------------------------------------------
 vim.opt.ignorecase = true
