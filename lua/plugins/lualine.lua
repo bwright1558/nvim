@@ -11,7 +11,7 @@ local M = {
   },
   opts = {
     options = {
-      globalstatus = vim.opt.laststatus == 3,
+      globalstatus = vim.o.laststatus == 3,
       disabled_filetypes = {
         statusline = { "NvimTree", "neo-tree", "Outline", "snacks_layout_box" },
       },
