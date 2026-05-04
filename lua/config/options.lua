@@ -49,7 +49,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
 vim.opt.virtualedit = "block"
--- vim.opt.winborder = "rounded" -- commented out b/c Lazy and Telescope has weird UI
+vim.opt.winborder = "rounded"
 
 -- Indentation -----------------------------------------------------------------
 vim.opt.expandtab = true
