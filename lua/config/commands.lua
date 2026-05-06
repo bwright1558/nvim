@@ -14,6 +14,11 @@ local function preserve_view(fn)
   vim.fn.winrestview(view)
 end
 
+-- vim.pack
+vim.api.nvim_create_user_command("PackUpdate", function()
+  vim.pack.update()
+end, { desc = "Update plugins" })
+
 -- Trim trailing whitespace
 vim.api.nvim_create_user_command("TrimWhitespace", function()
   preserve_view(function()

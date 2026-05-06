@@ -187,6 +187,7 @@ local keymap_specs = {
   { "<Leader>,", toggle_quickfix, desc = "Toggle Quickfix List" },
   { "<Leader>;", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+  { "<Leader>p", "<Cmd>PackUpdate<CR>", desc = "Update Plugins" },
 }
 -- stylua: ignore end
 
