@@ -1,45 +1,29 @@
--- blink_cmp.lua
---
--- Only overrides necessary options to achieve:
--- - VSCode-style menu layout
--- - super-tab keymap (Tab to confirm)
--- - LSP + snippet + path + buffer sources
--- - Signature help enabled.
---
--- See: https://github.com/saghen/blink.cmp
+vim.pack.add({
+  { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+  "https://github.com/rafamadriz/friendly-snippets",
+}, { confirm = false })
 
-local M = {
-  "saghen/blink.cmp",
-  dependencies = {
-    "rafamadriz/friendly-snippets",
-  },
-  version = "1.*",
-  event = { "InsertEnter", "CmdlineEnter" },
-  opts = {
-    completion = {
-      menu = {
-        border = "rounded",
-        draw = {
-          columns = {
-            { "kind_icon" },
-            { "label", "label_description", gap = 1 },
-            { "kind" },
-            { "source_id" },
-          },
+require("blink.cmp").setup({
+  completion = {
+    menu = {
+      border = "rounded",
+      draw = {
+        columns = {
+          { "kind_icon" },
+          { "label", "label_description", gap = 1 },
+          { "kind" },
+          { "source_id" },
         },
       },
-      documentation = { window = { border = "rounded" } },
     },
-    sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
-    },
-    signature = {
-      enabled = true,
-      window = { border = "rounded" },
-    },
-    -- cmdline = { enabled = false },
+    documentation = { window = { border = "rounded" } },
   },
-  opts_extend = { "sources.default" },
-}
-
-return M
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+  signature = {
+    enabled = true,
+    window = { border = "rounded" },
+  },
+  -- cmdline = { enabled = false },
+})

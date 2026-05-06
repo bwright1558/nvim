@@ -1,6 +1,3 @@
-local M = {
-  "andymass/vim-matchup",
-  lazy = false,
-}
-
-return M
+vim.pack.add({
+  "https://github.com/andymass/vim-matchup",
+}, { confirm = false })

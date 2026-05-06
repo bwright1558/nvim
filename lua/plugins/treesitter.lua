@@ -1,10 +1,22 @@
--- treesitter.lua
---
--- Plugin configuration for nvim-treesitter.
--- Provides incremental parsing and syntax-aware features
--- like highlighting, indentation, folding, etc.
---
--- See: https://github.com/nvim-treesitter/nvim-treesitter
+vim.api.nvim_create_autocmd("PackChanged", {
+  group = vim.api.nvim_create_augroup("user_plugin_treesitter_build", { clear = true }),
+  desc = "Handle nvim-treesitter updates",
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "nvim-treesitter" and kind == "update" then
+      if not ev.data.active then
+        vim.cmd.packadd(name)
+      end
+      vim.cmd("TSUpdate")
+    end
+  end,
+})
+
+vim.pack.add({
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+  "https://github.com/folke/ts-comments.nvim",
+}, { confirm = false })
 
 local ts_parsers = {
   -- core nvim / docs / queries
@@ -135,37 +147,34 @@ local ts_filetypes = {
   "yaml",
 }
 
-local M = {
-  "nvim-treesitter/nvim-treesitter",
-  lazy = false,
-  build = ":TSUpdate",
-  opts = {
-    install_dir = vim.fn.stdpath("data") .. "/site",
-  },
-  config = function(_, opts)
-    local treesitter = require("nvim-treesitter")
-    treesitter.setup(opts)
-    treesitter.install(ts_parsers)
+local ts = require("nvim-treesitter")
+ts.setup({
+  install_dir = vim.fn.stdpath("data") .. "/site",
+})
+ts.install(ts_parsers)
 
-    -- Fix markdown_inline messing with `${var}` rendering in Golang hover documentation
-    -- This disables markdown_inline injections
-    vim.treesitter.query.set("markdown_inline", "injections", "")
+-- Fix markdown_inline messing with `${var}` rendering in Golang hover documentation
+-- This disables markdown_inline injections
+vim.treesitter.query.set("markdown_inline", "injections", "")
 
-    local group = vim.api.nvim_create_augroup("user_config_treesitter_start", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("user_plugin_treesitter_start", { clear = true }),
+  pattern = ts_filetypes,
+  callback = function()
+    if vim.bo.buftype ~= "" then
+      return
+    end
 
-    vim.api.nvim_create_autocmd("FileType", {
-      group = group,
-      pattern = ts_filetypes,
-      callback = function()
-        if vim.bo.buftype ~= "" then
-          return
-        end
-
-        pcall(vim.treesitter.start)
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      end,
-    })
+    pcall(vim.treesitter.start)
+    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
-}
+})
 
-return M
+require("nvim-treesitter-textobjects").setup({
+  select = {
+    lookahead = true,
+  },
+  move = {
+    set_jumps = true,
+  },
+})

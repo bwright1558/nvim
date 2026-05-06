@@ -1,5 +1,3 @@
-local M = {
-  "junegunn/vim-easy-align",
-}
-
-return M
+vim.pack.add({
+  "https://github.com/junegunn/vim-easy-align",
+}, { confirm = false })

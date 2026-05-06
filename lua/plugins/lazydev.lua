@@ -1,21 +1,17 @@
--- lazydev.lua
---
--- LSP enhancements for Lua development in Neovim.
--- Filetype-based lazy loading for Lua files only.
---
--- See: https://github.com/folke/lazydev.nvim
+vim.api.nvim_create_autocmd("FileType", {
+  once = true,
+  pattern = "lua",
+  group = vim.api.nvim_create_augroup("user_plugins_lazydev", { clear = true }),
+  callback = function()
+    vim.pack.add({
+      "https://github.com/folke/lazydev.nvim",
+    }, { confirm = false })
 
-local M = {
-  "folke/lazydev.nvim",
-  ft = "lua",
-  opts = {
-    library = {
-      -- See the configuration section for more details
-      -- Load luvit types when the `vim.uv` word is found
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      { path = "snacks.nvim", words = { "Snacks" } },
-    },
-  },
-}
-
-return M
+    require("lazydev").setup({
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim", words = { "Snacks" } },
+      },
+    })
+  end,
+})

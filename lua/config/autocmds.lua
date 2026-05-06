@@ -1,53 +1,34 @@
--------------------------------------------------------------------------------
--- autocmds.lua
---
--- Neovim autocmd orchestration
--- ----------------------------
--- * Global defaults (see options.lua): expandtab=true, shiftwidth=2, tabstop=2
--- * This file collects **all** autocmd-based behavior in one place so it's easy
---   to scan, extend, or disable. Everything is grouped and labelled.
--------------------------------------------------------------------------------
-local api = vim.api
+--- autocmds.lua
+---
+--- Neovim autocmd orchestration
+---
+--- * Global defaults (see options.lua): expandtab=true, shiftwidth=2, tabstop=2
+--- * This file collects **all** autocmd-based behavior in one place so it's easy
+---   to scan, extend, or disable. Everything is grouped and labelled.
 
--------------------------------------------------------------------------------
--- Helper: augroup wrapper to keep a consistent "user_config_" prefix
--------------------------------------------------------------------------------
+--- augroup wrapper to keep a consistent "user_config_" prefix
 local function augroup(name)
-  return api.nvim_create_augroup("user_config_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("user_config_" .. name, { clear = true })
 end
 
--------------------------------------------------------------------------------
--- Helper: single shared augroup for *filetype* specific settings
--------------------------------------------------------------------------------
+--- Single shared augroup for *filetype* specific settings
 local ft_group = augroup("filetypes")
 
--- Register settings for one or more filetypes.
--- @param fts string|string[] filetype or list of filetypes
--- @param cb fun()            callback executed on FileType
+--- Register settings for one or more filetypes.
+---
+---@param fts string|string[] filetype or list of filetypes
+---@param cb fun()            callback executed on FileType
 local function ft(fts, cb)
-  api.nvim_create_autocmd("FileType", {
+  vim.api.nvim_create_autocmd("FileType", {
     group = ft_group,
     pattern = fts,
     callback = cb,
   })
 end
 
--------------------------------------------------------------------------------
 -- FILETYPE-SPECIFIC OVERRIDES
--------------------------------------------------------------------------------
-local ft_overrides = {
-  -- Lazy → <Esc> to close the Lazy window
-  {
-    "lazy",
-    function(event)
-      vim.keymap.set("n", "<Esc>", "<Cmd>q<CR>", {
-        buffer = event.buf,
-        desc = "Close",
-        silent = true,
-      })
-    end,
-  },
 
+local ft_overrides = {
   -- spell + soft wrap for writing-heavy files
   {
     { "gitcommit", "markdown" },
@@ -93,10 +74,9 @@ for _, spec in ipairs(ft_overrides) do
   ft(spec[1], spec[2])
 end
 
--------------------------------------------------------------------------------
 -- CUSTOM FILETYPE DETECTION (manual overrides)
--------------------------------------------------------------------------------
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup("custom_filetypes"),
   pattern = {
     "*/.ebextensions/*.config",
@@ -131,7 +111,7 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup("ghostty_filetypes"),
   pattern = {
     "*/ghostty/config",
@@ -142,7 +122,7 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup("d2_filetypes"),
   pattern = { "*.d2" },
   callback = function()
@@ -150,12 +130,10 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--------------------------------------------------------------------------------
 -- GLOBAL AUTOCMDS (apply to *every* buffer)
--------------------------------------------------------------------------------
 
 -- FormatOptions - remove automatic comment leader continuation (c r o)
-api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup("formatopts"),
   callback = function()
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
@@ -163,7 +141,7 @@ api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 -- Highlight on yank - visual feedback
-api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("yank_highlight"),
   callback = function()
     vim.hl.on_yank({ timeout = 200 })
@@ -171,7 +149,7 @@ api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Trim whitespace / blank lines on save - leverage existing :Trim* commands
-api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("trim_on_save"),
   callback = function()
     vim.cmd("silent TrimWhitespace")
@@ -180,7 +158,7 @@ api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Auto-resize splits when window is resized
-api.nvim_create_autocmd("VimResized", {
+vim.api.nvim_create_autocmd("VimResized", {
   group = augroup("window_resized"),
   callback = function()
     vim.cmd("tabdo wincmd =")
@@ -188,7 +166,7 @@ api.nvim_create_autocmd("VimResized", {
 })
 
 -- Create directories when saving files
-api.nvim_create_autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("file_saved"),
   callback = function()
     local dir = vim.fn.expand("<afile>:p:h")

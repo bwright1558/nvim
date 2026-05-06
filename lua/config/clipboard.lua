@@ -21,3 +21,4 @@ if is_wayland and has_xclip and xwayland_running then
     cache_enabled = true,
   }
 end
+

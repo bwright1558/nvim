@@ -1,20 +1,20 @@
--- quickfix.lua
---
--- Custom quickfix text formatter for Neovim.
---
--- This module defines a global function `_G.qftf` used to format each entry in
--- the quickfix or location list. It aligns columns and shortens file paths for readability.
---
--- ⚠️ This is intended to be used in conjunction with a custom syntax file:
---      `syntax/qf.vim` or `syntax/qf.lua`
---   which provides additional highlighting for the formatted output (e.g., file names,
---   line numbers, error types).
---
--- Setup:
---   This formatter is assigned via:
---     vim.opt.qftf = "{info -> v:lua._G.qftf(info)}"
---
--- See: https://github.com/kevinhwang91/nvim-bqf?tab=readme-ov-file#format-new-quickfix
+--- quickfix.lua
+---
+--- Custom quickfix text formatter for Neovim.
+---
+--- This module defines a global function `_G.qftf` used to format each entry in
+--- the quickfix or location list. It aligns columns and shortens file paths for readability.
+---
+--- ⚠️ This is intended to be used in conjunction with a custom syntax file:
+---      `syntax/qf.vim` or `syntax/qf.lua`
+---   which provides additional highlighting for the formatted output (e.g., file names,
+---   line numbers, error types).
+---
+--- Setup:
+---   This formatter is assigned via:
+---     vim.opt.qftf = "{info -> v:lua._G.qftf(info)}"
+---
+--- See: https://github.com/kevinhwang91/nvim-bqf?tab=readme-ov-file#format-new-quickfix
 
 local fn = vim.fn
 

@@ -1,9 +1,4 @@
-require("config.options")
-require("config.quickfix")
-require("config.clipboard")
-require("config.lazy")
-require("config.highlights")
-require("config.user_commands")
-require("config.autocmds")
-require("config.keymaps")
-require("config.lsp")
+vim.loader.enable()
+
+require("config")
+require("plugins")
