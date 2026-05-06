@@ -4,16 +4,10 @@
 --- starts language servers using lspconfig.
 
 vim.pack.add({
+  -- Depends on mason.nvim
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/mason-org/mason-lspconfig.nvim",
-  "https://github.com/mason-org/mason.nvim",
 }, { confirm = false })
-
-require("mason").setup({
-  ui = {
-    border = "rounded",
-  },
-})
 
 require("mason-lspconfig").setup({
   ensure_installed = {

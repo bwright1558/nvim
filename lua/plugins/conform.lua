@@ -1,4 +1,5 @@
 vim.pack.add({
+  -- Depends on mason.nvim
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 }, { confirm = false })
