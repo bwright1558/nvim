@@ -22,31 +22,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- stylua: ignore start
     local keymap_specs = {
       -- Hover & Signature
-      { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, desc = "Hover Documentation" },
-      { "gK", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, desc = "Signature Help" },
+      { "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, desc = "Hover documentation" },
+      { "gK", function() vim.lsp.buf.signature_help({ border = "rounded" }) end, desc = "Signature help" },
 
       -- Goto / Navigation
-      { "gd", vim.lsp.buf.definition, desc = "Goto Definition" },
-      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-      { "gi", vim.lsp.buf.implementation, desc = "Goto Implementation" },
-      { "gy", vim.lsp.buf.type_definition, desc = "Goto Type Definition" },
+      { "gd", vim.lsp.buf.definition, desc = "Goto definition" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto declaration" },
+      { "gi", vim.lsp.buf.implementation, desc = "Goto implementation" },
+      { "gy", vim.lsp.buf.type_definition, desc = "Goto type definition" },
       { "gr", vim.lsp.buf.references, desc = "References" },
 
       -- Diagnostics
-      { "gl", vim.diagnostic.open_float, desc = "Show Line Diagnostics" },
-      { "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
-      { "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
-      { "<Leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next Diagnostic" },
-      { "<Leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Prev Diagnostic" },
-      { "<Leader>lq", vim.diagnostic.setloclist, desc = "Diagnostics → Loclist" },
-      { "<Leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
-      { "<Leader>lD", function() Snacks.picker.diagnostics() end, desc = "Workspace Diagnostics" },
+      { "gl", vim.diagnostic.open_float, desc = "Show line diagnostics" },
+      { "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next diagnostic" },
+      { "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Previous diagnostic" },
+      { "<Leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next diagnostic" },
+      { "<Leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Previous diagnostic" },
+      { "<Leader>lq", vim.diagnostic.setloclist, desc = "Diagnostics to location list" },
+      { "<Leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
+      { "<Leader>lD", function() Snacks.picker.diagnostics() end, desc = "Workspace diagnostics" },
 
       -- Code Actions & Lenses
-      { "<Leader>la", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "x" } },
-      { "<Leader>lr", vim.lsp.buf.rename, desc = "Rename Symbol" },
+      { "<Leader>la", vim.lsp.buf.code_action, desc = "Code action", mode = { "n", "x" } },
+      { "<Leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
       { "<Leader>lc", vim.lsp.codelens.run, desc = "Run CodeLens" },
-      { "<Leader>lf", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, desc = "Format Document (Conform)" },
+      { "<Leader>lf", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, desc = "Format document (conform)" },
       {
         "<Leader>lf",
         function()
@@ -59,17 +59,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
             lsp_format = "fallback",
           })
         end,
-        desc = "Format Selection (Conform)",
+        desc = "Format selection (conform)",
         mode = { "x" },
       },
 
       -- Symbols & Workspace
       { "<Leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Symbols" },
-      { "<Leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace Symbols" },
-      { "<Leader>ll", "<Cmd>Trouble lsp toggle focus=false<CR>", desc = "LSP Definitions / References / ... (Trouble)" },
+      { "<Leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
+      { "<Leader>ll", "<Cmd>Trouble lsp toggle focus=false<CR>", desc = "LSP definitions / references / ... (Trouble)" },
 
       -- Misc LSP
-      { "<Leader>li", "<Cmd>LspInfo<CR>", desc = "LSP Info" },
+      { "<Leader>li", "<Cmd>LspInfo<CR>", desc = "LSP info" },
       { "<Leader>lR", "<Cmd>LspRestart<CR>", desc = "Restart LSP" },
     }
     -- stylua: ignore end

@@ -22,10 +22,12 @@ vim.schedule(function()
     { "<Leader>f", group = "Files" },
     { "<Leader>g", group = "Git" },
     { "<Leader>l", group = "LSP" },
-    { "<Leader>x", group = "Diagnostics/Quickfix" },
+    { "<Leader>q", group = "Quickfix" },
+    { "<Leader>x", group = "Trouble" },
     { "<Leader>s", group = "Search" },
     { "<Leader>t", group = "Treesitter" },
     { "<Leader>u", group = "UI/UX" },
+    { "<Leader>w", group = "Windows" },
     { "<Leader><Tab>", group = "Tabs" },
   })
 end)

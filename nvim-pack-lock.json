@@ -81,10 +81,6 @@
       "rev": "123a9fb12e7229342f807ec9e6de478b1102b041",
       "src": "https://github.com/folke/ts-comments.nvim"
     },
-    "vim-cool": {
-      "rev": "9ea940c0d537e55de0de4c0298c04b976960fb12",
-      "src": "https://github.com/romainl/vim-cool"
-    },
     "vim-easy-align": {
       "rev": "9815a55dbcd817784458df7a18acacc6f82b1241",
       "src": "https://github.com/junegunn/vim-easy-align"
