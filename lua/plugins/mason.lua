@@ -47,11 +47,11 @@ vim.defer_fn(function()
     for _, tool in ipairs(ensure_installed) do
       local package = registry.get_package(tool)
       if not package:is_installed() and not package:is_installing() then
-        vim.notify("Installing Mason package: " .. tool, vim.log.levels.INFO)
+        vim.notify(("[mason.nvim] installing %s"):format(tool), vim.log.levels.INFO)
 
         package:install():once("closed", function()
           vim.schedule(function()
-            vim.notify("Installed Mason package: " .. tool, vim.log.levels.INFO)
+            vim.notify(("[mason.nvim] %s was successfully installed"):format(tool), vim.log.levels.INFO)
           end)
         end)
       end
