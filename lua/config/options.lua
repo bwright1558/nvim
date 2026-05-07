@@ -25,6 +25,7 @@ vim.opt.breakindent = true
 -- Search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.grepprg = "rg --vimgrep"
 
 -- Completion / popup menu
 vim.opt.completeopt = { "menuone", "noselect" }
