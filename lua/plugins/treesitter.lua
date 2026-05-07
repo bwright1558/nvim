@@ -151,7 +151,6 @@ local ts = require("nvim-treesitter")
 ts.setup({
   install_dir = vim.fn.stdpath("data") .. "/site",
 })
-ts.install(ts_parsers)
 
 -- Fix markdown_inline messing with `${var}` rendering in Golang hover documentation
 -- This disables markdown_inline injections
@@ -170,11 +169,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-require("nvim-treesitter-textobjects").setup({
-  select = {
-    lookahead = true,
-  },
-  move = {
-    set_jumps = true,
-  },
-})
+vim.schedule(function()
+  ts.install(ts_parsers)
+
+  require("nvim-treesitter-textobjects").setup({
+    select = {
+      lookahead = true,
+    },
+    move = {
+      set_jumps = true,
+    },
+  })
+end)
