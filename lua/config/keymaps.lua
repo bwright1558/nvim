@@ -137,10 +137,6 @@ local keymap_specs = {
   -- Which-Key
   { "<Leader>?", function() whichkey().show({ global = false }) end, desc = "Buffer local keymaps (which-key)" },
 
-  -- EasyAlign
-  { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign" },
-  { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = "x" },
-
   -- Treesitter Textobjects
   -- select
   { "af", function() ts_select().select_textobject("@function.outer", "textobjects") end, desc = "Select outer part of a function region", mode = { "x", "o" } },
