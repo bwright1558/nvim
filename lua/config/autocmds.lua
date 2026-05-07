@@ -164,3 +164,29 @@ vim.api.nvim_create_autocmd("VimResized", {
     vim.cmd("tabdo wincmd =")
   end,
 })
+
+-- Quickfix
+
+local quickfix_group = augroup("quickfix")
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  group = quickfix_group,
+  pattern = { "grep", "vimgrep" },
+  callback = function()
+    if #vim.fn.getqflist() > 0 then
+      vim.cmd("botright copen")
+      vim.cmd.wincmd("p")
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  group = quickfix_group,
+  pattern = { "lgrep", "lvimgrep" },
+  callback = function()
+    if vim.fn.getloclist(0, { size = 0 }).size > 0 then
+      vim.cmd.lopen()
+      vim.cmd.wincmd("p")
+    end
+  end,
+})
