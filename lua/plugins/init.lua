@@ -19,7 +19,6 @@ require("plugins.oil")
 require("plugins.gitsigns")
 require("plugins.fugitive")
 require("plugins.grug_far")
-require("plugins.trouble")
 
 -- Filetype/event-specific or small editing plugins
 require("plugins.autopairs")

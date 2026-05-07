@@ -102,12 +102,6 @@ local keymap_specs = {
     desc = "Toggle location list",
   },
 
-  -- Trouble
-  { "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
-  { "<Leader>xX", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics (Trouble)" },
-  { "<Leader>xQ", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix list (Trouble)" },
-  { "<Leader>xL", "<Cmd>Trouble loclist toggle<CR>", desc = "Location list (Trouble)" },
-
   -- Git (gitsigns + fugitive)
   { "]h", function() gitsigns().nav_hunk("next") end, desc = "Next hunk" },
   { "[h", function() gitsigns().nav_hunk("prev") end, desc = "Previous hunk" },

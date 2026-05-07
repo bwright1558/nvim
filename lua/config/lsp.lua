@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       { "<Leader>lj", function() vim.diagnostic.jump({ count = 1, float = true }) end, desc = "Next diagnostic" },
       { "<Leader>lk", function() vim.diagnostic.jump({ count = -1, float = true }) end, desc = "Previous diagnostic" },
       { "<Leader>lq", vim.diagnostic.setloclist, desc = "Diagnostics to location list" },
+      { "<Leader>lQ", vim.diagnostic.setqflist, desc = "Diagnostics to quickfix list" },
       { "<Leader>ld", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
       { "<Leader>lD", function() Snacks.picker.diagnostics() end, desc = "Workspace diagnostics" },
 
@@ -66,7 +67,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       -- Symbols & Workspace
       { "<Leader>ls", function() Snacks.picker.lsp_symbols() end, desc = "Symbols" },
       { "<Leader>lS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Workspace symbols" },
-      { "<Leader>ll", "<Cmd>Trouble lsp toggle focus=false<CR>", desc = "LSP definitions / references / ... (Trouble)" },
 
       -- Misc LSP
       { "<Leader>li", "<Cmd>LspInfo<CR>", desc = "LSP info" },

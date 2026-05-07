@@ -23,7 +23,6 @@ vim.schedule(function()
     { "<Leader>g", group = "Git" },
     { "<Leader>l", group = "LSP" },
     { "<Leader>q", group = "Quickfix" },
-    { "<Leader>x", group = "Trouble" },
     { "<Leader>s", group = "Search" },
     { "<Leader>t", group = "Treesitter" },
     { "<Leader>u", group = "UI/UX" },
