@@ -1,25 +1,25 @@
--------------------------------------------------------------------------------
--- user_commands.lua
---
--- Collection of handy :User commands:
---   :TrimWhitespace      - remove all trailing spaces/tabs in current buffer
---   :TrimEOF             - remove *extra* blank lines at EOF (leave at most 1)
---   :Format              - LSP-format the current buffer (blocking by default, async with !)
---   :SplitLeft / :SplitDown / :SplitUp / :SplitRight - smart split navigation
---   :LspInfo / :LspStart / :LspStop / :LspRestart / :LspLog - LSP command aliases
---
--------------------------------------------------------------------------------
+--- commands.lua
+---
+--- Collection of handy :User commands:
+---   :TrimWhitespace      - remove all trailing spaces/tabs in current buffer
+---   :TrimEOF             - remove *extra* blank lines at EOF (leave at most 1)
+---   :Format              - LSP-format the current buffer (blocking by default, async with !)
+---   :SplitLeft / :SplitDown / :SplitUp / :SplitRight - smart split navigation
+---   :LspInfo / :LspStart / :LspStop / :LspRestart / :LspLog - LSP command aliases
 
--- Utility: save & restore cursor / view -------------------------------------------------
+--- Save & restore cursor / view
 local function preserve_view(fn)
   local view = vim.fn.winsaveview()
   fn()
   vim.fn.winrestview(view)
 end
 
--------------------------------------------------------------------------------
+-- vim.pack
+vim.api.nvim_create_user_command("PackUpdate", function()
+  vim.pack.update()
+end, { desc = "Update plugins" })
+
 -- Trim trailing whitespace
--------------------------------------------------------------------------------
 vim.api.nvim_create_user_command("TrimWhitespace", function()
   preserve_view(function()
     -- Vim-regex: \s = whitespace, \+ = one or more, //e = no error if none.
@@ -28,10 +28,8 @@ vim.api.nvim_create_user_command("TrimWhitespace", function()
   print("Trailing whitespace removed")
 end, { desc = "Remove all trailing whitespace in buffer" })
 
--------------------------------------------------------------------------------
 -- Trim extra blank lines at EOF
 -- Leaves *one* final newline (POSIX-friendly).
--------------------------------------------------------------------------------
 vim.api.nvim_create_user_command("TrimEOF", function()
   preserve_view(function()
     local last = vim.fn.line("$")
@@ -44,9 +42,8 @@ vim.api.nvim_create_user_command("TrimEOF", function()
   print("Trailing blank lines trimmed")
 end, { desc = "Remove extraneous blank lines at end of file" })
 
--------------------------------------------------------------------------------
 -- LSP format
--------------------------------------------------------------------------------
+
 -- Conform version of `Format`
 vim.api.nvim_create_user_command("Format", function(opts)
   local range = nil
@@ -83,10 +80,9 @@ end, {
 --   desc = "LSP format current buffer (add ! for async)",
 -- })
 
--------------------------------------------------------------------------------
 -- Smart split navigation / creation
--------------------------------------------------------------------------------
-local split = require("config.smart_split")
+
+local window = require("utils.window")
 
 local split_cmds = {
   SplitLeft = { key = "h", desc = "Focus or create split to the left" },
@@ -96,13 +92,11 @@ local split_cmds = {
 }
 for name, def in pairs(split_cmds) do
   vim.api.nvim_create_user_command(name, function()
-    split.focus(def.key)
+    window.focus(def.key)
   end, { desc = def.desc })
 end
 
--------------------------------------------------------------------------------
 -- LSP commands
--------------------------------------------------------------------------------
 
 local function run_lsp_subcommand(subcommand, opts)
   local args = { subcommand }

@@ -1,8 +1,6 @@
---------------------------------------------------------------------------------
--- keymaps.lua
---
--- Keymaps to make life a little easier.
---------------------------------------------------------------------------------
+--- keymaps.lua
+---
+--- Keymaps to make life a little easier.
 
 -- Disable built-ins that clash with our custom `gr` LSP keys.
 vim.keymap.del({ "n", "x" }, "gra")
@@ -17,7 +15,7 @@ local function toggle_quickfix()
   end
 end
 
-local function cached_require(modname)
+local function lazy_require(modname)
   local mod
 
   return function()
@@ -28,16 +26,15 @@ local function cached_require(modname)
   end
 end
 
-local gitsigns = cached_require("gitsigns")
-local flash = cached_require("flash")
-local whichkey = cached_require("which-key")
-local ts_select = cached_require("nvim-treesitter-textobjects.select")
-local ts_move = cached_require("nvim-treesitter-textobjects.move")
-local ts_swap = cached_require("nvim-treesitter-textobjects.swap")
+local gitsigns = lazy_require("gitsigns")
+local whichkey = lazy_require("which-key")
+local ts_select = lazy_require("nvim-treesitter-textobjects.select")
+local ts_move = lazy_require("nvim-treesitter-textobjects.move")
+local ts_swap = lazy_require("nvim-treesitter-textobjects.swap")
 
 -- stylua: ignore start
-local keymaps = {
-  ---------------- Window / split navigation & resize ----------------
+local keymap_specs = {
+  -- Window / split navigation & resize
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Smart Split Left" },
   { "<C-j>", "<Cmd>SplitDown<CR>", desc = "Smart Split Down" },
   { "<C-k>", "<Cmd>SplitUp<CR>", desc = "Smart Split Up" },
@@ -49,7 +46,7 @@ local keymaps = {
   { "<C-k>", [[<C-\><C-n><C-w>k]], desc = "Terminal Window Up", mode = "t" },
   { "<C-l>", [[<C-\><C-n><C-w>l]], desc = "Terminal Window Right", mode = "t" },
 
-  ------------------ Buffer navigation / lifecycle -------------------
+  -- Buffer navigation / lifecycle
   { "]b", "<Cmd>bnext<CR>", desc = "Next Buffer" },
   { "[b", "<Cmd>bprev<CR>", desc = "Prev Buffer" },
   { "<Leader>bj", "<Cmd>bnext<CR>", desc = "Next Buffer" },
@@ -57,7 +54,7 @@ local keymaps = {
   { "<Leader>bb", function() Snacks.picker.buffers() end, desc = "Buffer List" },
   { "<Leader>bd", "<Cmd>bd<CR>", desc = "Delete Buffer" },
 
-  -------------------- Files & project navigation --------------------
+  -- Files & project navigation
   { "-", "<Cmd>Oil<CR>", desc = "Oil" },
   { "<Leader><Space>", function() Snacks.picker.smart() end, desc = "Smart Finder" },
   { "<Leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find Files" },
@@ -67,7 +64,7 @@ local keymaps = {
   { "<Leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
   { "<Leader>fn", "<Cmd>enew<CR>", desc = "New File" },
 
-  ------------------------- Search / pickers -------------------------
+  -- Search / pickers
   { "<Leader>s/", function() Snacks.picker.search_history() end, desc = "Search History" },
   { "<Leader>ss", function() Snacks.picker.grep({ hidden = true }) end, desc = "Live Grep" },
   { "<Leader>sr", "<Cmd>GrugFar<CR>", desc = "Search & Replace", mode = { "n", "x" } },
@@ -87,9 +84,8 @@ local keymaps = {
   { "<Leader>sR", function() Snacks.picker.resume() end, desc = "Resume Last Picker" },
   { "<Leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix Picker" },
   { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location List Picker" },
-  { "<Leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo Comments" },
 
-  ----------------------- Diagnostics / lists ------------------------
+  -- Diagnostics / lists
   { "]q", "<Cmd>cnext<CR>", desc = "Next Quickfix" },
   { "[q", "<Cmd>cprev<CR>", desc = "Prev Quickfix" },
   { "<Leader>xq", toggle_quickfix, desc = "Toggle Quickfix List" },
@@ -108,7 +104,7 @@ local keymaps = {
   { "<Leader>xQ", "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
   { "<Leader>xL", "<Cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
 
-  -------------------- Git (gitsigns + fugitive) ---------------------
+  -- Git (gitsigns + fugitive)
   { "]h", function() gitsigns().nav_hunk("next") end, desc = "Next Hunk" },
   { "[h", function() gitsigns().nav_hunk("prev") end, desc = "Prev Hunk" },
   { "<Leader>gj", function() gitsigns().nav_hunk("next") end, desc = "Next Hunk" },
@@ -124,11 +120,11 @@ local keymaps = {
   { "<Leader>gc", function() Snacks.picker.git_log() end, desc = "Git Commits" },
   { "<Leader>gC", function() Snacks.picker.git_log({ current_file = true }) end, desc = "Git Commits (file)" },
 
-  -------------------- Terminal toggles / escape ---------------------
+  -- Terminal toggles / escape
   { "<C-/>", function() Snacks.terminal() end, desc = "Toggle Terminal", mode = { "n", "t" } },
   { "<C-;>", [[<C-\><C-n>]], desc = "Exit Terminal Mode", mode = "t" },
 
-  ----------------------- Text-editing helpers -----------------------
+  -- Text-editing helpers
   { "<", "<gv", desc = "Indent left & keep", mode = "x" },
   { ">", ">gv", desc = "Indent right & keep", mode = "x" },
   { "J", ":m '>+1<CR>gv=gv", desc = "Move Selection Down", mode = "x" },
@@ -136,21 +132,18 @@ local keymaps = {
   { "p", 'p:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste w/o yank", mode = "x" },
   { "P", 'P:let @+=@0<CR>:let @"=@0<CR>', desc = "Paste w/o yank", mode = "x" },
 
-  ---------------------- Word / reference jumps ----------------------
+  -- Word / reference jumps
   { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference" },
   { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
 
-  ------------ Plugin-specific (flash / which-key / easy-align / misc) ------------
-  { "s", function() flash().jump() end, desc = "Flash", mode = { "n", "x", "o" } },
-  { "S", function() flash().treesitter() end, desc = "Flash Treesitter", mode = { "n", "x", "o" } },
-  { "r", function() flash().remote() end, desc = "Remote Flash", mode = "o" },
-  { "R", function() flash().treesitter_search() end, desc = "Treesitter Search", mode = { "x", "o" } },
-  { "<C-s>", function() flash().toggle() end, desc = "Toggle Flash Search", mode = { "c" } },
+  -- Which-Key
   { "<Leader>?", function() whichkey().show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
+
+  -- EasyAlign
   { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign" },
   { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = "x" },
 
-  ----------------------- Treesitter Textobjects ---------------------
+  -- Treesitter Textobjects
   -- select
   { "af", function() ts_select().select_textobject("@function.outer", "textobjects") end, desc = "Select outer part of a function region", mode = { "x", "o" } },
   { "if", function() ts_select().select_textobject("@function.inner", "textobjects") end, desc = "Select inner part of a function region", mode = { "x", "o" } },
@@ -170,21 +163,21 @@ local keymaps = {
   { "<Leader>a", function() ts_swap().swap_next("@parameter.inner", "textobjects") end, desc = "Swap next parameter" },
   { "<Leader>A", function() ts_swap().swap_previous("@parameter.inner", "textobjects") end, desc = "Swap previous parameter" },
 
-  ------------------- Mason / Treesitter shortcuts -------------------
+  -- Mason / Treesitter shortcuts
   { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },
   { "<Leader>ti", "<Cmd>checkhealth nvim-treesitter<CR>", desc = "Treesitter Health" },
   { "<Leader>tm", "<Cmd>TSLog<CR>", desc = "Treesitter Log" },
 
-  -------------------------- UI / UX tweaks --------------------------
+  -- UI / UX tweaks
   { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 
-  ------------------------------- Tabs -------------------------------
+  -- Tabs
   { "<Leader><Tab>n", "<Cmd>tabnew<CR>", desc = "New Tab" },
   { "<Leader><Tab>q", "<Cmd>tabclose<CR>", desc = "Close Tab" },
   { "<Leader><Tab>j", "<Cmd>tabnext<CR>", desc = "Next Tab" },
   { "<Leader><Tab>k", "<Cmd>tabprev<CR>", desc = "Prev Tab" },
 
-  ---------------------- Core workflow (Leader) ----------------------
+  -- Core workflow (Leader)
   { "<Leader>w", "<Cmd>w<CR>", desc = "Save" },
   { "<Leader>q", "<Cmd>q<CR>", desc = "Quit" },
   { "<Leader>Q", "<Cmd>qall<CR>", desc = "Quit All" },
@@ -194,9 +187,9 @@ local keymaps = {
   { "<Leader>,", toggle_quickfix, desc = "Toggle Quickfix List" },
   { "<Leader>;", function() Snacks.picker.command_history() end, desc = "Command History" },
   { "<Leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
-  { "<Leader>p", "<Cmd>Lazy<CR>", desc = "Lazy" },
+  { "<Leader>p", "<Cmd>PackUpdate<CR>", desc = "Update Plugins" },
 }
 -- stylua: ignore end
 
-local map = require("config.map")
-map.register(keymaps)
+local keymaps = require("utils.keymaps")
+keymaps.register(keymap_specs)

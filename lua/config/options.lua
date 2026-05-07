@@ -1,19 +1,19 @@
--- Leader configuration --------------------------------------------------------
+-- Leader configuration
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- Disable unused language providers ------------------------------------------
+-- Disable unused language providers
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- Short message tweaks --------------------------------------------------------
+-- Short message tweaks
 vim.opt.shortmess:append("c") -- suppress ins‑completion “match xx of yy”
 vim.opt.shortmess:append("I") -- skip the intro splash
 
--- General editing behaviour ---------------------------------------------------
+-- General editing behaviour
 vim.opt.confirm = true
 vim.opt.modeline = false
 vim.opt.clipboard = "unnamedplus"
@@ -22,20 +22,20 @@ vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.opt.breakindent = true
 
--- Search ----------------------------------------------------------------------
+-- Search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Completion / popup menu -----------------------------------------------------
+-- Completion / popup menu
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.pumheight = 10
 vim.opt.updatetime = 250
 
--- Window management -----------------------------------------------------------
+-- Window management
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Interface / UI --------------------------------------------------------------
+-- Interface / UI
 vim.opt.showmode = false
 vim.opt.showcmd = false
 vim.opt.ruler = false
@@ -51,13 +51,13 @@ vim.opt.timeoutlen = 500
 vim.opt.virtualedit = "block"
 vim.opt.winborder = "rounded"
 
--- Indentation -----------------------------------------------------------------
+-- Indentation
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.smartindent = true
 
--- File handling ---------------------------------------------------------------
+-- File handling
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.path:append("**") -- include subdirectories in search

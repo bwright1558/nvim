@@ -1,1 +1,0 @@
-- [ ] Add back `vim.opt.winborder`. Plugins have updated to respect this option (I think).
