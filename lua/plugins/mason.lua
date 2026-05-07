@@ -7,3 +7,54 @@ require("mason").setup({
     border = "rounded",
   },
 })
+
+local ensure_installed = {
+  -- LSPs
+  "bash-language-server",
+  "css-lsp",
+  "dockerfile-language-server",
+  "fish-lsp",
+  "golangci-lint-langserver",
+  "gopls",
+  "graphql-language-service-cli",
+  "html-lsp",
+  "json-lsp",
+  "lua-language-server",
+  "pyright",
+  "rust-analyzer",
+  "sqlls",
+  "taplo", -- LSP + formatter
+  "typescript-language-server",
+  "vim-language-server",
+  "yaml-language-server",
+  "zls",
+
+  -- Formatters
+  "gofumpt",
+  "goimports",
+  "isort",
+  "ruff",
+  "prettierd",
+  "stylua",
+  "shfmt",
+}
+
+-- Ensure tools are installed
+vim.defer_fn(function()
+  local registry = require("mason-registry")
+
+  registry.refresh(function()
+    for _, tool in ipairs(ensure_installed) do
+      local package = registry.get_package(tool)
+      if not package:is_installed() and not package:is_installing() then
+        vim.notify("Installing Mason package: " .. tool, vim.log.levels.INFO)
+
+        package:install():once("closed", function()
+          vim.schedule(function()
+            vim.notify("Installed Mason package: " .. tool, vim.log.levels.INFO)
+          end)
+        end)
+      end
+    end
+  end)
+end, 3000)

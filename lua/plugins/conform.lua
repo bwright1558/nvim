@@ -1,24 +1,7 @@
 vim.pack.add({
   -- Depends on mason.nvim
   "https://github.com/stevearc/conform.nvim",
-  "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 }, { confirm = false })
-
-require("mason-tool-installer").setup({
-  ensure_installed = {
-    -- Formatters
-    "gofumpt",
-    "goimports",
-    "isort",
-    "ruff",
-    "taplo",
-    "prettierd",
-    "stylua",
-    "shfmt",
-  },
-  auto_update = true,
-  run_on_start = true,
-})
 
 require("conform").setup({
   format_on_save = function(bufnr)
