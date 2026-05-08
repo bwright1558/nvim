@@ -86,9 +86,11 @@ local keymap_specs = {
   { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location list picker" },
 
   -- Quickfix
-  { "<Leader>qq", toggle_quickfix, desc = "Toggle quickfix list" },
+  { "<Leader>qq", toggle_quickfix, desc = "Toggle quickfix" },
   { "<Leader>qj", "<Cmd>cnext<CR>", desc = "Next quickfix" },
   { "<Leader>qk", "<Cmd>cprev<CR>", desc = "Previous quickfix" },
+  { "<Leader>qn", "<Cmd>cnewer<CR>", desc = "Newer quickfix" },
+  { "<Leader>qp", "<Cmd>colder<CR>", desc = "Older quickfix" },
   { "]q", "<Cmd>cnext<CR>", desc = "Next quickfix" },
   { "[q", "<Cmd>cprev<CR>", desc = "Previous quickfix" },
   {
