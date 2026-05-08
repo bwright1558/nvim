@@ -13,7 +13,6 @@ require("plugins.blink_cmp")
 require("plugins.snacks")
 require("plugins.lualine")
 require("plugins.which_key")
-require("plugins.oil")
 
 -- Git/search/diagnostics tools
 require("plugins.gitsigns")
@@ -22,6 +21,5 @@ require("plugins.grug_far")
 
 -- Filetype/event-specific or small editing plugins
 require("plugins.autopairs")
-require("plugins.bqf")
 require("plugins.render_markdown")
 require("plugins.vim_matchup")

@@ -55,7 +55,6 @@ local keymap_specs = {
   { "<Leader>bd", "<Cmd>bd<CR>", desc = "Delete buffer" },
 
   -- Files & project navigation
-  { "-", "<Cmd>Oil<CR>", desc = "Oil" },
   { "<Leader><Space>", function() Snacks.picker.smart() end, desc = "Smart finder" },
   { "<Leader>ff", function() Snacks.picker.files({ hidden = true }) end, desc = "Find files" },
   { "<Leader>fg", function() Snacks.picker.git_files({ cwd = Snacks.git.get_root(vim.uv.cwd()), untracked = true }) end, desc = "Find git files (root)" },
