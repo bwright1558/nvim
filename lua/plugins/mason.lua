@@ -2,13 +2,11 @@ vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
 }, { confirm = false })
 
-vim.schedule(function()
-  require("mason").setup({
-    ui = {
-      border = "rounded",
-    },
-  })
-end)
+require("mason").setup({
+  ui = {
+    border = "rounded",
+  },
+})
 
 local ensure_installed = {
   -- LSPs
