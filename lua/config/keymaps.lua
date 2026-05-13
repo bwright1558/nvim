@@ -34,6 +34,14 @@ local ts_swap = lazy_require("nvim-treesitter-textobjects.swap")
 
 -- stylua: ignore start
 local keymap_specs = {
+  -- Modified jump motions (center line on screen)
+  { "<C-d>", "<C-d>zz", desc = "Scroll half page down" },
+  { "<C-u>", "<C-u>zz", desc = "Scroll half page up" },
+  { "<C-f>", "<C-f>zz", desc = "Scroll page down" },
+  { "<C-b>", "<C-b>zz", desc = "Scroll page up" },
+  { "n", "nzzzv", desc = "Next search result" },
+  { "N", "Nzzzv", desc = "Previous search result" },
+
   -- Window / split navigation & resize
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Move/split left" },
   { "<C-j>", "<Cmd>SplitDown<CR>", desc = "Move/split down" },
