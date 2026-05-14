@@ -39,8 +39,8 @@ local keymap_specs = {
   { "<C-u>", "<C-u>zz", desc = "Scroll half page up" },
   { "<C-f>", "<C-f>zz", desc = "Scroll page down" },
   { "<C-b>", "<C-b>zz", desc = "Scroll page up" },
-  { "n", "nzzzv", desc = "Next search result" },
-  { "N", "Nzzzv", desc = "Previous search result" },
+  -- { "n", "nzzzv", desc = "Next search result" },
+  -- { "N", "Nzzzv", desc = "Previous search result" },
 
   -- Window / split navigation & resize
   { "<C-h>", "<Cmd>SplitLeft<CR>", desc = "Move/split left" },
