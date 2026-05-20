@@ -22,7 +22,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
-      "rev": "a5875fde04e2940a5060f8df9c453bcfcfe0a5c0",
+      "rev": "5506c2f59dc9ab2ed6c233585412b24d31d51521",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "lazydev.nvim": {
@@ -74,7 +74,7 @@
       "src": "https://github.com/tpope/vim-fugitive"
     },
     "vim-matchup": {
-      "rev": "dccb2d12ef2a703d2f076b3cda36a3339449d1eb",
+      "rev": "a2d618496223386844acb5a6763cfc3cc1357af1",
       "src": "https://github.com/andymass/vim-matchup"
     },
     "which-key.nvim": {
