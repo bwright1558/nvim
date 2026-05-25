@@ -16,6 +16,8 @@
 ---
 --- See: https://github.com/kevinhwang91/nvim-bqf?tab=readme-ov-file#format-new-quickfix
 
+vim.cmd.packadd("cfilter")
+
 local fn = vim.fn
 
 function _G.qftf(info)
