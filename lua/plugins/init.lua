@@ -20,6 +20,5 @@ require("plugins.fugitive")
 require("plugins.grug_far")
 
 -- Filetype/event-specific or small editing plugins
-require("plugins.autopairs")
 require("plugins.render_markdown")
 require("plugins.vim_matchup")
