@@ -11,6 +11,7 @@ require("snacks").setup({
   input = { enabled = true },
   notifier = { enabled = true },
   picker = { enabled = true },
+  scope = { enabled = true },
   terminal = { enabled = true },
   words = { enabled = true },
 })
