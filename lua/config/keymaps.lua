@@ -28,9 +28,6 @@ end
 
 local gitsigns = lazy_require("gitsigns")
 local whichkey = lazy_require("which-key")
-local ts_select = lazy_require("nvim-treesitter-textobjects.select")
-local ts_move = lazy_require("nvim-treesitter-textobjects.move")
-local ts_swap = lazy_require("nvim-treesitter-textobjects.swap")
 
 -- stylua: ignore start
 local keymap_specs = {
@@ -145,26 +142,6 @@ local keymap_specs = {
 
   -- Which-Key
   { "<Leader>?", function() whichkey().show({ global = false }) end, desc = "Buffer local keymaps (which-key)" },
-
-  -- Treesitter Textobjects
-  -- select
-  { "af", function() ts_select().select_textobject("@function.outer", "textobjects") end, desc = "Select outer part of a function region", mode = { "x", "o" } },
-  { "if", function() ts_select().select_textobject("@function.inner", "textobjects") end, desc = "Select inner part of a function region", mode = { "x", "o" } },
-  { "ac", function() ts_select().select_textobject("@class.outer", "textobjects") end, desc = "Select outer part of a class region", mode = { "x", "o" } },
-  { "ic", function() ts_select().select_textobject("@class.inner", "textobjects") end, desc = "Select inner part of a class region", mode = { "x", "o" } },
-  { "aa", function() ts_select().select_textobject("@parameter.outer", "textobjects") end, desc = "Select outer part of a parameter region", mode = { "x", "o" } },
-  { "ia", function() ts_select().select_textobject("@parameter.inner", "textobjects") end, desc = "Select inner part of a parameter region", mode = { "x", "o" } },
-  { "as", function() ts_select().select_textobject("@local.scope", "locals") end, desc = "Select language scope", mode = { "x", "o" } },
-
-  -- move
-  { "]m", function() ts_move().goto_next_start("@function.outer", "textobjects") end, desc = "Next function start", mode = { "n", "x", "o" } },
-  { "]c", function() ts_move().goto_next_start("@class.outer", "textobjects") end, desc = "Next class start", mode = { "n", "x", "o" } },
-  { "[m", function() ts_move().goto_previous_start("@function.outer", "textobjects") end, desc = "Previous function start", mode = { "n", "x", "o" } },
-  { "[c", function() ts_move().goto_previous_start("@class.outer", "textobjects") end, desc = "Previous class start", mode = { "n", "x", "o" } },
-
-  -- swap
-  { "<Leader>a", function() ts_swap().swap_next("@parameter.inner", "textobjects") end, desc = "Swap next parameter" },
-  { "<Leader>A", function() ts_swap().swap_previous("@parameter.inner", "textobjects") end, desc = "Swap previous parameter" },
 
   -- Mason / Treesitter shortcuts
   { "<Leader>lI", "<Cmd>Mason<CR>", desc = "Mason" },

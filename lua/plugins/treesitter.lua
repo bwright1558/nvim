@@ -14,7 +14,6 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 vim.pack.add({
   "https://github.com/nvim-treesitter/nvim-treesitter",
-  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
   "https://github.com/folke/ts-comments.nvim",
 }, { confirm = false })
 
@@ -171,13 +170,4 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.schedule(function()
   ts.install(ts_parsers)
-
-  require("nvim-treesitter-textobjects").setup({
-    select = {
-      lookahead = true,
-    },
-    move = {
-      set_jumps = true,
-    },
-  })
 end)
