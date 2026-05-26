@@ -7,10 +7,10 @@ require("lualine").setup({
   options = {
     globalstatus = vim.o.laststatus == 3,
     disabled_filetypes = {
-      statusline = { "NvimTree", "neo-tree", "Outline", "snacks_layout_box" },
+      statusline = { "Outline", "snacks_layout_box" },
     },
-    component_separators = { left = "", right = "" },
-    section_separators = { left = "", right = "" },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
   },
   sections = {
     lualine_a = { "mode" },
@@ -34,6 +34,8 @@ require("lualine").setup({
             or {}
         end,
       },
+    },
+    lualine_c = {
       {
         "diagnostics",
         symbols = {
@@ -43,8 +45,8 @@ require("lualine").setup({
           hint = " ",
         },
       },
+      "filename",
     },
-    lualine_c = { "filename" },
     lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" },
