@@ -38,7 +38,7 @@ vim.opt.splitbelow = true
 
 -- Interface / UI
 vim.opt.showmode = false
-vim.opt.showcmd = false
+vim.opt.showcmd = true
 vim.opt.ruler = false
 vim.opt.showtabline = 1
 vim.opt.number = true
