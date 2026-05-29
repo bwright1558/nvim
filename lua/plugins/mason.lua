@@ -14,6 +14,7 @@ local ensure_installed = {
   "css-lsp",
   "dockerfile-language-server",
   "fish-lsp",
+  "golangci-lint",
   "golangci-lint-langserver",
   "gopls",
   "graphql-language-service-cli",
