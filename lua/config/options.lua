@@ -27,10 +27,11 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.grepprg = "rg --vimgrep"
 
--- Completion / popup menu
+-- Completion / popup menu / command window
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.pumheight = 10
 vim.opt.updatetime = 250
+vim.opt.cmdwinheight = 10
 
 -- Window management
 vim.opt.splitright = true
