@@ -28,7 +28,7 @@ vim.opt.smartcase = true
 vim.opt.grepprg = "rg --vimgrep"
 
 -- Completion / popup menu / command window
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
 vim.opt.pumheight = 10
 vim.opt.updatetime = 250
 vim.opt.cmdwinheight = 10
