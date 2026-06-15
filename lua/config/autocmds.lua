@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 -- GLOBAL AUTOCMDS (apply to *every* buffer)
 
 -- FormatOptions - remove automatic comment leader continuation (c r o)
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd("FileType", {
   group = augroup("formatopts"),
   callback = function()
     vim.opt_local.formatoptions:remove({ "c", "r", "o" })
