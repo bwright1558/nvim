@@ -29,7 +29,6 @@ local ts_parsers = {
   -- shells / config
   "bash",
   "fish",
-  "tmux",
   "ssh_config",
   "dockerfile",
   "git_config",
@@ -129,7 +128,6 @@ local ts_filetypes = {
   "terraform",
   "terraform-vars",
   "tex",
-  "tmux",
   "toml",
   "ts",
   "typ",
