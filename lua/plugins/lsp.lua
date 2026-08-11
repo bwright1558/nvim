@@ -16,7 +16,7 @@ vim.lsp.enable({
   "lua_ls",
   "pyright",
   "rust_analyzer",
-  "sqlls",
+  -- "sqlls",
   "taplo",
   "ts_ls",
   "vimls",

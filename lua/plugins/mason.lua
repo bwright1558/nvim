@@ -23,7 +23,7 @@ local ensure_installed = {
   "lua-language-server",
   "pyright",
   "rust-analyzer",
-  "sqlls",
+  -- "sqlls",
   "taplo", -- LSP + formatter
   "typescript-language-server",
   "vim-language-server",
