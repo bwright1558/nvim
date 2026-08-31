@@ -19,6 +19,7 @@ local ensure_installed = {
   "gopls",
   "graphql-language-service-cli",
   "html-lsp",
+  "jdtls",
   "json-lsp",
   "lua-language-server",
   "pyright",

@@ -12,6 +12,7 @@ vim.lsp.enable({
   "gopls",
   "graphql",
   "html",
+  "jdtls",
   "jsonls",
   "lua_ls",
   "pyright",
