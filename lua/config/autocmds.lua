@@ -61,7 +61,7 @@ local ft_overrides = {
   -- Python, Rust, & Fish → 4-space indent
   -- TODO: Maybe add toml?
   {
-    { "python", "rust", "fish", "mermaid" },
+    { "python", "rust", "fish", "mermaid", "cs" },
     function()
       vim.opt_local.expandtab = true
       vim.opt_local.shiftwidth = 4

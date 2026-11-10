@@ -21,8 +21,8 @@ vim.schedule(function()
     formatters_by_ft = {
       lua = { "stylua" },
       fish = { "fish_indent" },
-      bash = { "shfmt" },
-      sh = { "shfmt" },
+      -- bash = { "shfmt" },
+      -- sh = { "shfmt" },
       go = { "goimports", "gofumpt" },
       -- python = { "isort" },
       python = { "ruff_organize_imports" },

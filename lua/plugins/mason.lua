@@ -23,6 +23,7 @@ local ensure_installed = {
   "json-lsp",
   "lua-language-server",
   "pyright",
+  "roslyn-language-server",
   "rust-analyzer",
   -- "sqlls",
   "taplo", -- LSP + formatter
