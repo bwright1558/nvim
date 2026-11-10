@@ -52,6 +52,7 @@ local ts_parsers = {
   "gowork",
   "python",
   "rust",
+  "swift",
   "lua",
 
   -- web
@@ -125,6 +126,7 @@ local ts_filetypes = {
   "sql",
   "sshconfig",
   "svelte",
+  "swift",
   "terraform",
   "terraform-vars",
   "tex",
