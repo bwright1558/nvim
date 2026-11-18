@@ -1,7 +1,0 @@
-require("config.options")
-require("config.quickfix")
-require("config.clipboard")
-require("config.commands")
-require("config.autocmds")
-require("config.keymaps")
-require("config.lsp")

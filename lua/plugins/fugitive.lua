@@ -1,5 +1,0 @@
-vim.schedule(function()
-  vim.pack.add({
-    "https://github.com/tpope/vim-fugitive",
-  }, { confirm = false })
-end)
