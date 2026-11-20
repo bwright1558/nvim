@@ -9,6 +9,9 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
 -- Short message options
 vim.opt.shortmess:append({ I = true, c = true })
 
@@ -18,6 +21,13 @@ vim.o.modeline = false
 vim.o.clipboard = "unnamedplus"
 vim.o.mouse = "a"
 vim.o.virtualedit = "block"
+
+-- Tab / indentation options.
+vim.o.smartindent = true
+vim.o.expandtab = true
+vim.o.shiftround = true
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
 
 -- Line wrapping options.
 -- Disabled by default. Wrapping is enabled for specific file types.
