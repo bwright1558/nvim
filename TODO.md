@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Pick and choose LSP servers and formatter tools from mason.nvim registry
+- [ ] Review list of installed treesitter parsers
 - [ ] Fold options (foldmethod, foldlevel, foldtext)
 - [ ] conceallevel
 - [ ] formatoptions

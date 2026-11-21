@@ -4,3 +4,4 @@ require("plugins.icons")
 
 -- Core language/editing infrastructure
 require("plugins.treesitter")
+require("plugins.mason")
