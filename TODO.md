@@ -1,6 +1,7 @@
 # TODO
 
 - [ ] Pick and choose LSP servers and formatter tools from mason.nvim registry
+- [ ] Pick and choose which LSP servers to enable in `lua/plugins/lsp.lua`
 - [ ] Review list of installed treesitter parsers
 - [ ] Fold options (foldmethod, foldlevel, foldtext)
 - [ ] conceallevel
