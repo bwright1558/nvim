@@ -1,6 +1,6 @@
--- Leader configuration
+-- Set <Space> as the leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Disable unused language providers
@@ -9,57 +9,62 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
--- Short message tweaks
-vim.opt.shortmess:append("c") -- suppress ins‑completion “match xx of yy”
-vim.opt.shortmess:append("I") -- skip the intro splash
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
 
--- General editing behaviour
-vim.opt.confirm = true
-vim.opt.modeline = false
-vim.opt.clipboard = "unnamedplus"
-vim.opt.fileencoding = "utf-8"
-vim.opt.mouse = "a"
-vim.opt.termguicolors = true
-vim.opt.breakindent = true
+-- Short message options
+vim.opt.shortmess:append({ I = true, c = true })
 
--- Search
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.grepprg = "rg --vimgrep"
+-- General options
+vim.o.confirm = true
+vim.o.modeline = false
+vim.o.clipboard = "unnamedplus"
+vim.o.mouse = "a"
+vim.o.virtualedit = "block"
 
--- Completion / popup menu / command window
+-- Tab / indentation options
+vim.o.smartindent = true
+vim.o.expandtab = true
+vim.o.shiftround = true
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+
+-- Line wrap options
+-- Disabled by default. Wrapping is enabled for specific file types
+vim.o.wrap = false
+vim.o.breakindent = true
+vim.o.linebreak = true
+
+-- Search options
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.grepprg = "rg --vimgrep"
+vim.opt.path:append("**") -- include subdirectories in file search
+
+-- Popup menu / command window / completion options
+vim.o.pumheight = 10
+vim.o.cmdwinheight = 10
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
-vim.opt.pumheight = 10
-vim.opt.updatetime = 250
-vim.opt.cmdwinheight = 10
 
--- Window management
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- Window split options
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.splitkeep = "screen"
 
--- Interface / UI
-vim.opt.showmode = false
-vim.opt.showcmd = false
-vim.opt.ruler = false
-vim.opt.showtabline = 1
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
-vim.opt.signcolumn = "yes"
-vim.opt.wrap = false
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
-vim.opt.timeoutlen = 500
-vim.opt.virtualedit = "block"
-vim.opt.winborder = "rounded"
+-- Undo history options
+vim.o.undofile = true
 
--- Indentation
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.smartindent = true
+-- Timer options
+vim.o.updatetime = 250
+vim.o.timeoutlen = 500
 
--- File handling
-vim.opt.swapfile = false
-vim.opt.undofile = true
-vim.opt.path:append("**") -- include subdirectories in search
+-- Scroll options
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 8
+
+-- UI options
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.signcolumn = "yes"
+vim.o.winborder = "rounded"
