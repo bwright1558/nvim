@@ -1,8 +1,8 @@
 require("plugins.colorscheme")
 require("plugins.icons")
+require("plugins.treesitter")
 
 -- Core language/editing infrastructure
-require("plugins.treesitter")
 require("plugins.mason")
 require("plugins.lsp")
 require("plugins.conform")
