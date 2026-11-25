@@ -12,4 +12,6 @@
 - [ ] Custom filetype plugins
 - [ ] Tinker with netrw (built-in file browser/explorer)
 - [ ] Tab pages (tabclose)
-
+- [ ] Review treesitter plugin markdown_inline "fix". See if it is still necessary to use.
+      Or maybe just remove `markdown_inline` from the list of installed parsers?
+- [ ] Review installed treesitter parsers.
