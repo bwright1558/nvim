@@ -15,3 +15,4 @@
 - [ ] Review treesitter plugin markdown_inline "fix". See if it is still necessary to use.
       Or maybe just remove `markdown_inline` from the list of installed parsers?
 - [ ] Review installed treesitter parsers.
+- [ ] Consider replacing custom quickfix config with quicker.nvim plugin.
