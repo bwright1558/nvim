@@ -6,13 +6,13 @@
 --- the quickfix or location list. It aligns columns and shortens file paths for readability.
 ---
 --- ⚠️ This is intended to be used in conjunction with a custom syntax file:
----      `syntax/qf.vim` or `syntax/qf.lua`
+---     `syntax/qf.vim` or `syntax/qf.lua`
 ---   which provides additional highlighting for the formatted output (e.g., file names,
 ---   line numbers, error types).
 ---
 --- Setup:
 ---   This formatter is assigned via:
----     vim.opt.qftf = "{info -> v:lua._G.qftf(info)}"
+---     vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
 ---
 --- See: https://github.com/kevinhwang91/nvim-bqf?tab=readme-ov-file#format-new-quickfix
 
@@ -27,9 +27,9 @@ function _G.qftf(info)
   -- Change the directory for quickfix window make the name of item shorter.
   -- It's a good opportunity to change current directory in quickfixtextfunc :)
   --
-  -- local alterBufnr = fn.bufname('#') -- alternative buffer is the buffer before enter qf window
+  -- local alterBufnr = fn.bufname("#") -- alternative buffer is the buffer before enter qf window
   -- local root = getRootByAlterBufnr(alterBufnr)
-  -- vim.cmd(('noa lcd %s'):format(fn.fnameescape(root)))
+  -- vim.cmd(("noa lcd %s"):format(fn.fnameescape(root)))
   --
   if info.quickfix == 1 then
     items = fn.getqflist({ id = info.id, items = 0 }).items
@@ -70,4 +70,4 @@ function _G.qftf(info)
   return ret
 end
 
-vim.opt.qftf = "{info -> v:lua._G.qftf(info)}"
+vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
